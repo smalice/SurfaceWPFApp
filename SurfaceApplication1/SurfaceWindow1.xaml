@@ -9,50 +9,50 @@
     <Grid Background="{StaticResource WindowBackground}" Height="480" Width="640">
         <s:ScatterView>
             <s:ScatterViewItem 
-					Height="200" 
-					Width="200"
-					Orientation="0"
-					Center="350, 270"
+					Height="100" 
+					Width="100"
+					Orientation="45"
+					Center="400, 300"
 					CanRotate="False"
 					CanScale="False"
 					ZIndex="0" 
-					IsTopmostOnActivation="False" Background="Aqua">
+					Background="Aqua">
             </s:ScatterViewItem>
             <s:ScatterViewItem 
-					Height="200" 
-					Width="200"
-					Orientation="0"
-					Center="300, 200"
+					Height="100" 
+					Width="100"
+					Orientation="45"
+					Center="230, 200"
 					CanRotate="False"
 					CanScale="False"
 					ZIndex="0" 
-					IsTopmostOnActivation="False" Background="Yellow">
+					Background="Yellow">
             </s:ScatterViewItem>
         </s:ScatterView>
         <Grid Name="logoHolder" 
                 VerticalAlignment="Center"
 			    HorizontalAlignment="Center">
             <s:ScatterViewItem
-					Height="140"
-					Width="70"
+					Height="215"
+					Width="130"
 					Orientation="0"
 					CanMove="False"
 				    CanRotate="False"
 				    CanScale="False"
 					IsHitTestVisible="True" />
             <s:ScatterViewItem
-					Height="100"
-					Width="150"
-					Orientation="90"
+					Height="130"
+					Width="215"
+					Orientation="0"
 					CanMove="False"
 				    CanRotate="False"
 				    CanScale="False"
 					IsHitTestVisible="True" />
             <Image Name="logo" 
-			   Width="200" 
-			   Height="150"
+			   Width="250" 
+			   Height="250"
 			   IsHitTestVisible="False"
-			   Source="/SurfaceApplication1;component/Resources/tempLogo.png" OpacityMask="#FF989796" />
+			   Source="/SurfaceApplication1;component/Resources/CapLogoTemp.png" OpacityMask="#FF989796" />
         </Grid>
     </Grid>
 </s:SurfaceWindow>

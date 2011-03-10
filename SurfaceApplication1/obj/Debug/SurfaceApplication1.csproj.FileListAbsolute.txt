@@ -1,0 +1,17 @@
+D:\Users\joshido\Documents\Visual Studio 2010\Projects\Cap focus group\ms surface\SurfaceWPFApp\SurfaceApplication1\bin\Debug\Resources\icon.png
+D:\Users\joshido\Documents\Visual Studio 2010\Projects\Cap focus group\ms surface\SurfaceWPFApp\SurfaceApplication1\bin\Debug\Resources\iconPreview.png
+D:\Users\joshido\Documents\Visual Studio 2010\Projects\Cap focus group\ms surface\SurfaceWPFApp\SurfaceApplication1\bin\Debug\SurfaceApplication1.exe
+D:\Users\joshido\Documents\Visual Studio 2010\Projects\Cap focus group\ms surface\SurfaceWPFApp\SurfaceApplication1\bin\Debug\SurfaceApplication1.pdb
+D:\Users\joshido\Documents\Visual Studio 2010\Projects\Cap focus group\ms surface\SurfaceWPFApp\SurfaceApplication1\obj\Debug\ResolveAssemblyReference.cache
+D:\Users\joshido\Documents\Visual Studio 2010\Projects\Cap focus group\ms surface\SurfaceWPFApp\SurfaceApplication1\obj\Debug\SurfaceWindow1.baml
+D:\Users\joshido\Documents\Visual Studio 2010\Projects\Cap focus group\ms surface\SurfaceWPFApp\SurfaceApplication1\obj\Debug\App.baml
+D:\Users\joshido\Documents\Visual Studio 2010\Projects\Cap focus group\ms surface\SurfaceWPFApp\SurfaceApplication1\obj\Debug\SurfaceWindow1.g.cs
+D:\Users\joshido\Documents\Visual Studio 2010\Projects\Cap focus group\ms surface\SurfaceWPFApp\SurfaceApplication1\obj\Debug\App.g.cs
+D:\Users\joshido\Documents\Visual Studio 2010\Projects\Cap focus group\ms surface\SurfaceWPFApp\SurfaceApplication1\obj\Debug\SurfaceApplication1_Content.g.cs
+D:\Users\joshido\Documents\Visual Studio 2010\Projects\Cap focus group\ms surface\SurfaceWPFApp\SurfaceApplication1\obj\Debug\SurfaceApplication1_MarkupCompile.cache
+D:\Users\joshido\Documents\Visual Studio 2010\Projects\Cap focus group\ms surface\SurfaceWPFApp\SurfaceApplication1\obj\Debug\SurfaceApplication1.g.resources
+D:\Users\joshido\Documents\Visual Studio 2010\Projects\Cap focus group\ms surface\SurfaceWPFApp\SurfaceApplication1\obj\Debug\SurfaceApplication1.Properties.Resources.resources
+D:\Users\joshido\Documents\Visual Studio 2010\Projects\Cap focus group\ms surface\SurfaceWPFApp\SurfaceApplication1\obj\Debug\GenerateResource.read.1.tlog
+D:\Users\joshido\Documents\Visual Studio 2010\Projects\Cap focus group\ms surface\SurfaceWPFApp\SurfaceApplication1\obj\Debug\GenerateResource.write.1.tlog
+D:\Users\joshido\Documents\Visual Studio 2010\Projects\Cap focus group\ms surface\SurfaceWPFApp\SurfaceApplication1\obj\Debug\SurfaceApplication1.exe
+D:\Users\joshido\Documents\Visual Studio 2010\Projects\Cap focus group\ms surface\SurfaceWPFApp\SurfaceApplication1\obj\Debug\SurfaceApplication1.pdb
