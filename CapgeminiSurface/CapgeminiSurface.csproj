@@ -86,6 +86,12 @@
     <Compile Include="MenuLogo.xaml.cs">
       <DependentUpon>MenuLogo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\ModelManager.cs" />
+    <Compile Include="Model\Picture.cs" />
+    <Compile Include="Model\Project.cs" />
+    <Compile Include="Model\Video.cs" />
+    <Compile Include="Model\VisitCard.cs" />
     <Compile Include="PictureItem.xaml.cs">
       <DependentUpon>PictureItem.xaml</DependentUpon>
     </Compile>
