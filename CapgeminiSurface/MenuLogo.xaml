@@ -3,6 +3,32 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Height="300" Width="300">
     <Grid>
-            
+        <Rectangle 
+        Name="logo" 
+        Height="300" 
+        Width="300" 
+        RadiusX="150" 
+        RadiusY="150"
+        TextBlock.TextAlignment="Center" 
+        Opacity="1" 
+        Stretch="Fill" 
+        Margin="0" 
+        OpacityMask="#FAFFFFFD" 
+        StrokeThickness="4" 
+        Stroke="White"       
+        >
+            <Rectangle.Fill>
+                <ImageBrush 
+                    ImageSource="/CapgeminiSurface;component/Resources/temporaryLogo.png" 
+                    Stretch="Fill" 
+                    TileMode="None" 
+                    />
+            </Rectangle.Fill>
+            <Rectangle.RenderTransform>
+                <TranslateTransform 
+                    X="0.0" 
+                    Y="0.0"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
     </Grid>
 </UserControl>
