@@ -26,7 +26,7 @@ namespace CapgeminiSurface.Model
         public void Save()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<Customer>));
-            TextWriter textWriter = new StreamWriter("Customers.xml");
+            TextWriter textWriter = new StreamWriter("Resources\\Customers.xml");
             serializer.Serialize(textWriter, Customers);
             textWriter.Close();
         }
@@ -34,7 +34,7 @@ namespace CapgeminiSurface.Model
         public void Load()
         {
             XmlSerializer deserializer = new XmlSerializer(typeof(List<Customer>));
-            TextReader textReader = new StreamReader("Customers.xml");
+            TextReader textReader = new StreamReader("Resources\\Customers.xml");
             Customers = (List<Customer>)deserializer.Deserialize(textReader);
             textReader.Close();
         }
