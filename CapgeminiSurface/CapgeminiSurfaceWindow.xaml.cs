@@ -15,6 +15,7 @@ using Microsoft.Surface;
 using Microsoft.Surface.Presentation;
 using Microsoft.Surface.Presentation.Controls;
 using System.Collections;
+using CapgeminiSurface.Model;
 
 namespace CapgeminiSurface
 {
@@ -32,8 +33,10 @@ namespace CapgeminiSurface
 
         public CapgeminiSurfaceWindow()
         {
+            ModelManager.Instance.Load();
+
             InitializeComponent();
-<<<<<<< HEAD
+
             foreach (var card in ModelManager.Instance.Customers)
             {
                 MenuCard menuCard = new MenuCard();
@@ -42,22 +45,11 @@ namespace CapgeminiSurface
                 Grid.SetColumn(menuCard, 1);
                 Grid.SetRow(menuCard, 1);
                 Panel.SetZIndex(menuCard, 0);
+                MenuCardHolder.Add(menuCard);
             }
             // Add handlers for Application activation events
-=======
->>>>>>> 5e67bfe948c0386c8cce0a426de719c22da7faf4
             AddActivationHandlers();
             
-            // TODO: remove
-            //menuLogo = new MenuLogo(this);
-
-            // TODO: remove
-            MenuCardHolder.Add(CardTwo);
-            MenuCardHolder.Add(CardTwo);
-            MenuCardHolder.Add(CardThree);
-            MenuCardHolder.Add(CardFour);
-            MenuCardHolder.Add(CardFive);
-
             for (int i = 1; i < menuCardAmount; i++)
             {
                 MenuCardHolder.Add(new MenuCard());

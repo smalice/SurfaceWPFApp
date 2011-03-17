@@ -17,15 +17,8 @@
         />
   </s:SurfaceWindow.Resources>
 
-<<<<<<< HEAD
-  <Grid Background="{StaticResource WindowBackground}" >
+  <Grid Background="{StaticResource WindowBackground}" Name="surfaceMainGrid">
         <Grid Margin="20,20,20,20" Name="ContentGrid">
-=======
-  <Grid 
-      Name="surfaceMainGrid"
-      Background="{StaticResource WindowBackground}" >
-        <Grid Margin="20,20,20,20">
->>>>>>> 5e67bfe948c0386c8cce0a426de719c22da7faf4
             <Grid.RowDefinitions>
                 <RowDefinition 
                     Height="100"/>
@@ -41,60 +34,13 @@
                     Width="100"/>
             </Grid.ColumnDefinitions>
 
-<<<<<<< HEAD
-            <!--<cs:MenuCard 
-=======
-            <cs:MenuLogo
-                Grid.Row="1" 
-                Grid.Column="1" 
-                x:Name="Logo"         
-                Panel.ZIndex="1" 
-                />
-            
-            <cs:MenuCard 
->>>>>>> 5e67bfe948c0386c8cce0a426de719c22da7faf4
-                Grid.Row="1" 
-                Grid.Column="1" 
-                x:Name="CardOne"      
-                Panel.ZIndex="0"
-                
-                />
-            <cs:MenuCard 
-                Grid.Row="1" 
-                Grid.Column="1" 
-                x:Name="CardTwo"      
-                Panel.ZIndex="0"
-                
-                />
-            <cs:MenuCard 
-                Grid.Row="1" 
-                Grid.Column="1" 
-                x:Name="CardThree"    
-                Panel.ZIndex="0" 
-                />
-            <cs:MenuCard 
-                Grid.Row="1" 
-                Grid.Column="1" 
-                x:Name="CardFour"     
-                Panel.ZIndex="0" 
-                />
-            <cs:MenuCard 
-                Grid.Row="1" 
-                Grid.Column="1" 
-                x:Name="CardFive"     
-                Panel.ZIndex="0" 
-<<<<<<< HEAD
-                />-->
             <cs:MenuLogo 
                 Grid.Row="1" 
                 Grid.Column="1" 
                 x:Name="Logo"         
                 Panel.ZIndex="1" 
                 />
-=======
-                />
 
->>>>>>> 5e67bfe948c0386c8cce0a426de719c22da7faf4
         </Grid>
-    </Grid>
+  </Grid>
 </s:SurfaceWindow>
