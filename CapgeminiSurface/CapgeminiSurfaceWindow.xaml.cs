@@ -14,22 +14,26 @@ using System.Windows.Threading;
 using Microsoft.Surface;
 using Microsoft.Surface.Presentation;
 using Microsoft.Surface.Presentation.Controls;
-using CapgeminiSurface.Model;
+using System.Collections;
 
 namespace CapgeminiSurface
 {
-    /// <summary>
-    /// Interaction logic for SurfaceWindow1.xaml
-    /// </summary>
+
     public partial class CapgeminiSurfaceWindow : SurfaceWindow
     {
-        /// <summary>
-        /// Default constructor.
-        /// </summary>
+        private Random randomStartAngle = new Random();
+
+        public ArrayList MenuCardHolder = new ArrayList();
+
+        public MenuLogo menuLogo;
+
+        // TODO: remove const; construct
+        private const int menuCardAmount=5;
+
         public CapgeminiSurfaceWindow()
         {
-            ModelManager.Instance.Load();
             InitializeComponent();
+<<<<<<< HEAD
             foreach (var card in ModelManager.Instance.Customers)
             {
                 MenuCard menuCard = new MenuCard();
@@ -40,74 +44,81 @@ namespace CapgeminiSurface
                 Panel.SetZIndex(menuCard, 0);
             }
             // Add handlers for Application activation events
+=======
+>>>>>>> 5e67bfe948c0386c8cce0a426de719c22da7faf4
             AddActivationHandlers();
+            
+            // TODO: remove
+            //menuLogo = new MenuLogo(this);
+
+            // TODO: remove
+            MenuCardHolder.Add(CardTwo);
+            MenuCardHolder.Add(CardTwo);
+            MenuCardHolder.Add(CardThree);
+            MenuCardHolder.Add(CardFour);
+            MenuCardHolder.Add(CardFive);
+
+            for (int i = 1; i < menuCardAmount; i++)
+            {
+                MenuCardHolder.Add(new MenuCard());
+            }
+
+            foreach (MenuCard card in MenuCardHolder)
+            {
+                card.cardRotateTransform.Angle = randomStartAngle.Next(0, 360);
+            }
+
+            Logo.ContactDown += new ContactEventHandler(menuLogo_ContactDown);
         }
 
+        void menuLogo_ContactDown(object sender, ContactEventArgs e)
+        {
+            rotateAllCards(1);
+            //throw new NotImplementedException();
+        }
 
-        /// <summary>
-        /// Occurs when the window is about to close. 
-        /// </summary>
-        /// <param name="e"></param>
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
-
-            // Remove handlers for Application activation events
             RemoveActivationHandlers();
         }
 
-        /// <summary>
-        /// Adds handlers for Application activation events.
-        /// </summary>
+        public void rotateAllCards(int rotation)
+        {
+            foreach (MenuCard card in MenuCardHolder)
+            {
+                card.cardRotateTransform.Angle += rotation;
+            }
+        }
+
         private void AddActivationHandlers()
         {
-            // Subscribe to surface application activation events
             ApplicationLauncher.ApplicationActivated += OnApplicationActivated;
             ApplicationLauncher.ApplicationPreviewed += OnApplicationPreviewed;
             ApplicationLauncher.ApplicationDeactivated += OnApplicationDeactivated;
         }
 
-        /// <summary>
-        /// Removes handlers for Application activation events.
-        /// </summary>
         private void RemoveActivationHandlers()
         {
-            // Unsubscribe from surface application activation events
+
             ApplicationLauncher.ApplicationActivated -= OnApplicationActivated;
             ApplicationLauncher.ApplicationPreviewed -= OnApplicationPreviewed;
             ApplicationLauncher.ApplicationDeactivated -= OnApplicationDeactivated;
         }
 
-        /// <summary>
-        /// This is called when application has been activated.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void OnApplicationActivated(object sender, EventArgs e)
         {
-            //TODO: enable audio, animations here
+
         }
 
-        /// <summary>
-        /// This is called when application is in preview mode.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void OnApplicationPreviewed(object sender, EventArgs e)
         {
-            //TODO: Disable audio here if it is enabled
 
-            //TODO: optionally enable animations here
         }
 
-        /// <summary>
-        ///  This is called when application has been deactivated.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void OnApplicationDeactivated(object sender, EventArgs e)
         {
-            //TODO: disable audio, animations here
+
         }
     }
 }

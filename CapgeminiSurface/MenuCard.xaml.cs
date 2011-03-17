@@ -11,27 +11,37 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Surface.Presentation;
 using Microsoft.Surface.Presentation.Controls;
+using Microsoft.Surface.Presentation.Manipulations;
 
 namespace CapgeminiSurface
 {
-    
-    public partial class MenuCard : UserControl
+
+    public partial class MenuCard : SurfaceUserControl
     {
-        private double rotationSpeed = 1.0;
-        private double radiusMod = 125;
-        private double hypotenuseMod = 57.5;
-        private double maximumRotationDegree = 360;
-        private double minimalRotationDegree = 0;
+        private Affine2DManipulationProcessor manipulationProcessor;
+
+        //TODO: initialize costumer object instance from class
+
+        // #Felo: Manual rotation variables
+        private const double rotationSpeed = 1.0;
+        private const double radiusMod = 125;
+        private const double hypotenuseMod = 57.5;
+        private const double maximumRotationDegree = 360;
+        private const double minimalRotationDegree = 0;
         private Point currentCenterPoint = new Point(250, 250);
 
-        public enum States : int { stateOne = 0, stateTwo = 1, stateThree = 2, stateFour = 3 };
+        // #Felo: Card States
+        public enum States : int { stateRotation = 0, stateTwo = 1, stateThree = 2, stateFour = 3 };
 
-        public States CurrentState=States.stateOne;
-        
+        public States CurrentState = States.stateRotation;
+
         public MenuCard()
         {
             InitializeComponent();
+            //TODO: add costmer data to costumer object instance
+            
         }
 
         private void card_ScatterManipulationStarted(object sender, Microsoft.Surface.Presentation.Controls.ScatterManipulationStartedEventArgs e)
@@ -47,12 +57,11 @@ namespace CapgeminiSurface
             {
                 evaluateState();
 
-                
-
                 switch ( CurrentState )
                 {
-                    case States.stateOne:
+                    case States.stateRotation:
                     rotateMoveObject(sender, e);
+
                     break;
 
                     case States.stateTwo:
@@ -186,6 +195,28 @@ namespace CapgeminiSurface
         private void card_ScatterManipulationCompleted(object sender, Microsoft.Surface.Presentation.Controls.ScatterManipulationCompletedEventArgs e)
         {
 
+        }
+        
+        private void InitializeManipulationProcessor()
+        {
+            manipulationProcessor = new Affine2DManipulationProcessor(Affine2DManipulations.Rotate, cardAssembly, currentCenterPoint);
+            manipulationProcessor.Affine2DManipulationDelta += OnManipulationDelta;
+        }
+
+        private void OnManipulationDelta(object sender, Affine2DOperationDeltaEventArgs e)
+        {
+            cardRotateTransform.Angle += e.RotationDelta;
+        }
+
+        protected override void OnContactDown(ContactEventArgs e)
+        {
+            base.OnContactDown(e);
+
+            e.Contact.Capture(this);
+
+            manipulationProcessor.BeginTrack(e.Contact);
+
+            e.Handled = true;
         }
     }
 }

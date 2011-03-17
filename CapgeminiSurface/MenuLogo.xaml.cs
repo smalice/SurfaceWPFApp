@@ -11,17 +11,47 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Surface.Presentation;
+using Microsoft.Surface.Presentation.Controls;
+using Microsoft.Surface.Presentation.Manipulations;
 
 namespace CapgeminiSurface
 {
-    /// <summary>
-    /// Interaction logic for MenuLogo.xaml
-    /// </summary>
-    public partial class MenuLogo : UserControl
-    {
+    public partial class MenuLogo : SurfaceUserControl
+
+    {                    
+        private Affine2DManipulationProcessor manipulationProcessor;
+
+        //private CapgeminiSurfaceWindow capgeminiSurfacewindow;
+
+        //TODO: make parameter: CapgeminiSurfaceWindow capgeminiSurfacewindow
         public MenuLogo()
         {
             InitializeComponent();
+            InitializeManipulationProcessor();
+            //this.capgeminiSurfacewindow = capgeminiSurfacewindow;
+        }
+
+        private void InitializeManipulationProcessor()
+        {
+            manipulationProcessor = new Affine2DManipulationProcessor(Affine2DManipulations.Rotate, LogoAssembly, new Point(150, 150));
+            manipulationProcessor.Affine2DManipulationDelta += OnManipulationDelta;
+        }
+
+        private void OnManipulationDelta(object sender, Affine2DOperationDeltaEventArgs e)
+        {
+            logoRotateTransform.Angle += e.RotationDelta;
+        }
+
+        protected override void OnContactDown(ContactEventArgs e)
+        {
+            base.OnContactDown(e);
+
+            e.Contact.Capture(this);
+
+            manipulationProcessor.BeginTrack(e.Contact);
+
+            e.Handled = true;
         }
 
     }
