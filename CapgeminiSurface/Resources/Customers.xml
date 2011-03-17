@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfCustomer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Customer>
+    <Pictures>
+      <Picture>
+        <FileName>Picture1.jpg</FileName>
+      </Picture>
+      <Picture>
+        <FileName>Picture2.jpg</FileName>
+      </Picture>
+    </Pictures>
+	<Videos>
+      <Video>
+        <FileName>Video1.jpg</FileName>
+      </Video>
+      <Video>
+        <FileName>Video2.jpg</FileName>
+      </Video>
+    </Videos>
+	<Projects>
+      <Project>
+        <Name>Customer1 - project1</Name>
+		<Description>Customer1 - project1 - description</Description>
+      </Project>
+      <Project>
+        <Name>Customer1 - project2</Name>
+		<Description>Customer1 - project1 - description</Description>
+      </Project>
+    </Projects>
+	<Contacts>
+		<VisitCard>
+			<Name>Name1</Name>
+			<Email>Email1</Email>
+			<Tlf>11223344</Tlf>
+			<PictureFileName>PictureName1.jpg</PictureFileName>
+		</VisitCard>
+	</Contacts>
+    <Name>Customer1</Name>
+  </Customer>
+  <Customer>
+    <Pictures>
+      <Picture>
+        <FileName>Picture1.jpg</FileName>
+      </Picture>
+      <Picture>
+        <FileName>Picture2.jpg</FileName>
+      </Picture>
+    </Pictures>
+	<Videos>
+      <Video>
+        <FileName>Video1.jpg</FileName>
+      </Video>
+      <Video>
+        <FileName>Video2.jpg</FileName>
+      </Video>
+    </Videos>
+	<Projects>
+      <Project>
+        <Name>Customer1 - project1</Name>
+		<Description>Customer1 - project1 - description</Description>
+      </Project>
+      <Project>
+        <Name>Customer1 - project2</Name>
+		<Description>Customer1 - project1 - description</Description>
+      </Project>
+    </Projects>
+	<Contacts>
+		<VisitCard>
+			<Name>Name1</Name>
+			<Email>Email1</Email>
+			<Tlf>11223344</Tlf>
+			<PictureFileName>PictureName1.jpg</PictureFileName>
+		</VisitCard>
+	</Contacts>
+    <Name>Customer2</Name>
+  </Customer>
+</ArrayOfCustomer>
