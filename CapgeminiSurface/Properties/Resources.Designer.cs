@@ -47,6 +47,7 @@ namespace CapgeminiSurface.Properties {
             }
         }
         
+<<<<<<< HEAD
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -111,6 +112,8 @@ namespace CapgeminiSurface.Properties {
             }
         }
         
+=======
+>>>>>>> upstream/master
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.

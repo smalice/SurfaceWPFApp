@@ -14,6 +14,7 @@ using System.Windows.Threading;
 using Microsoft.Surface;
 using Microsoft.Surface.Presentation;
 using Microsoft.Surface.Presentation.Controls;
+using CapgeminiSurface.Model;
 
 namespace CapgeminiSurface
 {
@@ -27,6 +28,7 @@ namespace CapgeminiSurface
         /// </summary>
         public CapgeminiSurfaceWindow()
         {
+            ModelManager.Instance.Load();
             InitializeComponent();
 
             // Add handlers for Application activation events

@@ -20,6 +20,7 @@ namespace CapgeminiSurface.Properties {
         
         public static Settings Default {
             get {
+<<<<<<< HEAD
                 return defaultInstance;
             }
         }
@@ -47,6 +48,8 @@ namespace CapgeminiSurface.Properties {
         
         public static Settings Default {
             get {
+=======
+>>>>>>> upstream/master
                 return defaultInstance;
             }
         }
