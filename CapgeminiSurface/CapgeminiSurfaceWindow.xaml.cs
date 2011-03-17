@@ -30,7 +30,15 @@ namespace CapgeminiSurface
         {
             ModelManager.Instance.Load();
             InitializeComponent();
-
+            foreach (var card in ModelManager.Instance.Customers)
+            {
+                MenuCard menuCard = new MenuCard();
+                menuCard.Name = card.Name;
+                ContentGrid.Children.Add(menuCard);
+                Grid.SetColumn(menuCard, 1);
+                Grid.SetRow(menuCard, 1);
+                Panel.SetZIndex(menuCard, 0);
+            }
             // Add handlers for Application activation events
             AddActivationHandlers();
         }
