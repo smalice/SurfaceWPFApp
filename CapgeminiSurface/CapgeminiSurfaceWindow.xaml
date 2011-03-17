@@ -17,7 +17,9 @@
         />
   </s:SurfaceWindow.Resources>
 
-  <Grid Background="{StaticResource WindowBackground}" >
+  <Grid 
+      Name="surfaceMainGrid"
+      Background="{StaticResource WindowBackground}" >
         <Grid Margin="20,20,20,20">
             <Grid.RowDefinitions>
                 <RowDefinition 
@@ -34,6 +36,13 @@
                     Width="100"/>
             </Grid.ColumnDefinitions>
 
+            <cs:MenuLogo
+                Grid.Row="1" 
+                Grid.Column="1" 
+                x:Name="Logo"         
+                Panel.ZIndex="1" 
+                />
+            
             <cs:MenuCard 
                 Grid.Row="1" 
                 Grid.Column="1" 
@@ -66,12 +75,7 @@
                 x:Name="CardFive"     
                 Panel.ZIndex="0" 
                 />
-            <cs:MenuLogo 
-                Grid.Row="1" 
-                Grid.Column="1" 
-                x:Name="Logo"         
-                Panel.ZIndex="1" 
-                />
+
         </Grid>
     </Grid>
 </s:SurfaceWindow>
