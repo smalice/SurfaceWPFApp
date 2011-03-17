@@ -23,5 +23,10 @@ namespace CapgeminiSurface
         {
             InitializeComponent();
         }
+
+        private void onInitialized(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

@@ -3,14 +3,9 @@
     xmlns:s="http://schemas.microsoft.com/surface/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:CapgeminiSurface"
-<<<<<<< HEAD
-    Height="300" Width="300">
+    xmlns:resource="clr-namespace:CapgeminiSurface.Resources"
+    Height="300" Width="300" Initialized="onInitialized">
     <Grid Name="PojectStack">
-        
-=======
-    Height="400" Width="400">
-    <Grid>
-		<local:ProjectItem Visibility="Visible"/>
->>>>>>> d970117e143e2b03f36e17fa1218eb832152e0d7
+        <local:ProjectItem />
     </Grid>
 </local:SurfaceStack>
