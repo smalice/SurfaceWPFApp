@@ -1,22 +1,40 @@
-﻿<UserControl x:Class="CapgeminiSurface.MenuLogo"
+﻿<s:SurfaceUserControl x:Class="CapgeminiSurface.MenuLogo"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:s="http://schemas.microsoft.com/surface/2008"
     Height="300" Width="300">
     <Grid>
-        <Rectangle 
-        Name="logo" 
-        Height="300" 
-        Width="300" 
-        RadiusX="150" 
-        RadiusY="150"
-        TextBlock.TextAlignment="Center" 
-        Opacity="1" 
-        Stretch="Fill" 
-        Margin="0" 
-        OpacityMask="#FAFFFFFD" 
-        StrokeThickness="4" 
-        Stroke="White"       
-        >
+        <Grid
+            Name="LogoAssembly" 
+            Height="300" 
+            Width="300"
+            >
+            <Grid.RenderTransformOrigin>
+                <Point 
+                    X="0.5" 
+                    Y="0.5"/>
+            </Grid.RenderTransformOrigin>
+            <Grid.RenderTransform>
+                <RotateTransform 
+                    x:Name="logoRotateTransform" 
+                    Angle="0" 
+                    CenterX="0" 
+                    CenterY="0"/>
+            </Grid.RenderTransform>
+            <Rectangle 
+            Name="logo" 
+            Height="300" 
+            Width="300" 
+            RadiusX="150" 
+            RadiusY="150"
+            TextBlock.TextAlignment="Center" 
+            Opacity="1" 
+            Stretch="Fill" 
+            Margin="0" 
+            OpacityMask="#FAFFFFFD" 
+            StrokeThickness="4" 
+            Stroke="White"       
+            >
             <Rectangle.Fill>
                 <ImageBrush 
                     ImageSource="/CapgeminiSurface;component/Resources/temporaryLogo.png" 
@@ -29,6 +47,7 @@
                     X="0.0" 
                     Y="0.0"/>
             </Rectangle.RenderTransform>
-        </Rectangle>
+            </Rectangle>
+        </Grid>
     </Grid>
-</UserControl>
+</s:SurfaceUserControl>
