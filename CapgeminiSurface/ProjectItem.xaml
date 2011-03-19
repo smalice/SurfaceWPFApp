@@ -1,15 +1,29 @@
-﻿<local:StackItem x:Class="CapgeminiSurface.ProjectItem"
+﻿<cs:StackItem x:Class="CapgeminiSurface.ProjectItem"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="clr-namespace:CapgeminiSurface"
+    xmlns:cs="clr-namespace:CapgeminiSurface"
     xmlns:resource="clr-namespace:CapgeminiSurface.Resources"
-    Height="350" Width="300" Initialized="onInitialized">
+    Height="350" Width="300">
     <Grid>
-		<Viewbox>
-			<Grid Name="projectGrid">
-                <TextBlock Name="projectName" Height="23" HorizontalAlignment="Left" Margin="12,12,0,0" VerticalAlignment="Top" Width="276" FontWeight="Bold" Text="{Binding Source}"/>
-                <TextBlock Name="projectDescription" Height="247" HorizontalAlignment="Left" Margin="12,41,0,0" VerticalAlignment="Top" Width="276" ScrollViewer.VerticalScrollBarVisibility="Hidden" Text="Binding{resource:projectInfo.ProjectDescription}"/>
-			</Grid>
-		</Viewbox>
-	</Grid>
-</local:StackItem>
+        <Grid Name="projectGrid" Background="Aqua">
+            <TextBlock Name="projectName" 
+                       Height="23" 
+                       HorizontalAlignment="Left" 
+                       Margin="12,12,0,0" 
+                       VerticalAlignment="Top" 
+                       Width="276" 
+                       FontWeight="Bold" 
+                       Foreground="Black" 
+                       Text="{Binding Name}"/>
+            <TextBlock Name="projectDescription" 
+                       Height="247" 
+                       HorizontalAlignment="Left" 
+                       Margin="12,41,0,0" 
+                       VerticalAlignment="Top" 
+                       Width="276" 
+                       ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                       Foreground="Black" 
+                       Text="{Binding Description}" />
+        </Grid>
+    </Grid>
+</cs:StackItem>

@@ -122,16 +122,10 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-<<<<<<< HEAD
-    <EmbeddedResource Include="Resources\projectInfo.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>projectInfo.Designer.cs</LastGenOutput>
-=======
     <EmbeddedResource Include="Resources\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
->>>>>>> upstream/master
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
@@ -151,17 +145,10 @@
     <Compile Include="CapgeminiSurfaceWindow.xaml.cs">
       <DependentUpon>CapgeminiSurfaceWindow.xaml</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Resources\projectInfo.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>projectInfo.resx</DependentUpon>
-=======
     <Compile Include="Resources\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
->>>>>>> upstream/master
     </Compile>
     <Compile Include="StackItem.xaml.cs">
       <DependentUpon>StackItem.xaml</DependentUpon>

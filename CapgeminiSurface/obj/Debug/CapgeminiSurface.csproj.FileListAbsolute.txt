@@ -35,4 +35,5 @@ C:\Users\yaoblu\Documents\Focusgroup\msSurface\SurfaceWPFApp\CapgeminiSurface\ob
 C:\Users\yaoblu\Documents\Focusgroup\msSurface\SurfaceWPFApp\CapgeminiSurface\obj\Debug\GenerateResource-ResGen.write.1.tlog
 C:\Users\yaoblu\Documents\Focusgroup\msSurface\SurfaceWPFApp\CapgeminiSurface\obj\Debug\CapgeminiSurface.exe
 C:\Users\yaoblu\Documents\Focusgroup\msSurface\SurfaceWPFApp\CapgeminiSurface\obj\Debug\CapgeminiSurface.pdb
-C:\Users\yaoblu\Documents\Focusgroup\msSurface\SurfaceWPFApp\CapgeminiSurface\obj\Debug\CapgeminiSurface.Resources.projectInfo.resources
+C:\Users\yaoblu\Documents\Focusgroup\msSurface\SurfaceWPFApp\CapgeminiSurface\bin\Debug\Resources\Customers.xml
+C:\Users\yaoblu\Documents\Focusgroup\msSurface\SurfaceWPFApp\CapgeminiSurface\obj\Debug\CapgeminiSurface.Resources.Resources.resources

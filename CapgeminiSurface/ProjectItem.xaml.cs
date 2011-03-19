@@ -11,50 +11,46 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Surface;
+using Microsoft.Surface.Presentation;
+using Microsoft.Surface.Presentation.Controls;
 
 namespace CapgeminiSurface
 {
-	/// <summary>
-	/// Interaction logic for ProjectItem.xaml
-	/// </summary>
-	public partial class ProjectItem : StackItem
-	{
+    /// <summary>
+    /// Interaction logic for ProjectItem.xaml
+    /// </summary>
+    public partial class ProjectItem : StackItem
+    {
         public IList<string> parameters { get; set; }
-		public ProjectItem()
-		{
-			InitializeComponent();
-		}
+        public ProjectItem()
+        {
+            InitializeComponent();
+        }
 
-		private void onInitialized(object sender, EventArgs e)
-		{
-                projectName.Foreground = Brushes.Black;
-                projectDescription.Foreground = Brushes.Black;
-                projectGrid.Background = Brushes.Aqua;
-		}
-
-		private string stringOptimizer(string text)
-		{
-			string tmp = text;
-			int size = 50;
-			if (text.Length > size)
-			{
-				if (!text.Contains("\n"))
-				{
-					tmp = text.Substring(0, size) + "\n";
-					for (int position = 51; position < text.Length; position += (size + 1))
-					{
-						if (text.Substring(position).Length <= size)
-						{
-							tmp += text.Substring(position);
-						}
-						else
-						{
-							tmp += text.Substring(position, size) + "\n";
-						}
-					}
-				}
-			}
-			return tmp;
-		}
-	}
+        private string stringOptimizer(string text)
+        {
+            string tmp = text;
+            int size = 50;
+            if (text.Length > size)
+            {
+                if (!text.Contains("\n"))
+                {
+                    tmp = text.Substring(0, size) + "\n";
+                    for (int position = 51; position < text.Length; position += (size + 1))
+                    {
+                        if (text.Substring(position).Length <= size)
+                        {
+                            tmp += text.Substring(position);
+                        }
+                        else
+                        {
+                            tmp += text.Substring(position, size) + "\n";
+                        }
+                    }
+                }
+            }
+            return tmp;
+        }
+    }
 }
