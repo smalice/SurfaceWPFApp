@@ -17,15 +17,8 @@
         />
     </s:SurfaceWindow.Resources>
 
-<<<<<<< HEAD
-    <Grid Background="{StaticResource WindowBackground}" >
-        <cs:ProjectStack />
-
-        <!--<Grid Margin="20,20,20,20">
-=======
   <Grid Background="{StaticResource WindowBackground}" Name="surfaceMainGrid">
         <Grid Margin="20,20,20,20" Name="ContentGrid">
->>>>>>> upstream/master
             <Grid.RowDefinitions>
                 <RowDefinition 
                     Height="100"/>
@@ -47,12 +40,7 @@
                 x:Name="Logo"         
                 Panel.ZIndex="1" 
                 />
-<<<<<<< HEAD
-        </Grid>-->
-    </Grid>
-=======
 
         </Grid>
   </Grid>
->>>>>>> upstream/master
 </s:SurfaceWindow>
