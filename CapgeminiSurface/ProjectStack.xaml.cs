@@ -11,6 +11,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CapgeminiSurface.Model;
+using Microsoft.Surface;
+using Microsoft.Surface.Presentation;
+using Microsoft.Surface.Presentation.Controls;
 
 namespace CapgeminiSurface
 {
@@ -22,6 +26,35 @@ namespace CapgeminiSurface
         public ProjectStack()
         {
             InitializeComponent();
+
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            ModelManager.Instance.Load();
+            Customer customer = new Customer()
+            {
+                Name = "customer 1",
+                Projects = new List<Project>() {
+                    new Project(){
+                        Name = "new project 1",
+                        Description = "new project description 1"
+                    },
+                    new Project(){
+                        Name = "new project 2",
+                        Description = "new project description 2"
+                    }
+                }
+            };
+            foreach (var project in customer.Projects)
+            {
+                ProjectItem projectItem = new ProjectItem();
+                projectItem.DataContext = project;
+                Grid.SetRow(projectItem, 0);
+                Grid.SetColumn(projectItem, 0);
+                Grid.SetZIndex(projectItem, 0);
+                projectGrid.Children.Add(projectItem);
+            }
         }
     }
 }

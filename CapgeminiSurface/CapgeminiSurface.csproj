@@ -1,7 +1,10 @@
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 >>>>>>> upstream/master
+>>>>>>> 0c2f76f42852ea3d5cca29bc22d7623763a45198
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
@@ -36,6 +39,8 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
     <PublishUrl>Publish\</PublishUrl>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <FileUpgradeFlags>
@@ -45,6 +50,7 @@
     <OldToolsVersion>3.5</OldToolsVersion>
 =======
 >>>>>>> upstream/master
+>>>>>>> 0c2f76f42852ea3d5cca29bc22d7623763a45198
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -96,6 +102,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
     </ApplicationDefinition>
     <Compile Include="App.xaml.cs">
@@ -335,6 +343,7 @@
       <SubType>Designer</SubType>
 =======
 >>>>>>> upstream/master
+>>>>>>> 0c2f76f42852ea3d5cca29bc22d7623763a45198
     </ApplicationDefinition>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -408,6 +417,9 @@
     </Compile>
     <Compile Include="SurfaceStack.xaml.cs">
       <DependentUpon>SurfaceStack.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Util\TSoundPlayer.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="VideoItem.xaml.cs">
       <DependentUpon>VideoItem.xaml</DependentUpon>
@@ -526,5 +538,4 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
->>>>>>> d970117e143e2b03f36e17fa1218eb832152e0d7
 </Project>
