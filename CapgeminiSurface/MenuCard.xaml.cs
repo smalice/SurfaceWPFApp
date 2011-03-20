@@ -218,5 +218,17 @@ namespace CapgeminiSurface
 
             e.Handled = true;
         }
+
+        private void ElementMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var grid = this.Parent as Grid;
+            if (grid != null)
+            {
+                ProjectStack ps = new ProjectStack();
+                grid.Children.Add(ps);
+                Grid.SetColumn(ps, 1);
+                Grid.SetRow(ps, 1);
+            }
+        }
     }
 }

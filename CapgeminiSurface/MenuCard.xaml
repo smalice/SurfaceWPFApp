@@ -49,7 +49,7 @@
                         <s:ElementMenuItem                         
                            Header="{x:Static Resources:Resources.Item_1}" 
                         >
-                                <s:ElementMenuItem Header="{x:Static Resources:Resources.Item_1}" />
+                                <s:ElementMenuItem Header="{x:Static Resources:Resources.Item_1}" Click="ElementMenuItem_Click"/>
                                 <s:ElementMenuItem Header="{x:Static Resources:Resources.Item_2}" />
                                 <s:ElementMenuItem Header="{x:Static Resources:Resources.Item_3}" />
                             </s:ElementMenuItem>
