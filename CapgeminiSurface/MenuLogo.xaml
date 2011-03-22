@@ -1,53 +1,47 @@
-﻿<s:SurfaceUserControl x:Class="CapgeminiSurface.MenuLogo"
+﻿<s:SurfaceUserControl
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:s="http://schemas.microsoft.com/surface/2008"
-    Height="300" Width="300">
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="CapgeminiSurface.MenuLogo"
+    Height="768" Width="1024">
+	<s:SurfaceUserControl.Resources>
+		<Storyboard x:Key="Rotation"/>
+	</s:SurfaceUserControl.Resources>
+	<s:SurfaceUserControl.Triggers>
+		<EventTrigger RoutedEvent="FrameworkElement.Loaded">
+			<BeginStoryboard Storyboard="{StaticResource Rotation}"/>
+		</EventTrigger>
+	</s:SurfaceUserControl.Triggers>
     <Grid>
-        <Grid
-            Name="LogoAssembly" 
-            Height="300" 
-            Width="300"
-            >
-            <Grid.RenderTransformOrigin>
-                <Point 
-                    X="0.5" 
-                    Y="0.5"/>
-            </Grid.RenderTransformOrigin>
-            <Grid.RenderTransform>
-                <RotateTransform 
-                    x:Name="logoRotateTransform" 
-                    Angle="0" 
-                    CenterX="0" 
-                    CenterY="0"/>
-            </Grid.RenderTransform>
-            <Rectangle 
-            Name="logo" 
+        <Grid>
+            <Ellipse 
+            x:Name="logo" 
             Height="300" 
             Width="300" 
-            RadiusX="150" 
-            RadiusY="150"
             TextBlock.TextAlignment="Center" 
             Opacity="1" 
             Stretch="Fill" 
             Margin="0" 
             OpacityMask="#FAFFFFFD" 
             StrokeThickness="4" 
-            Stroke="White"       
-            >
-            <Rectangle.Fill>
+            Stroke="White"  
+            RenderTransformOrigin="0.5,0.5">
+                <Ellipse.Fill>
                 <ImageBrush 
                     ImageSource="/CapgeminiSurface;component/Resources/temporaryLogo.png" 
                     Stretch="Fill" 
                     TileMode="None" 
                     />
-            </Rectangle.Fill>
-            <Rectangle.RenderTransform>
-                <TranslateTransform 
-                    X="0.0" 
-                    Y="0.0"/>
-            </Rectangle.RenderTransform>
-            </Rectangle>
+                </Ellipse.Fill>
+                <Ellipse.RenderTransform>
+                    <RotateTransform 
+                    x:Name="logoRotateTransform" 
+                    Angle="0" 
+                    CenterX="0" 
+                    CenterY="0"/>
+                </Ellipse.RenderTransform>
+            </Ellipse>
+            
         </Grid>
     </Grid>
 </s:SurfaceUserControl>

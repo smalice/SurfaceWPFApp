@@ -15,11 +15,9 @@ using Microsoft.Surface;
 using Microsoft.Surface.Presentation;
 using Microsoft.Surface.Presentation.Controls;
 using System.Collections;
-using CapgeminiSurface.Model;
 
 namespace CapgeminiSurface
 {
-
     public partial class CapgeminiSurfaceWindow : SurfaceWindow
     {
         private Random randomStartAngle = new Random();
@@ -28,60 +26,41 @@ namespace CapgeminiSurface
 
         public MenuLogo menuLogo;
 
-        // TODO: remove const; construct
-        private const int menuCardAmount=5;
-
         public CapgeminiSurfaceWindow()
         {
-            ModelManager.Instance.Load();
-
+            Model.ModelManager.Instance.Load();
             InitializeComponent();
-
-            foreach (var card in ModelManager.Instance.Customers)
-            {
-                MenuCard menuCard = new MenuCard();
-                menuCard.Name = card.Name;
-                ContentGrid.Children.Add(menuCard);
-                Grid.SetColumn(menuCard, 1);
-                Grid.SetRow(menuCard, 1);
-                Panel.SetZIndex(menuCard, 0);
-                MenuCardHolder.Add(menuCard);
-            }
-            // Add handlers for Application activation events
             AddActivationHandlers();
-            
-            for (int i = 1; i < menuCardAmount; i++)
-            {
-                MenuCardHolder.Add(new MenuCard());
-            }
 
-            foreach (MenuCard card in MenuCardHolder)
+            foreach (var costumer in Model.ModelManager.Instance.Customers)
             {
+                MenuCard card = new MenuCard();
+                card.DataContext = costumer;
+                surfaceMainGrid.Children.Add(card);
+                Grid.SetColumn(card, 0);
+                Grid.SetRow(card, 0);
+                Panel.SetZIndex(card, 0);
                 card.cardRotateTransform.Angle = randomStartAngle.Next(0, 360);
+                MenuCardHolder.Add(card);
             }
 
-            Logo.ContactDown += new ContactEventHandler(menuLogo_ContactDown);
+            //Logo.rotateCards += new (menuLogo_ContactDown);
+             
         }
 
         void menuLogo_ContactDown(object sender, ContactEventArgs e)
         {
-            rotateAllCards(1);
-            //throw new NotImplementedException();
+            foreach (MenuCard card in MenuCardHolder)
+            {
+
+            }
         }
 
-        protected override void OnClosed(EventArgs e)
-        {
+        protected override void OnClosed(EventArgs e)        {
             base.OnClosed(e);
             RemoveActivationHandlers();
         }
 
-        public void rotateAllCards(int rotation)
-        {
-            foreach (MenuCard card in MenuCardHolder)
-            {
-                card.cardRotateTransform.Angle += rotation;
-            }
-        }
 
         private void AddActivationHandlers()
         {

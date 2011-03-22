@@ -1,62 +1,150 @@
-﻿<s:SurfaceUserControl x:Class="CapgeminiSurface.MenuCard"
+﻿<s:SurfaceUserControl
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:s="http://schemas.microsoft.com/surface/2008"
     xmlns:cs="clr-namespace:CapgeminiSurface"
     xmlns:Resources="clr-namespace:CapgeminiSurface.Resources"
-    Height="500" Width="500">
+    xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" x:Name="surfaceUserControl" 
+    x:Class="CapgeminiSurface.MenuCard"
+    Height="768" Width="1024">
+	<s:SurfaceUserControl.Resources>
+		<Storyboard x:Key="dragOut">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="card">
+				<SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="card">
+				<DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Hidden}"/>
+			</ObjectAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="card">
+				<SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="-300"/>
+			</DoubleAnimationUsingKeyFrames>
+            <PointAnimationUsingKeyFrames Storyboard.TargetProperty="(s:ScatterViewItem.Center)" Storyboard.TargetName="scatCard">
+				<SplinePointKeyFrame KeyTime="0:0:0.5" Value="512,80"/>
+			</PointAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Key="dragIn">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="card">
+				<SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0.832"/>
+			</DoubleAnimationUsingKeyFrames>
+			<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="card">
+				<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+				<DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Visible}"/>
+			</ObjectAnimationUsingKeyFrames>
+            <PointAnimationUsingKeyFrames Storyboard.TargetProperty="(s:ScatterViewItem.Center)" Storyboard.TargetName="scatCard">
+				<SplinePointKeyFrame KeyTime="0" Value="512,80"/>
+				<SplinePointKeyFrame KeyTime="0:0:0.5" Value="512,250"/>
+			</PointAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="card">
+				<SplineDoubleKeyFrame KeyTime="0" Value="-300"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="-130"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+	</s:SurfaceUserControl.Resources>
+	<s:SurfaceUserControl.Triggers>
+		<EventTrigger RoutedEvent="s:Contacts.ContactTapGesture">
+			<BeginStoryboard Storyboard="{StaticResource dragOut}"/>
+		</EventTrigger>
+		<EventTrigger RoutedEvent="s:ScatterViewItem.ScatterManipulationCompleted" SourceName="scatCard">
+			<BeginStoryboard Storyboard="{StaticResource dragIn}"/>
+		</EventTrigger>
+	</s:SurfaceUserControl.Triggers>
     <Grid>
-        <Grid Name="cardAssembly" 
-            Height="500" 
-            Width="500"
-            >
+    	<VisualStateManager.VisualStateGroups>
+    		<VisualStateGroup 
+                x:Name="CardStateGroup"/>
+    	</VisualStateManager.VisualStateGroups>
+    	<VisualStateManager.CustomVisualStateManager>
+    		<ic:ExtendedVisualStateManager/>
+    	</VisualStateManager.CustomVisualStateManager>
+        <Grid 
+            x:Name="rotationGrid" 
+            Height="768" 
+            Width="1024">
             <Grid.RenderTransformOrigin>
                 <Point 
                     X="0.5" 
                     Y="0.5"/>
             </Grid.RenderTransformOrigin>
             <Grid.RenderTransform>
-                <RotateTransform 
-                    x:Name="cardRotateTransform" 
-                    Angle="0" 
-                    CenterX="0" 
-                    CenterY="0"/>
+            	<TransformGroup>
+            		<ScaleTransform/>
+            		<SkewTransform/>
+            		<RotateTransform/>
+            		<TranslateTransform/>
+            	</TransformGroup>
             </Grid.RenderTransform>
-            <s:ScatterView>
+            <Grid Name="cardGrid" 
+                  RenderTransformOrigin="0.5,0.5">
+            	<Grid.RenderTransform>
+            		<TransformGroup>
+            			<ScaleTransform/>
+            			<SkewTransform/>
+                        <RotateTransform 
+                        x:Name="cardRotateTransform" 
+                        Angle="0" 
+                        CenterX="0" 
+                        CenterY="0"/>
+                        <TranslateTransform/>
+            		</TransformGroup>
+            	</Grid.RenderTransform>
+                <s:ScatterView 
+                    x:Name="scatterView" 
+                    RenderTransformOrigin="0.5,0.5">
+            	    <s:ScatterView.RenderTransform>
+            		    <TransformGroup>
+            			    <ScaleTransform/>
+            			    <SkewTransform/>
+            			    <RotateTransform/>
+            			    <TranslateTransform/>
+            		    </TransformGroup>
+            	    </s:ScatterView.RenderTransform>
                     <s:ScatterViewItem 
-                        Name="card"
-                        Height="150"
-                        Width="100"
-                        CanMove="True"
+                        x:Name="scatCard"
+                        Height="145.62"
+                        Width="90"
+                        CanMove="False"
                         CanRotate="False"
                         CanScale="False"
-                        Center="250,125"
-                        ScatterManipulationStarted="card_ScatterManipulationStarted"
-                        ScatterManipulationDelta="card_ScatterManipulationDelta"
-                        ScatterManipulationCompleted="card_ScatterManipulationCompleted" 
+                        Center="512,250" 
                         BorderThickness="8" 
-                        Opacity="0.8"                
-                    >
-                        <Grid>
-                            <s:ElementMenu 
-                              ActivationMode="AlwaysActive"
-                              HorizontalAlignment="Center" 
-                              VerticalAlignment="Top"
-                        >
-                        <s:ElementMenu.RenderTransform>
-                            <TranslateTransform X="0" Y="-50"/>
-                        </s:ElementMenu.RenderTransform>
-                        <s:ElementMenuItem                         
-                           Header="{x:Static Resources:Resources.Item_1}" 
-                        >
-                                <s:ElementMenuItem Header="{x:Static Resources:Resources.Item_1}" Click="ElementMenuItem_Click"/>
-                                <s:ElementMenuItem Header="{x:Static Resources:Resources.Item_2}" />
-                                <s:ElementMenuItem Header="{x:Static Resources:Resources.Item_3}" />
-                            </s:ElementMenuItem>
-                        </s:ElementMenu>
-                        </Grid>
+                        Opacity="0.8"
+                        ContactTapGesture="scatCard_ContactTapGesture" >
+                        <Label Content="{Binding Name}"/>
                     </s:ScatterViewItem>
+                    
                 </s:ScatterView>
+                <Rectangle x:Name="card"
+                           Height="161.8"
+                           Width="100" 
+                           RadiusX="15" 
+                           RadiusY="15" 
+                           Opacity="0.832" 
+                           Margin="10" 
+                           StrokeThickness="4" 
+                           Stroke="White">
+                    <Rectangle.RenderTransform>
+                	    <TransformGroup>
+                		    <ScaleTransform/>
+                		    <SkewTransform/>
+                		    <RotateTransform/>
+                		    <TranslateTransform Y="-130"/>
+                	    </TransformGroup>
+                    </Rectangle.RenderTransform>
+                    <Rectangle.Fill>
+                        <LinearGradientBrush 
+                            EndPoint="0.5,1" 
+                            StartPoint="0.5,0">
+                            <GradientStop 
+                                Color="SteelBlue" 
+                                Offset="0.087999999999999967" />
+                            <GradientStop 
+                                Color="Black" 
+                                Offset="1" />
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
         </Grid>
     </Grid>
 </s:SurfaceUserControl>

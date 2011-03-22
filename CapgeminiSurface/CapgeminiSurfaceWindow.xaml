@@ -15,32 +15,44 @@
         Opacity="0.6" 
         ImageSource="pack://application:,,,/Resources/WindowBackground.jpg"
         />
-  </s:SurfaceWindow.Resources>
+        
+    </s:SurfaceWindow.Resources>
+	<s:SurfaceWindow.Background>
+		<RadialGradientBrush>
+			<GradientStop Color="White" Offset="0.013"/>
+			<GradientStop Color="{DynamicResource {x:Static SystemColors.ActiveCaptionColorKey}}" Offset="1"/>
+		</RadialGradientBrush>
+	</s:SurfaceWindow.Background>
+    
+    <Grid        
+           Name="surfaceMainGrid"
+           Background="{StaticResource WindowBackground}" >
+        <cs:MenuLogo 
+            Grid.Row="1"
+            Grid.Column="1"
+            x:Name="Logo"
+            Panel.ZIndex="1"
+            />
+        
+        
+        <!--<ItemsControl x:Name="cards">
+                    
+                <ItemsControl.ItemTemplate>
+                    
+                    <DataTemplate>
+                    
+                        <cs:MenuCard DataContext="{Binding}" 
+                                     Grid.Row="1"
+                                     Grid.Column="1"
+                                     
+                                     />
 
-  <Grid Background="{StaticResource WindowBackground}" Name="surfaceMainGrid">
-        <Grid Margin="20,20,20,20" Name="ContentGrid">
-            <Grid.RowDefinitions>
-                <RowDefinition 
-                    Height="100"/>
-                <RowDefinition/>
-                <RowDefinition 
-                    Height="100"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition 
-                    Width="100"/>
-                <ColumnDefinition/>
-                <ColumnDefinition 
-                    Width="100"/>
-            </Grid.ColumnDefinitions>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                    
+        </ItemsControl>-->
+        
 
-            <cs:MenuLogo 
-                Grid.Row="1" 
-                Grid.Column="1" 
-                x:Name="Logo"         
-                Panel.ZIndex="1" 
-                />
+    </Grid>
 
-        </Grid>
-  </Grid>
 </s:SurfaceWindow>
