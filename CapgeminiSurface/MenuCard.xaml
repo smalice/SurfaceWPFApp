@@ -50,13 +50,6 @@
 		</EventTrigger>
 	</s:SurfaceUserControl.Triggers>
     <Grid>
-    	<VisualStateManager.VisualStateGroups>
-    		<VisualStateGroup 
-                x:Name="CardStateGroup"/>
-    	</VisualStateManager.VisualStateGroups>
-    	<VisualStateManager.CustomVisualStateManager>
-    		<ic:ExtendedVisualStateManager/>
-    	</VisualStateManager.CustomVisualStateManager>
         <Grid 
             x:Name="rotationGrid" 
             Height="768" 
