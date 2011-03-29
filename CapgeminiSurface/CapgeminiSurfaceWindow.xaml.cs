@@ -22,7 +22,7 @@ namespace CapgeminiSurface
             InitializeComponent();
             AddActivationHandlers();
 
-            foreach (var costumer in Model.ModelManager.Instance.Customers)
+            foreach (var costumer in Model.ModelManager.Instance.AllCustomers)
             {
                 MenuCard card = new MenuCard();
                 card.DataContext = costumer;

@@ -9,7 +9,10 @@ namespace CapgeminiSurface.Model
 {
     public class ModelManager
     {
-        public List<Customer> Customers;
+        public List<Customer> AllCustomers;
+        public List<Customer> EnergyCustomers = new List<Customer>();
+        public List<Customer> OtherCustomers = new List<Customer>();
+        public List<Customer> CapgeminiInfo = new List<Customer>();
 
         static ModelManager instance;
 
@@ -27,7 +30,7 @@ namespace CapgeminiSurface.Model
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<Customer>));
             TextWriter textWriter = new StreamWriter("Resources\\Customers.xml");
-            serializer.Serialize(textWriter, Customers);
+            serializer.Serialize(textWriter, AllCustomers);
             textWriter.Close();
         }
 
@@ -35,8 +38,23 @@ namespace CapgeminiSurface.Model
         {
             XmlSerializer deserializer = new XmlSerializer(typeof(List<Customer>));
             TextReader textReader = new StreamReader("Resources\\Customers.xml");
-            Customers = (List<Customer>)deserializer.Deserialize(textReader);
-            textReader.Close();
+            AllCustomers = (List<Customer>)deserializer.Deserialize(textReader);
+            foreach (Customer customer in AllCustomers)
+            {
+                switch (customer.Category)
+                {
+                    case "Energy":
+                        customer.IsVisible = true;
+                        EnergyCustomers.Add(customer);
+                        break;
+                    case "Other":
+                        OtherCustomers.Add(customer);
+                        break;
+                    case "Capgemini":
+                        CapgeminiInfo.Add(customer);
+                        break;
+                }
+            }
         }
     }
 }
