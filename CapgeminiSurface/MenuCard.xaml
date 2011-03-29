@@ -4,11 +4,12 @@
     xmlns:s="http://schemas.microsoft.com/surface/2008"
     xmlns:cs="clr-namespace:CapgeminiSurface"
     xmlns:Resources="clr-namespace:CapgeminiSurface.Resources"
-    xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" x:Name="surfaceUserControl" 
+    xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit" x:Name="surfaceUserControl" 
     x:Class="CapgeminiSurface.MenuCard"
     Height="768" Width="1024">
 	<s:SurfaceUserControl.Resources>
-		<Storyboard x:Key="dragOut">
+		<Storyboard 
+            x:Key="dragOut">
 			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="card">
 				<SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
 			</DoubleAnimationUsingKeyFrames>
@@ -67,7 +68,7 @@
             		<TranslateTransform/>
             	</TransformGroup>
             </Grid.RenderTransform>
-            <Grid Name="cardGrid" 
+            <Grid x:Name="cardGrid" 
                   RenderTransformOrigin="0.5,0.5">
             	<Grid.RenderTransform>
             		<TransformGroup>
@@ -102,10 +103,9 @@
                         Center="512,250" 
                         BorderThickness="8" 
                         Opacity="0.8"
-                        ContactTapGesture="scatCard_ContactTapGesture" >
+                        ScatterManipulationCompleted="scatCard_ScatterManipulationCompleted">
                         <Label Content="{Binding Name}"/>
-                    </s:ScatterViewItem>
-                    
+                    </s:ScatterViewItem>  
                 </s:ScatterView>
                 <Rectangle x:Name="card"
                            Height="161.8"

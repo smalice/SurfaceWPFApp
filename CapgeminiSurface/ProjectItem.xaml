@@ -3,24 +3,24 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:s="http://schemas.microsoft.com/surface/2008"
     xmlns:cs="clr-namespace:CapgeminiSurface"
-    xmlns:resource="clr-namespace:CapgeminiSurface.Resources"
-    Width="200" Height="300">
+    xmlns:resource="clr-namespace:CapgeminiSurface.Resources" HorizontalAlignment="Center" VerticalAlignment="Center" Height="145.62" Width="90" Foreground="{x:Null}" >
     <Grid>
-        <Grid Name="projectGrid" Background="Aqua">
-            <TextBlock Name="projectName"  
-                       HorizontalAlignment="Left" 
-                       Margin="12,12,0,0" 
-                       VerticalAlignment="Top" 
-                       FontWeight="Bold" 
-                       Foreground="Black" 
-                       Text="{Binding Name}"/>
-			<TextBlock Name="projectDescription" 
-                       HorizontalAlignment="Left" 
-                       Margin="12,41,0,0" 
-                       VerticalAlignment="Top" 
-                       ScrollViewer.VerticalScrollBarVisibility="Hidden" 
-                       Foreground="Black" 
-                       Text="{Binding Description}" />
-		</Grid>
+    	<Grid x:Name="projectGrid" Margin="0" Width="90" Height="145.62" Opacity="0.832" Background="Black">
+    		<TextBlock x:Name="projectName"  
+    			HorizontalAlignment="Left" 
+    			Margin="12,12,0,0" 
+    			VerticalAlignment="Top" 
+    			FontWeight="Bold" 
+    			Foreground="Black" 
+    			Text="{Binding Name}"/>
+    		<TextBlock x:Name="projectDescription" 
+    			HorizontalAlignment="Left" 
+    			Margin="12,41,0,0" 
+    			VerticalAlignment="Top" 
+    			ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+    			Foreground="Black" 
+    			Text="{Binding Description}" />
+
+    	</Grid>
     </Grid>
 </cs:StackItem>

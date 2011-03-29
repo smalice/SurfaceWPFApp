@@ -1,16 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Surface.Presentation;
 using Microsoft.Surface.Presentation.Controls;
 using Microsoft.Surface.Presentation.Manipulations;
@@ -20,14 +9,16 @@ namespace CapgeminiSurface
     public partial class MenuLogo : SurfaceUserControl
 
     {
-        Point centerPoint = new Point(150, 150);
+        readonly Point centerPoint = new Point(150, 150);
          
         private Affine2DManipulationProcessor manipulationProcessor;
+
+        public EventHandler<Affine2DOperationDeltaEventArgs> DeltaManipulationFinished;
 
         public MenuLogo()
         {
             InitializeComponent();
-            InitializeManipulationProcessor();
+            InitializeManipulationProcessor(); 
         }
 
         private void InitializeManipulationProcessor()
@@ -40,6 +31,7 @@ namespace CapgeminiSurface
         {
             logoRotateTransform.Angle += e.RotationDelta;
             rotateCards(e.RotationDelta);
+            DeltaManipulationFinished(this, e);
         }
 
         protected override void OnContactDown(ContactEventArgs e)
@@ -50,12 +42,12 @@ namespace CapgeminiSurface
 
             manipulationProcessor.BeginTrack(e.Contact);
 
-            //e.Handled = true;
+            e.Handled = true;
         }
 
         public void rotateCards(double rotationValue)
         {
-        
+            
         }
 
     }
