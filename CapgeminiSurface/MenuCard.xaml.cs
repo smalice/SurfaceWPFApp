@@ -2,6 +2,8 @@
 using Microsoft.Surface.Presentation;
 using Microsoft.Surface.Presentation.Controls;
 using Microsoft.Surface.Presentation.Manipulations;
+using System.Windows.Shapes;
+using System;
 
 namespace CapgeminiSurface
 {
@@ -11,6 +13,8 @@ namespace CapgeminiSurface
         Point centerPoint = new Point(512, 384);
 
         private Affine2DManipulationProcessor manipulationProcessor;
+
+        public EventHandler<ContactEventArgs> SetZorder;
 
         public enum States : int 
             {   stateRotation = 0, 
@@ -28,6 +32,7 @@ namespace CapgeminiSurface
             scatCard.Orientation = 0;
             CurrentState = States.stateRotation;
             cardOut = false;
+            
         }
 
         private void InitializeManipulationProcessor()
@@ -50,6 +55,8 @@ namespace CapgeminiSurface
                 e.Contact.Capture(this);
 
                 manipulationProcessor.BeginTrack(e.Contact);
+
+                SetZorder(this,e);
 
                 e.Handled = true;
             }

@@ -65,7 +65,7 @@
             Grid.Row="1"
             Grid.Column="1"
             x:Name="Logo"
-            Panel.ZIndex="1"
+            Panel.ZIndex="2"
             />
         <cs:FavouriteStack 
             x:Name="favouriteStack" 

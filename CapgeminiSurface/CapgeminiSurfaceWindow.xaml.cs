@@ -32,12 +32,28 @@ namespace CapgeminiSurface
                 Panel.SetZIndex(card, 0);
                 card.cardRotateTransform.Angle = randomStartAngle.Next(0, 360);
                 MenuCardHolder.Add(card);
+
                 card.ContactTapGesture += new ContactEventHandler(card_ContactTapGesture);
                 card.scatCard.ScatterManipulationCompleted += new ScatterManipulationCompletedEventHandler(card_scatterManipulationComp);
+                card.SetZorder += card_ContactDown;
             }
 
             Logo.DeltaManipulationFinished += Rotate;
+            
         }
+
+        public void card_ContactDown(object sender, ContactEventArgs e)
+        {
+            var obj = sender as MenuCard;
+            foreach (MenuCard card in MenuCardHolder)
+            {
+                if (card.Equals(obj))
+                    Panel.SetZIndex(card, 0);
+                else
+                    Panel.SetZIndex(card, 1);
+            }
+        }
+
 
         private void Rotate(object sender, Affine2DOperationDeltaEventArgs eventArgs)
         {
@@ -110,5 +126,6 @@ namespace CapgeminiSurface
         {
 
         }
+
     }
 }

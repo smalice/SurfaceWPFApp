@@ -187,6 +187,24 @@
     <Content Include="Resources\iconPreview.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Logos\conocophillips_logo.png" />
+    <Resource Include="Resources\Logos\dong_logo.png" />
+    <Resource Include="Resources\Logos\epim-logo-motto.png" />
+    <Resource Include="Resources\Logos\exxonmobil_logo1.png" />
+    <Resource Include="Resources\Logos\fabricom-logo.png" />
+    <Resource Include="Resources\Logos\gdf.png" />
+    <Resource Include="Resources\Logos\ge_money.png" />
+    <Resource Include="Resources\Logos\Kverneland.png" />
+    <Resource Include="Resources\Logos\kystverket.png" />
+    <Resource Include="Resources\Logos\noreco_logo.png" />
+    <Resource Include="Resources\Logos\Olf.png" />
+    <Resource Include="Resources\Logos\SKAGEN_no_web.png" />
+    <Resource Include="Resources\Logos\SSBLogo.png" />
+    <Resource Include="Resources\Logos\statoillogonegative.png" />
+    <Resource Include="Resources\Logos\Subsea_7.png" />
+    <Resource Include="Resources\Logos\top_logo_tk.png" />
+    <Resource Include="Resources\Logos\total.png" />
+    <Resource Include="Resources\Logos\track_id.png" />
     <Resource Include="Resources\statoilLogo.png" />
     <Resource Include="Resources\temporaryLogo.png" />
     <Resource Include="CapgeminiSurface.xml" />

@@ -34,7 +34,7 @@ namespace CapgeminiSurface.Model
         public string Logo
         {
             set { logo = value; }
-            get { return logo; }
+            get { return "Resources/" + logo; }
         }
 
         public string Category
