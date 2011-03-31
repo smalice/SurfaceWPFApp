@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Controls;
 using CapgeminiSurface.Model;
 
 namespace CapgeminiSurface
 {
 
-    public partial class FavouriteStack : SurfaceStack
+    public partial class FavouriteStack : UserControl
     {
         public FavouriteStack()
         {

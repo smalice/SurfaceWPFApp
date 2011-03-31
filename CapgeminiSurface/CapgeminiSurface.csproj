@@ -118,14 +118,8 @@
     <Compile Include="PictureItem.xaml.cs">
       <DependentUpon>PictureItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PictureStack.xaml.cs">
-      <DependentUpon>PictureStack.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ProjectItem.xaml.cs">
       <DependentUpon>ProjectItem.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ProjectStack.xaml.cs">
-      <DependentUpon>ProjectStack.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -163,17 +157,11 @@
     <Compile Include="StackItem.xaml.cs">
       <DependentUpon>StackItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SurfaceStack.xaml.cs">
-      <DependentUpon>SurfaceStack.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Util\TSoundPlayer.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="VideoItem.xaml.cs">
       <DependentUpon>VideoItem.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="VideoStack.xaml.cs">
-      <DependentUpon>VideoStack.xaml</DependentUpon>
     </Compile>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
@@ -247,19 +235,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="PictureStack.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="ProjectItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ProjectStack.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <Generator>MSBuild:Compile</Generator>
@@ -271,19 +247,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Resource>
-    <Resource Include="SurfaceStack.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Resource>
     <Page Include="VideoItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="VideoStack.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <Generator>MSBuild:Compile</Generator>
