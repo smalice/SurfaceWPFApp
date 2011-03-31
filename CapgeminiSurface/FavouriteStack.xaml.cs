@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.ComponentModel;
 using CapgeminiSurface.Model;
 
 namespace CapgeminiSurface
@@ -16,28 +18,10 @@ namespace CapgeminiSurface
 
         private void SurfaceStack_Initialized(object sender, EventArgs e)
         {
-            ModelManager.Instance.Load();
-            Customer customer = new Customer()
-            {
-                Name = "customer 1",
-                Projects = new List<Project>() {
-                    new Project(){
-                        Name = "new project 1",
-                        Description = "new project description 1"
-                    },
-                    new Project(){
-                        Name = "new project 2",
-                        Description = "new project description 2"
-                    }
-                }
-            };
-
-            foreach (var project in customer.Projects)
-            {
-                ProjectItem projectItem = new ProjectItem();
-                projectItem.DataContext = project;
-                favouriteStackContent.Items.Add(projectItem);
-            }
+            CollectionViewSource collection = new CollectionViewSource();
+            collection.Source = ModelManager.Instance.AllCustomers;
+            collection.GroupDescriptions.Add(new PropertyGroupDescription("Category"));
+            favouriteStackContent.ItemsSource = collection.View;
         }
     }
 }

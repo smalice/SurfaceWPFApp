@@ -38,6 +38,8 @@ namespace CapgeminiSurface
                 card.SetZorder += card_ContactDown;
             }
 
+            favouriteStack.DataContext = Model.ModelManager.Instance.SelectedCustomer;
+
             Logo.DeltaManipulationFinished += Rotate;
             
         }

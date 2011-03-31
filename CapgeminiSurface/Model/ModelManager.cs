@@ -9,6 +9,14 @@ namespace CapgeminiSurface.Model
 {
     public class ModelManager
     {
+        private Customer selectedCustomer;
+
+        public Customer SelectedCustomer
+        {
+            get { return selectedCustomer; }
+            set { selectedCustomer = value; }
+        }
+
         public List<Customer> AllCustomers;
         public List<Customer> EnergyCustomers = new List<Customer>();
         public List<Customer> OtherCustomers = new List<Customer>();

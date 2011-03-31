@@ -4,6 +4,7 @@ using Microsoft.Surface.Presentation.Controls;
 using Microsoft.Surface.Presentation.Manipulations;
 using System.Windows.Shapes;
 using System;
+using CapgeminiSurface.Model;
 
 namespace CapgeminiSurface
 {
@@ -71,6 +72,7 @@ namespace CapgeminiSurface
             if (CurrentState.Equals(States.stateRotation) && !cardOut)
             {
                 cardOut = true;
+                ModelManager.Instance.SelectedCustomer = this.DataContext as Customer;
             }
             else
             {

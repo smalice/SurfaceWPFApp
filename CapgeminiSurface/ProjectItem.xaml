@@ -11,14 +11,14 @@
     			Margin="12,12,0,0" 
     			VerticalAlignment="Top" 
     			FontWeight="Bold" 
-    			Foreground="Black" 
+    			Foreground="White" 
     			Text="{Binding Name}"/>
     		<TextBlock x:Name="projectDescription" 
     			HorizontalAlignment="Left" 
     			Margin="12,41,0,0" 
     			VerticalAlignment="Top" 
     			ScrollViewer.VerticalScrollBarVisibility="Hidden" 
-    			Foreground="Black" 
+    			Foreground="White" 
     			Text="{Binding Description}" />
 
     	</Grid>
