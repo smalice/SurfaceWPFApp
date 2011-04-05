@@ -36,13 +36,13 @@ namespace CapgeminiSurface
             AddActivationHandlers();
             InitializeManipulationProcessor();
 
-            foreach (Customer costumer in ModelManager.Instance.AllCustomers)
+            foreach (Customer costumer in ModelManager.Instance.EnergyCustomers)
             {
                 var card = new MenuCard {DataContext = costumer};
                 surfaceMainGrid.Children.Add(card);
                 Grid.SetColumn(card, 0);
                 Grid.SetRow(card, 0);
-                Panel.SetZIndex(card, 0);
+                Panel.SetZIndex(card, 2);
                 card.cardRotateTransform.Angle = _randomStartAngle.Next(0, 360);
                 MenuCardHolder.Add(card);
                 card.ContactTapGesture += CardContactTapGesture;
@@ -103,7 +103,18 @@ namespace CapgeminiSurface
             var obj = sender as MenuCard;
 
             if (obj != null && CurrentState.Equals(States.AllCardRotation))
-            {
+            {          
+                foreach (MenuCard card in MenuCardHolder)	
+                {
+                    if (card.Equals(obj))
+                    {
+                        Panel.SetZIndex(card, 2);		
+                    }   
+                    else
+                    {
+                        Panel.SetZIndex(card, 1);               
+                    }
+                }
                 obj.AfterContactdown(e);
             }
         }
