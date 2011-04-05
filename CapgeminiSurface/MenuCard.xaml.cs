@@ -52,6 +52,8 @@ namespace CapgeminiSurface
             {
                 e.Handled = true;
             }
+            
+            SetZorder(this, e);
         }
 
         public void AfterContactdown(ContactEventArgs e)
@@ -67,8 +69,6 @@ namespace CapgeminiSurface
                 e.Contact.Capture(this);
 
                 _manipulationProcessor.BeginTrack(e.Contact);
-
-                SetZorder(this, e);
 
                 e.Handled = true;
             }

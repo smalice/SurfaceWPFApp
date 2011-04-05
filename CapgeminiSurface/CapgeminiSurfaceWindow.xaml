@@ -25,7 +25,7 @@
     		<SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
     	</DoubleAnimationUsingKeyFrames>
     	<Int32AnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.ZIndex)" Storyboard.TargetName="favouriteStack">
-    		<SplineInt32KeyFrame KeyTime="0" Value="2"/>
+    		<SplineInt32KeyFrame KeyTime="0" Value="4"/>
     	</Int32AnimationUsingKeyFrames>
         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="favouriteStack">
             <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
@@ -33,8 +33,8 @@
         </Storyboard>
     <Storyboard x:Key="HideFavouriteStack">
     	<Int32AnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.ZIndex)" Storyboard.TargetName="favouriteStack">
-    		<SplineInt32KeyFrame KeyTime="0" Value="2"/>
-    		<SplineInt32KeyFrame KeyTime="0:0:0.4" Value="2"/>
+    		<SplineInt32KeyFrame KeyTime="0" Value="4"/>
+    		<SplineInt32KeyFrame KeyTime="0:0:0.4" Value="4"/>
     		<SplineInt32KeyFrame KeyTime="0:0:0.5" Value="0"/>
     	</Int32AnimationUsingKeyFrames>
     	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="favouriteStack">

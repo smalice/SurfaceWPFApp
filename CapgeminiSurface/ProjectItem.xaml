@@ -5,21 +5,31 @@
     xmlns:cs="clr-namespace:CapgeminiSurface"
     xmlns:resource="clr-namespace:CapgeminiSurface.Resources" HorizontalAlignment="Center" VerticalAlignment="Center" Height="145.62" Width="90" Foreground="{x:Null}" >
     <Grid>
-    	<Grid x:Name="projectGrid" Margin="0" Width="90" Height="145.62" Opacity="0.832" Background="Black">
-    		<TextBlock x:Name="projectName"  
+        <Grid.Resources>
+            <BooleanToVisibilityConverter x:Key="BoolToVisible" />
+        </Grid.Resources>
+        <Grid x:Name="pictureGrid" Margin="0" Width="90" Height="145.62" Opacity="0.832" Background="Black"
+              Visibility="{Binding IsPictureItem, Converter={StaticResource BoolToVisible}}">
+            <TextBlock x:Name="projectName"  
     			HorizontalAlignment="Left" 
     			Margin="12,12,0,0" 
     			VerticalAlignment="Top" 
     			FontWeight="Bold" 
     			Foreground="White" 
-    			Text="{Binding Name}"/>
-    		<TextBlock x:Name="projectDescription" 
+    			Text="{Binding FileName}"/>
+            <Image Source="{Binding FileName}" />
+
+    	</Grid>
+        <Grid x:Name="videoGrid" Margin="0" Width="90" Height="145.62" Opacity="0.832" Background="Black"
+              Visibility="{Binding IsVideoItem, Converter={StaticResource BoolToVisible}}">
+            <!--<MediaElement Source="{Binding FileName}" />-->
+            <TextBlock x:Name="projectName1"  
     			HorizontalAlignment="Left" 
-    			Margin="12,41,0,0" 
+    			Margin="12,12,0,0" 
     			VerticalAlignment="Top" 
-    			ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+    			FontWeight="Bold" 
     			Foreground="White" 
-    			Text="{Binding Description}" />
+    			Text="{Binding FileName}"/>
 
     	</Grid>
     </Grid>

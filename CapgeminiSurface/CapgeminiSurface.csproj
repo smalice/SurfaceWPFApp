@@ -105,6 +105,7 @@
     <Compile Include="MenuLogo.xaml.cs">
       <DependentUpon>MenuLogo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\ContentItem.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\ModelManager.cs" />
     <Compile Include="Model\Picture.cs" />

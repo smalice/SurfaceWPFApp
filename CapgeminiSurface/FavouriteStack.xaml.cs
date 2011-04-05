@@ -10,6 +10,8 @@ namespace CapgeminiSurface
 
     public partial class FavouriteStack : UserControl
     {
+        CollectionViewSource collection = new CollectionViewSource();
+
         public FavouriteStack()
         {
             InitializeComponent();
@@ -18,9 +20,13 @@ namespace CapgeminiSurface
 
         private void SurfaceStack_Initialized(object sender, EventArgs e)
         {
-            CollectionViewSource collection = new CollectionViewSource();
-            collection.Source = ModelManager.Instance.AllCustomers;
-            collection.GroupDescriptions.Add(new PropertyGroupDescription("Category"));
+            ModelManager.Instance.PropertyChanged += new PropertyChangedEventHandler(Instance_PropertyChanged);
+        }
+
+        void Instance_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            collection.Source = ModelManager.Instance.SelectedCustomer.ContentItems;
+            collection.GroupDescriptions.Add(new PropertyGroupDescription("ContentType"));
             favouriteStackContent.ItemsSource = collection.View;
         }
     }

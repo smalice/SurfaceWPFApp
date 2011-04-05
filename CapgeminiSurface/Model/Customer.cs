@@ -43,10 +43,7 @@ namespace CapgeminiSurface.Model
             get { return category; }
         }
 
-        public List<Video> Videos;
-        public List<Picture> Pictures;
-        public List<Project> Projects;
-        public List<VisitCard> Contacts;
+        public List<ContentItem> ContentItems;
 
     }
 }

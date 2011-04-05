@@ -4,17 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 using System.IO;
+using System.ComponentModel;
 
 namespace CapgeminiSurface.Model
 {
-    public class ModelManager
+    public class ModelManager : INotifyPropertyChanged
     {
         private Customer selectedCustomer;
 
         public Customer SelectedCustomer
         {
             get { return selectedCustomer; }
-            set { selectedCustomer = value; }
+            set 
+            { 
+                selectedCustomer = value;
+                OnPropertyChanged("SelectedCustomer");
+            }
         }
 
         public List<Customer> AllCustomers;
@@ -64,5 +69,19 @@ namespace CapgeminiSurface.Model
                 }
             }
         }
+
+        #region INotifyPropertyChanged Members
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        #endregion
     }
 }
