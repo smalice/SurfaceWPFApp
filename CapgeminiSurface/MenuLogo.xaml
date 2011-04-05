@@ -2,18 +2,122 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:s="http://schemas.microsoft.com/surface/2008"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="CapgeminiSurface.MenuLogo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Custom="http://schemas.microsoft.com/wpf/2008/toolkit" mc:Ignorable="d" x:Class="CapgeminiSurface.MenuLogo"
     Height="768" Width="1024">
 	<s:SurfaceUserControl.Resources>
 		<Storyboard x:Key="Rotation"/>
+		<Storyboard x:Key="TextFadeOut" RepeatBehavior="1x" AutoReverse="False">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" Storyboard.TargetName="weText">
+				<SplineDoubleKeyFrame KeyTime="0" Value="-90"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="weText">
+				<SplineDoubleKeyFrame KeyTime="0" Value="15"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="38"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3" Value="38"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3.3" Value="183"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="weText">
+				<SplineDoubleKeyFrame KeyTime="0" Value="-216"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="-160"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3" Value="-160"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3.3" Value="61"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="areText">
+				<SplineDoubleKeyFrame KeyTime="0" Value="40"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="36"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3" Value="36"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3.3" Value="181"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="areText">
+				<SplineDoubleKeyFrame KeyTime="0" Value="320"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="-160"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3" Value="-160"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3.3" Value="61"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="theOnesText">
+				<SplineDoubleKeyFrame KeyTime="0" Value="-160"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="-160"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3" Value="-160"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3.3" Value="61"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="theOnesText">
+				<SplineDoubleKeyFrame KeyTime="0" Value="516"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="36"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3" Value="36"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3.3" Value="181"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="weText">
+				<SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3" Value="1"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3.3" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="areText">
+				<SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3" Value="1"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3.3" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="theOnesText">
+				<SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3" Value="1"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3.3" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="TextGrid">
+				<SplineDoubleKeyFrame KeyTime="0:0:3" Value="100"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="TextGrid">
+				<SplineDoubleKeyFrame KeyTime="0:0:3" Value="100"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="TextGrid">
+				<SplineDoubleKeyFrame KeyTime="0:0:3" Value="1"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3.3" Value="2"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="TextGrid">
+				<SplineDoubleKeyFrame KeyTime="0:0:3" Value="1"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3.3" Value="2"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="weText">
+				<SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="80"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3" Value="80"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="areText">
+				<SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="80"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3" Value="80"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="theOnesText">
+				<SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="80"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3" Value="80"/>
+			</DoubleAnimationUsingKeyFrames>
+			<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="weText">
+				<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+				<DiscreteObjectKeyFrame KeyTime="0:0:0.4" Value="{x:Static Visibility.Visible}"/>
+				<DiscreteObjectKeyFrame KeyTime="0:0:3" Value="{x:Static Visibility.Visible}"/>
+				<DiscreteObjectKeyFrame KeyTime="0:0:3.3" Value="{x:Static Visibility.Hidden}"/>
+			</ObjectAnimationUsingKeyFrames>
+			<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="areText">
+				<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+				<DiscreteObjectKeyFrame KeyTime="0:0:0.4" Value="{x:Static Visibility.Visible}"/>
+				<DiscreteObjectKeyFrame KeyTime="0:0:3" Value="{x:Static Visibility.Visible}"/>
+				<DiscreteObjectKeyFrame KeyTime="0:0:3.3" Value="{x:Static Visibility.Hidden}"/>
+			</ObjectAnimationUsingKeyFrames>
+			<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="theOnesText">
+				<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+				<DiscreteObjectKeyFrame KeyTime="0:0:0.4" Value="{x:Static Visibility.Visible}"/>
+				<DiscreteObjectKeyFrame KeyTime="0:0:3" Value="{x:Static Visibility.Visible}"/>
+				<DiscreteObjectKeyFrame KeyTime="0:0:3.3" Value="{x:Static Visibility.Hidden}"/>
+			</ObjectAnimationUsingKeyFrames>
+		</Storyboard>
 	</s:SurfaceUserControl.Resources>
 	<s:SurfaceUserControl.Triggers>
 		<EventTrigger RoutedEvent="FrameworkElement.Loaded">
-			<BeginStoryboard Storyboard="{StaticResource Rotation}"/>
+			<BeginStoryboard x:Name="TextFadeOut_BeginStoryboard" Storyboard="{StaticResource TextFadeOut}"/>
 		</EventTrigger>
 	</s:SurfaceUserControl.Triggers>
-    <Grid>
-        <Grid>
+    <Grid x:Name="MainLogoGrid">
+        <Grid x:Name="LogoGrid">
             <Ellipse 
             x:Name="logo" 
             Height="300" 
@@ -53,6 +157,55 @@
                         KernelType="Box"/>
             	</Ellipse.Effect>
             </Ellipse>
+        </Grid>
+        <Grid x:Name="TextGrid" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5" Margin="24,24,0,0">
+        	<Grid.RenderTransform>
+        		<TransformGroup>
+        			<ScaleTransform/>
+        			<SkewTransform/>
+        			<RotateTransform/>
+        			<TranslateTransform/>
+        		</TransformGroup>
+        	</Grid.RenderTransform>
+        	<TextBlock x:Name="weText" Margin="0,-19,-164,0" TextWrapping="Wrap" FontSize="50.667" FontFamily="Aharoni" FontWeight="Bold" Foreground="White" HorizontalAlignment="Right" Width="80" Height="43" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" d:LayoutOverrides="VerticalAlignment">
+        		<TextBlock.RenderTransform>
+        			<TransformGroup>
+        				<ScaleTransform/>
+        				<SkewTransform/>
+        				<RotateTransform/>
+        				<TranslateTransform/>
+        			</TransformGroup>
+        		</TextBlock.RenderTransform><TextBlock.Effect>
+        			<BlurEffect Radius="1" KernelType="Box"/>
+        		</TextBlock.Effect><Run Language="nb-no" Text="WE"/><InlineUIContainer>
+        			<Grid
+        	Height="0" Width="0"/>
+        		</InlineUIContainer></TextBlock>
+        	<TextBlock x:Name="areText" Margin="0,24,-164,40" TextWrapping="Wrap" FontSize="41.333" FontFamily="Aharoni" Foreground="White" HorizontalAlignment="Right" Width="80" RenderTransformOrigin="0.5,0.5">
+        		<TextBlock.RenderTransform>
+        			<TransformGroup>
+        				<ScaleTransform/>
+        				<SkewTransform/>
+        				<RotateTransform/>
+        				<TranslateTransform/>
+        			</TransformGroup>
+        		</TextBlock.RenderTransform><TextBlock.Effect>
+        			<BlurEffect Radius="1" KernelType="Box"/>
+        		</TextBlock.Effect><Run Language="nb-no" Text="ARE"/><InlineUIContainer>
+        			<Grid
+        Height="0" Width="0"/>
+        		</InlineUIContainer></TextBlock>
+        	<TextBlock x:Name="theOnesText" Margin="0,0,-164,12" TextWrapping="Wrap" FontSize="16" FontFamily="Aharoni" Foreground="White" HorizontalAlignment="Right" Width="80" Height="24" VerticalAlignment="Bottom" FontStretch="ExtraCondensed" RenderTransformOrigin="0.5,0.5">
+        		<TextBlock.RenderTransform>
+        			<TransformGroup>
+        				<ScaleTransform/>
+        				<SkewTransform/>
+        				<RotateTransform/>
+        				<TranslateTransform/>
+        			</TransformGroup>
+        		</TextBlock.RenderTransform><TextBlock.Effect>
+        			<BlurEffect Radius="1" KernelType="Box"/>
+        		</TextBlock.Effect><Run Language="nb-no" Text="THE ONES"/></TextBlock>
         </Grid>
     </Grid>
 </s:SurfaceUserControl>

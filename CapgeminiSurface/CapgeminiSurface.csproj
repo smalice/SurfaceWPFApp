@@ -166,6 +166,8 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Brand_Slogan_Cloud_Bkgd_HR_300dpi.jpg" />
+    <Resource Include="Resources\Brand_Slogan_Cloud_Bkgd_HR_300dpi.jpg" />
     <Content Include="Resources\Customers.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

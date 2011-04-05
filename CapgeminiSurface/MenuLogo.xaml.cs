@@ -3,6 +3,7 @@ using System.Windows;
 using Microsoft.Surface.Presentation;
 using Microsoft.Surface.Presentation.Controls;
 using Microsoft.Surface.Presentation.Manipulations;
+using System.Windows.Media.Animation;
 
 namespace CapgeminiSurface
 {
@@ -18,7 +19,7 @@ namespace CapgeminiSurface
         public MenuLogo()
         {
             InitializeComponent();
-            InitializeManipulationProcessor(); 
+            InitializeManipulationProcessor();
         }
 
         private void InitializeManipulationProcessor()
@@ -32,6 +33,7 @@ namespace CapgeminiSurface
             logoRotateTransform.Angle += e.RotationDelta;
             rotateCards(e.RotationDelta);
             DeltaManipulationFinished(this, e);
+            
         }
 
         protected override void OnContactDown(ContactEventArgs e)
@@ -43,6 +45,15 @@ namespace CapgeminiSurface
             manipulationProcessor.BeginTrack(e.Contact);
 
             e.Handled = true;
+        }
+
+        protected override void OnContactTapGesture(ContactEventArgs e)
+        {
+            Storyboard textFadeOut = (Storyboard)FindResource("TextFadeOut");
+
+            textFadeOut.Begin();
+
+            //textFadeOut.AutoReverse = true;
         }
 
         public void rotateCards(double rotationValue)

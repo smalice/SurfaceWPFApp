@@ -1,45 +1,44 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using System.Windows.Media.Animation;
+using CapgeminiSurface.Model;
 using Microsoft.Surface.Presentation;
 using Microsoft.Surface.Presentation.Controls;
 using Microsoft.Surface.Presentation.Manipulations;
-using System.Windows.Shapes;
-using System;
-using CapgeminiSurface.Model;
 
 namespace CapgeminiSurface
 {
 
     public partial class MenuCard : SurfaceUserControl
     {
-        Point centerPoint = new Point(512, 384);
+        readonly Point _centerPoint = new Point(512, 384);
 
-        private Affine2DManipulationProcessor manipulationProcessor;
+        private Affine2DManipulationProcessor _manipulationProcessor;
 
         public EventHandler<ContactEventArgs> SetZorder;
 
         public enum States : int 
-            {   stateRotation = 0, 
-                stateUnlocked = 1, 
+            {   StateRotation = 0, 
+                StateUnlocked = 1, 
             };
 
-        public States CurrentState = States.stateRotation;
+        public States CurrentState = States.StateRotation;
 
-        public static bool cardOut;
+        public static bool CardOut;
 
         public MenuCard()
         {
             InitializeComponent();
             InitializeManipulationProcessor();
             scatCard.Orientation = 0;
-            CurrentState = States.stateRotation;
-            cardOut = false;
-            
+            CurrentState = States.StateRotation;
+            CardOut = false;
         }
 
         private void InitializeManipulationProcessor()
         {
-            manipulationProcessor = new Affine2DManipulationProcessor(Affine2DManipulations.Rotate, rotationGrid, centerPoint);
-            manipulationProcessor.Affine2DManipulationDelta += OnManipulationDelta;
+            _manipulationProcessor = new Affine2DManipulationProcessor(Affine2DManipulations.Rotate, rotationGrid, _centerPoint);
+            _manipulationProcessor.Affine2DManipulationDelta += OnManipulationDelta;
         }
 
         public void OnManipulationDelta(object sender, Affine2DOperationDeltaEventArgs e)
@@ -49,49 +48,101 @@ namespace CapgeminiSurface
 
         protected override void OnContactDown(ContactEventArgs e)
         {
-            if (CurrentState.Equals(States.stateRotation))
+            if (!CurrentState.Equals(States.StateRotation))
+            {
+                e.Handled = true;
+            }
+            else
             {
                 base.OnContactDown(e);
 
                 e.Contact.Capture(this);
 
-                manipulationProcessor.BeginTrack(e.Contact);
+                _manipulationProcessor.BeginTrack(e.Contact);
 
-                SetZorder(this,e);
+                SetZorder(this, e);
 
                 e.Handled = true;
             }
-            else 
+        }
+
+        public void AfterContactdown(ContactEventArgs e)
+        {
+            if (CurrentState.Equals(States.StateRotation))
             {
-                e.Handled = true;
+                Storyboard tapTheCard = (Storyboard)FindResource("TapTheCard");
+                tapTheCard.Remove();
+                tapTheCard.Begin();
+
+                base.OnContactDown(e);
+
+                e.Contact.Capture(this);
+
+                _manipulationProcessor.BeginTrack(e.Contact);
             }
         }
 
         protected override void OnContactTapGesture(ContactEventArgs e)
         {
-            if (CurrentState.Equals(States.stateRotation) && !cardOut)
-            {
-                cardOut = true;
-                ModelManager.Instance.SelectedCustomer = this.DataContext as Customer;
-            }
-            else
+            if (!CurrentState.Equals(States.StateRotation) && CardOut)
             {
                 e.Handled = true;
             }
+            ModelManager.Instance.SelectedCustomer = this.DataContext as Customer;
         }
 
-        private void scatCard_ScatterManipulationCompleted(object sender, ScatterManipulationCompletedEventArgs e)
+        public void AfterOnTapGesture(ContactEventArgs e)
         {
-            if (CurrentState.Equals(States.stateUnlocked) && cardOut)
-            {
-                cardOut = false;
+            Storyboard tapTheCard = (Storyboard)FindResource("TapTheCard");
+            tapTheCard.Remove();
 
-                CurrentState = States.stateRotation;
-            }
-            else 
+            Storyboard dragOutCard = (Storyboard)FindResource("dragOut");
+            dragOutCard.Remove();
+            dragOutCard.Begin();
+
+            Storyboard cardIsOut = (Storyboard)FindResource("CardIsOut");
+            cardIsOut.Remove();
+            cardIsOut.Begin();
+            
+            CardOut = true;
+
+            CurrentState = MenuCard.States.StateUnlocked;
+        }
+
+        private void ScatCardScatterManipulationCompleted(object sender, ScatterManipulationCompletedEventArgs e)
+        {
+            if (CurrentState.Equals(States.StateUnlocked) && CardOut)
             {
-                e.Handled = true;
+                Storyboard cardIsOut = (Storyboard)FindResource("CardIsOut");
+                cardIsOut.Remove();
+
+                CardOut = false;
+
+                CurrentState = States.StateRotation;
             }
+            else
+                e.Handled = true;
+        }
+
+        private void ScatCardActivated(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public void FadeInCardAnimation()
+        {
+            Storyboard fadeOutCard = (Storyboard)FindResource("FadeOutCard");
+            fadeOutCard.Remove();
+            Storyboard fadeInCard = (Storyboard)FindResource("FadeInCard");
+            fadeInCard.Begin();
+        }
+
+        public void FadeOutCardAnimation()
+        {
+            Storyboard fadeInCard = (Storyboard)FindResource("FadeInCard");
+            fadeInCard.Remove();
+            Storyboard fadeOutCard = (Storyboard)FindResource("FadeOutCard");
+            fadeOutCard.Begin();
         }
     }
 }

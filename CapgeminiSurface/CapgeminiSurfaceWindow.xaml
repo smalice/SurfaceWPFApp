@@ -5,11 +5,12 @@
     xmlns:cs="clr-namespace:CapgeminiSurface" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    x:Name="surfaceWindow" 
     mc:Ignorable="d" 
     x:Class="CapgeminiSurface.CapgeminiSurfaceWindow"
     Title="CapgeminiSurface"
     Width="1024"    
-    Height="768"
+    Height="768" WindowStyle="None"
     >
   <s:SurfaceWindow.Resources>
     <ImageBrush 
@@ -45,27 +46,41 @@
     		<DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Hidden}"/>
     	</ObjectAnimationUsingKeyFrames>
     </Storyboard>
+    <Storyboard x:Key="CapgeminiAni">
+    	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="surfaceMainGrid">
+    		<SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+    		<SplineDoubleKeyFrame KeyTime="0:0:1.9" Value="1"/>
+    	</DoubleAnimationUsingKeyFrames>
+    	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(TileBrush.Stretch)" Storyboard.TargetName="surfaceMainGrid">
+    		<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Stretch.None}"/>
+    		<DiscreteObjectKeyFrame KeyTime="0:0:1.9" Value="{x:Static Stretch.None}"/>
+    	</ObjectAnimationUsingKeyFrames>
+    	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(TileBrush.TileMode)" Storyboard.TargetName="surfaceMainGrid">
+    		<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static TileMode.None}"/>
+    		<DiscreteObjectKeyFrame KeyTime="0:0:1.9" Value="{x:Static TileMode.None}"/>
+    	</ObjectAnimationUsingKeyFrames>
+    </Storyboard>
         
     </s:SurfaceWindow.Resources>
-	<s:SurfaceWindow.Triggers>
-		<EventTrigger RoutedEvent="FrameworkElement.Loaded"/>
-		<EventTrigger RoutedEvent="FrameworkElement.Loaded"/>
-	</s:SurfaceWindow.Triggers>
 	<s:SurfaceWindow.Background>
-		<RadialGradientBrush>
-			<GradientStop Color="White" Offset="0.013"/>
-			<GradientStop Color="{DynamicResource {x:Static SystemColors.ActiveCaptionColorKey}}" Offset="1"/>
-		</RadialGradientBrush>
+		<ImageBrush ImageSource="/Brand_Slogan_Cloud_Bkgd_HR_300dpi.jpg"/>
 	</s:SurfaceWindow.Background>
+	<s:SurfaceWindow.Triggers>
+		<EventTrigger RoutedEvent="FrameworkElement.Loaded">
+			<BeginStoryboard Storyboard="{StaticResource CapgeminiAni}"/>
+		</EventTrigger>
+	</s:SurfaceWindow.Triggers>
     
     <Grid        
-           x:Name="surfaceMainGrid"
-           Background="{StaticResource WindowBackground}" >
+           x:Name="surfaceMainGrid" Width="1024" Height="768" >
+    	<Grid.Background>
+    		<ImageBrush ImageSource="Resources/WindowBackground.jpg" Opacity="0.6" Stretch="None"/>
+    	</Grid.Background>
         <cs:MenuLogo 
             Grid.Row="1"
             Grid.Column="1"
             x:Name="Logo"
-            Panel.ZIndex="2"
+            Panel.ZIndex="1"
             />
         <cs:FavouriteStack 
             x:Name="favouriteStack" 
@@ -83,7 +98,7 @@
         	</cs:FavouriteStack.RenderTransform>
         </cs:FavouriteStack>
         <cs:ParticleSystemManager
-            x:Name="particleSystem"/>
+            x:Name="particleSystem" Height="1024" Margin="0,-132" d:LayoutOverrides="HorizontalMargin" Width="1024"/>
     </Grid>
 
 </s:SurfaceWindow>

@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Microsoft.Surface.Presentation;
 using Microsoft.Surface.Presentation.Controls;
+using Microsoft.Surface.Presentation.Manipulations;
 
 namespace CapgeminiSurface
 {
     public partial class ParticleSystemManager : SurfaceUserControl
     {
-        
+        private Affine2DManipulationProcessor _manipulationProcessor;
+        readonly Point _centerPoint = new Point(512, 512);
+
         private double minParticleSize = 1.0;
         private double maxParticleLife = 10.0;
         private double rendersPerSecond = 24.0;
@@ -44,9 +49,12 @@ namespace CapgeminiSurface
         {
             InitializeComponent();
 
+            sAmount.Value = maxParticlesPerColor;
+            
             generateParticles = true;
 
-            particleSpeed = 30.0;
+            setParticleDuration(10.0);
+            setSpeedSlider(15.0);
 
             particlePoint3D = new Point3D(particleX, particleY, particleZ);
 
@@ -66,6 +74,34 @@ namespace CapgeminiSurface
                                                                                       Colors.LightBlue));
 
             random = new Random(GetHashCode());
+        }
+
+        public void setSpeedSlider(double number)
+        {
+            particleSpeed = number;
+            sSpeed.Value = (int)particleSpeed;
+        }
+
+        public void setAmountParticles(int number)
+        {
+            maxParticlesPerColor = number;
+        }
+
+        public void setParticleDuration(double number)
+        {
+            maxParticleLife = number;
+            sAmount.Value = maxParticleLife;
+        }
+
+        private void InitializeManipulationProcessor()
+        {
+            _manipulationProcessor = new Affine2DManipulationProcessor(Affine2DManipulations.Rotate, ParticleGrid, _centerPoint );
+            _manipulationProcessor.Affine2DManipulationDelta += OnManipulationDelta;
+        }
+
+        private void OnManipulationDelta(object sender, Affine2DOperationDeltaEventArgs e)
+        {
+            particleGridTransform.Angle += e.RotationDelta;
         }
 
         private void OnFrame(object sender, EventArgs e)
@@ -95,6 +131,53 @@ namespace CapgeminiSurface
                 // #FELO: Respawn point.
                 spawnPoint = particlePoint3D;
             }
+        }
+
+        private void SurfaceToggleButton_ContactEnter(object sender, ContactEventArgs e)
+        {
+
+        }
+
+        private void SurfaceSlider_ContactLeave(object sender, ContactEventArgs e)
+        {
+            minParticleSize = sSlider.Value;
+        }
+
+        private void sSpeed_ContactLeave(object sender, ContactEventArgs e)
+        {
+            setSpeedSlider(sSpeed.Value);
+        }
+
+        private void sAmount_ContactLeave(object sender, ContactEventArgs e)
+        {
+            setParticleDuration(sAmount.Value);
+        }
+
+        public void toggleControlPanel()
+        {
+
+            Storyboard controlsAniStory = (Storyboard)FindResource("ControlsAni");
+            controlsAniStory.Remove();
+            controlsAniStory.Begin();
+            //controlsAniStory.CreateClock();
+            
+        }
+
+        private void SurfaceToggleButton_ContactChanged(object sender, ContactEventArgs e)
+        {
+
+        }
+
+        private void SurfaceToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+            generateParticles = false;
+
+        }
+
+        private void SurfaceToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            generateParticles = true;
         }
     }
 
