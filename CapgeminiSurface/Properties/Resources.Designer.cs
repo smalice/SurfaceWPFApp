@@ -59,5 +59,155 @@ namespace CapgeminiSurface.Properties {
                 resourceCulture = value;
             }
         }
+        
+        internal static System.IO.UnmanagedMemoryStream c_bang {
+            get {
+                return ResourceManager.GetStream("c_bang", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream chat_inbound {
+            get {
+                return ResourceManager.GetStream("chat_inbound", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream CHIMES {
+            get {
+                return ResourceManager.GetStream("CHIMES", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream contacts_offline {
+            get {
+                return ResourceManager.GetStream("contacts_offline", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream generic_event {
+            get {
+                return ResourceManager.GetStream("generic_event", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream ir_end {
+            get {
+                return ResourceManager.GetStream("ir_end", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream load {
+            get {
+                return ResourceManager.GetStream("load", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream mail_notify {
+            get {
+                return ResourceManager.GetStream("mail_notify", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream message_creation {
+            get {
+                return ResourceManager.GetStream("message_creation", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream message_inbound {
+            get {
+                return ResourceManager.GetStream("message_inbound", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream message_outbound {
+            get {
+                return ResourceManager.GetStream("message_outbound", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream meta_offline {
+            get {
+                return ResourceManager.GetStream("meta_offline", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream meta_online {
+            get {
+                return ResourceManager.GetStream("meta_online", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream Sparkle {
+            get {
+                return ResourceManager.GetStream("Sparkle", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream Speech_Disambiguation {
+            get {
+                return ResourceManager.GetStream("Speech_Disambiguation", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream Speech_Misrecognition {
+            get {
+                return ResourceManager.GetStream("Speech_Misrecognition", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream Speech_Off {
+            get {
+                return ResourceManager.GetStream("Speech_Off", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream Speech_On {
+            get {
+                return ResourceManager.GetStream("Speech_On", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream Startup {
+            get {
+                return ResourceManager.GetStream("Startup", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream Swoosh {
+            get {
+                return ResourceManager.GetStream("Swoosh", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream Tap {
+            get {
+                return ResourceManager.GetStream("Tap", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream Tick {
+            get {
+                return ResourceManager.GetStream("Tick", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream transfer_notify {
+            get {
+                return ResourceManager.GetStream("transfer_notify", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream ufo {
+            get {
+                return ResourceManager.GetStream("ufo", resourceCulture);
+            }
+        }
+        
+        internal static System.IO.UnmanagedMemoryStream WHOOSH {
+            get {
+                return ResourceManager.GetStream("WHOOSH", resourceCulture);
+            }
+        }
     }
 }

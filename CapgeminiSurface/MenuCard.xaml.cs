@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Media.Animation;
 using CapgeminiSurface.Model;
+using CapgeminiSurface.Util;
 using Microsoft.Surface.Presentation;
 using Microsoft.Surface.Presentation.Controls;
 using Microsoft.Surface.Presentation.Manipulations;
@@ -52,7 +53,7 @@ namespace CapgeminiSurface
             {
                 e.Handled = true;
             }
-            
+
             SetZorder(this, e);
         }
 
@@ -80,6 +81,9 @@ namespace CapgeminiSurface
             {
                 e.Handled = true;
             }
+
+            new ThreadedSoundPlayer(Properties.Resources.Tap).PlaySound();
+
             ModelManager.Instance.SelectedCustomer = this.DataContext as Customer;
         }
 

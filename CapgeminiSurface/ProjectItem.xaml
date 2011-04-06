@@ -8,7 +8,7 @@
         <Grid.Resources>
             <BooleanToVisibilityConverter x:Key="BoolToVisible" />
         </Grid.Resources>
-        <Grid x:Name="pictureGrid" Margin="0" Width="90" Height="145.62" Opacity="0.832" Background="Black"
+        <Grid x:Name="pictureGrid" Margin="0" Width="90" Height="145.62" Opacity="0.832"
               Visibility="{Binding IsPictureItem, Converter={StaticResource BoolToVisible}}">
             <TextBlock x:Name="projectName"  
     			HorizontalAlignment="Left" 
@@ -20,7 +20,7 @@
             <Image Source="{Binding FileName}" />
 
     	</Grid>
-        <Grid x:Name="videoGrid" Margin="0" Width="90" Height="145.62" Opacity="0.832" Background="Black"
+        <Grid x:Name="videoGrid" Margin="0" Width="90" Height="145.62" Opacity="0.832"
               Visibility="{Binding IsVideoItem, Converter={StaticResource BoolToVisible}}">
             <!--<MediaElement Source="{Binding FileName}" />-->
             <TextBlock x:Name="projectName1"  

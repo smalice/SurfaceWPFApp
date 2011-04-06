@@ -67,6 +67,7 @@
 			</DoubleAnimationUsingKeyFrames>
 			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="TextGrid">
 				<SplineDoubleKeyFrame KeyTime="0:0:3" Value="100"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3.3" Value="100"/>
 			</DoubleAnimationUsingKeyFrames>
 			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="TextGrid">
 				<SplineDoubleKeyFrame KeyTime="0:0:3" Value="100"/>

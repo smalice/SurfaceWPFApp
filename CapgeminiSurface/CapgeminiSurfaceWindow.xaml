@@ -99,6 +99,8 @@
         </cs:FavouriteStack>
         <cs:ParticleSystemManager
             x:Name="particleSystem" Height="1024" Margin="0,-132" d:LayoutOverrides="HorizontalMargin" Width="1024"/>
+        <cs:CustomerFilter HorizontalAlignment="Left" Margin="12,600,0,0" x:Name="CustomerFilter" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" >
+        </cs:CustomerFilter>
     </Grid>
 
 </s:SurfaceWindow>

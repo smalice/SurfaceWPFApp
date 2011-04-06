@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
+using CapgeminiSurface.Util;
 using Microsoft.Surface.Presentation;
 using Microsoft.Surface.Presentation.Controls;
 using Microsoft.Surface.Presentation.Manipulations;
@@ -52,6 +54,8 @@ namespace CapgeminiSurface
             Storyboard textFadeOut = (Storyboard)FindResource("TextFadeOut");
 
             textFadeOut.Begin();
+
+            new ThreadedSoundPlayer(Properties.Resources.Tap).PlaySound();
 
             //textFadeOut.AutoReverse = true;
         }

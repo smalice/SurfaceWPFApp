@@ -96,6 +96,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomerFilter.xaml.cs">
+      <DependentUpon>CustomerFilter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FavouriteStack.xaml.cs">
       <DependentUpon>FavouriteStack.xaml</DependentUpon>
     </Compile>
@@ -129,9 +132,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
+      <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -165,8 +167,63 @@
       <DependentUpon>VideoItem.xaml</DependentUpon>
     </Compile>
     <AppDesigner Include="Properties\" />
+    <None Include="Resources\Pdf\ELEXON_Achieves_Smooth_Transition_During_Restructuring %281%29.pdf" />
+    <None Include="Resources\Pdf\ELEXON_Achieves_Smooth_Transition_During_Restructuring.pdf" />
+    <None Include="Resources\Pdf\Gaz_de_France_Powering_Up_for_Deregulation.pdf" />
+    <None Include="Resources\Pdf\L___Ag__ncia_Catalana_de_l___Aigua_Optimizes_its_Business_Process_Management %281%29.pdf" />
+    <None Include="Resources\Pdf\L___Ag__ncia_Catalana_de_l___Aigua_Optimizes_its_Business_Process_Management %282%29.pdf" />
+    <None Include="Resources\Pdf\L___Ag__ncia_Catalana_de_l___Aigua_Optimizes_its_Business_Process_Management.pdf" />
+    <None Include="Resources\Pdf\Market_Settlement_and_Transfer_Solution_Powers_Competition_for_Retail_Electricity_in_Australia.pdf" />
+    <None Include="Resources\Pdf\pdf_EDF.pdf" />
+    <None Include="Resources\Pdf\pdf_Petoro_AS-Smart_Operations_Readiness_Assessment.pdf" />
+    <None Include="Resources\Pdf\ss_EDF_Energy_Improves_Regulatory_Cost_Reporting.pdf" />
+    <None Include="Resources\Pdf\ss_Electrabel_Paves_the_Way_for_Simpler_and_Harmonized_Business_Processes.pdf" />
+    <None Include="Resources\Pdf\ss_Enhancing_Performance_and_Productivity_for_ONE_in_Morocco.pdf" />
+    <None Include="Resources\Pdf\ss_Global_Chemicals_Leader_Strengthens_Customer_Focus_with_Global_Change_Program.pdf" />
+    <None Include="Resources\Pdf\ss_Partnership_Strategy_to_Protect_and_Develop_Market_Share_for_DONG.pdf" />
+    <None Include="Resources\Pdf\ss_Petoro_Leverages_Smart_Operations %281%29.pdf" />
+    <None Include="Resources\Pdf\ss_Petoro_Leverages_Smart_Operations.pdf" />
+    <None Include="Resources\Pdf\ss_Roadmap_for_Next-Generation_Systems_at_Sibelga.pdf" />
+    <None Include="Resources\Pdf\ss_Supporting_Post-Acquisition_Process_for_Romanian_Oil_and_Gas_Group_Petrom.pdf" />
+    <None Include="Resources\Pdf\ss_The_Power_of_Smart_Metering.pdf" />
+    <None Include="Resources\Pdf\Supporting_Global_Enterprise_Systems_at_Offshore_Oil__amp__Gas_Leader.pdf" />
+    <None Include="tempLogoIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Sounds\chat-inbound.wav" />
+    <Content Include="Resources\Sounds\CHIMES.WAV" />
+    <Content Include="Resources\Sounds\contacts-offline.wav" />
+    <Content Include="Resources\Sounds\c_bang.wav" />
+    <Content Include="Resources\Sounds\generic-event.wav" />
+    <Content Include="Resources\Sounds\ir_end.wav" />
+    <Content Include="Resources\Sounds\load.wav" />
+    <Content Include="Resources\Sounds\mail-notify.wav" />
+    <Content Include="Resources\Sounds\message-creation.wav" />
+    <Content Include="Resources\Sounds\message-inbound.wav" />
+    <Content Include="Resources\Sounds\message-outbound.wav" />
+    <Content Include="Resources\Sounds\meta-offline.wav" />
+    <Content Include="Resources\Sounds\meta-online.wav" />
+    <Content Include="Resources\Sounds\Speech Disambiguation.wav" />
+    <Content Include="Resources\Sounds\Speech Misrecognition.wav" />
+    <Content Include="Resources\Sounds\Speech Off.wav" />
+    <Content Include="Resources\Sounds\Speech On.wav" />
+    <Content Include="Resources\Sounds\transfer-notify.wav" />
+    <Content Include="Resources\Sounds\ufo.wav" />
+    <Content Include="Resources\Sounds\WHOOSH.WAV" />
+    <Resource Include="Resources\FilterIcons\Cap.png" />
+    <Resource Include="Resources\FilterIcons\cap3.png" />
+    <Resource Include="Resources\FilterIcons\Energy.png" />
+    <Resource Include="Resources\FilterIcons\Globe.png" />
+    <Resource Include="Resources\FilterIcons\globe2.png" />
+    <Resource Include="Resources\FilterIcons\Nor1.png" />
+    <Resource Include="Resources\FilterIcons\Nor2.png" />
+    <Resource Include="Resources\Sounds\Sparkle.wav" />
+    <Resource Include="Resources\Sounds\Startup.wav" />
+    <Resource Include="Resources\Sounds\Swoosh.wav" />
+    <Resource Include="Resources\Sounds\Tap.wav" />
+    <Resource Include="Resources\Sounds\Tick.wav" />
     <Resource Include="Brand_Slogan_Cloud_Bkgd_HR_300dpi.jpg" />
     <Resource Include="Resources\Brand_Slogan_Cloud_Bkgd_HR_300dpi.jpg" />
     <Content Include="Resources\Customers.xml">
@@ -207,6 +264,10 @@
     <Page Include="CapgeminiSurfaceWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CustomerFilter.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

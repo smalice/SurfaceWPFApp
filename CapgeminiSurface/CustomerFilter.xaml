@@ -1,0 +1,68 @@
+﻿<s:SurfaceUserControl
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:s="http://schemas.microsoft.com/surface/2008"
+    xmlns:cs="clr-namespace:CapgeminiSurface"
+    xmlns:Resources="clr-namespace:CapgeminiSurface.Resources"
+    xmlns:ic="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Name="surfaceUserControl" 
+    x:Class="CapgeminiSurface.CustomerFilter" RenderTransformOrigin="0.5,0.5">
+	<s:SurfaceUserControl.RenderTransform>
+		<TransformGroup>
+			<ScaleTransform/>
+			<SkewTransform/>
+			<RotateTransform/>
+			<TranslateTransform/>
+		</TransformGroup>
+	</s:SurfaceUserControl.RenderTransform>
+    
+    <Grid Height="46" Width="68">
+		<VisualStateManager.VisualStateGroups>
+			<VisualStateGroup x:Name="ShowHide">
+				<VisualStateGroup.Transitions>
+					<VisualTransition GeneratedDuration="0:0:1"/>
+				</VisualStateGroup.Transitions>
+				<VisualState x:Name="Show"/>
+				<VisualState x:Name="Hide">
+					<Storyboard>
+						<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="surfaceUserControl">
+							<SplineDoubleKeyFrame KeyTime="0" Value="-397"/>
+						</DoubleAnimationUsingKeyFrames>
+					</Storyboard>
+				</VisualState>
+			</VisualStateGroup>
+		</VisualStateManager.VisualStateGroups>
+    
+		<Rectangle Stroke="White" Margin="-87,-11,-370,-39" RadiusX="25" RadiusY="25" StrokeThickness="3"/>
+		<StackPanel x:Name="stackPanel" Orientation="Horizontal" Margin="0,0,-370,-54" d:LayoutOverrides="Height">
+	
+			<s:SurfaceToggleButton x:Name="EnergyButton"  Checked="EnergyButton_Checked" Unchecked="EnergyButton_Unchecked" HorizontalAlignment="Left" VerticalAlignment="Top" Height="72" Width="123" ToolTip="Show/Hide Energy companies"><Image Source="Resources\FilterIcons\Energy.png" Height="61" Width="60">
+	<Image.Effect>
+		<DropShadowEffect/>
+	</Image.Effect>
+</Image></s:SurfaceToggleButton>
+			<s:SurfaceToggleButton x:Name="CapgeminiButton"  Checked="CapgeminiButton_Checked" Unchecked="CapgeminiButton_Unchecked"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="72" Width="123"><Image Source="pack://siteoforigin:,,,/tempLogoIcon.png" Height="60" Width="60" ToolTip="Show/Hide Capgemini ??">
+	<Image.Effect>
+		<DropShadowEffect/>
+	</Image.Effect>
+</Image>
+			</s:SurfaceToggleButton>
+			<s:SurfaceToggleButton x:Name="OtherButton"   Checked="OtherButton_Checked" Unchecked="OtherButton_Unchecked" HorizontalAlignment="Left" VerticalAlignment="Top" Height="72" Width="123"><Image Source="Resources\FilterIcons\globe2.png" Height="60" Width="60" ToolTip="Show/Hide Other compenies">
+	<Image.Effect>
+		<DropShadowEffect/>
+	</Image.Effect>
+</Image></s:SurfaceToggleButton>
+			<s:SurfaceToggleButton x:Name="ShowHide1"   Checked="ShowButton_Checked" Unchecked="ShowButton_Unchecked" HorizontalAlignment="Left" VerticalAlignment="Top" Height="44" Width="79" Content="Show/Hide" FontSize="9.333" RenderTransformOrigin="0.5,0.5" Margin="0,14,0,0">
+				<s:SurfaceToggleButton.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform/>
+						<RotateTransform Angle="90"/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</s:SurfaceToggleButton.RenderTransform>
+			</s:SurfaceToggleButton>        
+		</StackPanel>
+	
+	</Grid>
+	
+</s:SurfaceUserControl>

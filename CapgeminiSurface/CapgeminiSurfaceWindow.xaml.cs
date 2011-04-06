@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,6 +35,7 @@ namespace CapgeminiSurface
             InitializeComponent();
             AddActivationHandlers();
             InitializeManipulationProcessor();
+			AddFilterHandlers();
 
             foreach (Customer costumer in ModelManager.Instance.EnergyCustomers)
             {
@@ -51,9 +52,20 @@ namespace CapgeminiSurface
                 card.scatCard.ScatterManipulationCompleted += CardScatterManipulationComp;
                 card.SetZorder += CardContactDown;
             }
-
             Logo.DeltaManipulationFinished += Rotate;
         }
+		
+		private void AddFilterHandlers()
+    	{
+    		this.CustomerFilter.EnergyFilterChecked += HandleEneryFilterChecked;
+    		this.CustomerFilter.EnergyFilterUnchecked += HandleEneryFilterUnchecked;
+
+			this.CustomerFilter.CapgeminiFilterChecked += HandleCapgeminiFilterChecked;
+			this.CustomerFilter.CapgeminiFilterUnchecked += HandleCapgeminiFilterUnchecked;
+
+			this.CustomerFilter.OtherFilterChecked += HandleOtherFilterChecked;
+			this.CustomerFilter.OtherFilterUnchecked += HandleOtherFilterUnchecked;
+    	}
 
         private void InitializeManipulationProcessor()
         {
@@ -121,14 +133,15 @@ namespace CapgeminiSurface
 
         private void CardContactTapGesture(object sender, ContactEventArgs e)
         {
-            foreach (MenuCard card in MenuCardHolder)
-            {
-                card.FadeOutCardAnimation();
-            }
             var obj = sender as MenuCard;
 
             if (obj != null && CurrentState.Equals(States.AllCardRotation))
             {
+                foreach (MenuCard card in MenuCardHolder)
+                {
+                    card.FadeOutCardAnimation();
+                }
+
                 if (obj.CurrentState.Equals(MenuCard.States.StateRotation))
                 {
                     CurrentState = States.OneCardDocked;
@@ -178,5 +191,56 @@ namespace CapgeminiSurface
         private void OnApplicationDeactivated(object sender, EventArgs e)
         {
         }
+
+        private void HandleEneryFilterUnchecked(object sender, EventArgs e)
+        {
+            foreach (var energyCustomer in ModelManager.Instance.EnergyCustomers)
+            {
+                energyCustomer.IsVisible = false;
+            }
+        }
+
+        private void HandleEneryFilterChecked(object sender, EventArgs e)
+        {
+            foreach (var energyCustomer in ModelManager.Instance.EnergyCustomers)
+            {
+                energyCustomer.IsVisible = true;
+            }
+        }
+
+        private void HandleOtherFilterChecked(object sender, EventArgs e)
+        {
+            foreach (var otherCustomer in ModelManager.Instance.OtherCustomers)
+            {
+                otherCustomer.IsVisible = true;
+            }
+        }
+
+        private void HandleOtherFilterUnchecked(object sender, EventArgs e)
+        {
+            foreach (var otherCustomer in ModelManager.Instance.OtherCustomers)
+            {
+                otherCustomer.IsVisible = false;
+            }
+        }
+
+        private void HandleCapgeminiFilterChecked(object sender, EventArgs e)
+        {
+            foreach (var capgeminiCustomer in ModelManager.Instance.CapgeminiInfo)
+            {
+                capgeminiCustomer.IsVisible = true;
+            }
+        }
+
+        private void HandleCapgeminiFilterUnchecked(object sender, EventArgs e)
+        {
+            foreach (var capgeminiCustomer in ModelManager.Instance.CapgeminiInfo)
+            {
+                capgeminiCustomer.IsVisible = false;
+            }
+        }
+
+    	
+
     }
 }
