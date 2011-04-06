@@ -70,6 +70,13 @@ namespace CapgeminiSurface
             }
             Logo.DeltaManipulationFinished += Rotate;
             scatterViewTarget.ItemsSource = TargetItems;
+            ModelManager.Instance.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(Instance_PropertyChanged);
+        }
+
+        void Instance_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (ModelManager.Instance.SelectedCustomer == null)
+                targetItems.Clear();
         }
 		
 		private void AddFilterHandlers()

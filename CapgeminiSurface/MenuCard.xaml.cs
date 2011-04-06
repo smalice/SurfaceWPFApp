@@ -84,7 +84,10 @@ namespace CapgeminiSurface
 
             new ThreadedSoundPlayer(Properties.Resources.Tap).PlaySound();
 
-            ModelManager.Instance.SelectedCustomer = this.DataContext as Customer;
+            if (CardOut)
+                ModelManager.Instance.SelectedCustomer = null;
+            else
+                ModelManager.Instance.SelectedCustomer = this.DataContext as Customer;
         }
 
         public void AfterOnTapGesture(ContactEventArgs e)
