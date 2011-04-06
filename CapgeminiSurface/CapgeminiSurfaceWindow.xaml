@@ -60,7 +60,9 @@
     		<DiscreteObjectKeyFrame KeyTime="0:0:1.9" Value="{x:Static TileMode.None}"/>
     	</ObjectAnimationUsingKeyFrames>
     </Storyboard>
-        
+        <DataTemplate x:Key="ScatterViewItemDataTemplate" >
+            <cs:ProjectItem DataContext="{Binding}"/>
+        </DataTemplate>
     </s:SurfaceWindow.Resources>
 	<s:SurfaceWindow.Background>
 		<ImageBrush ImageSource="/Brand_Slogan_Cloud_Bkgd_HR_300dpi.jpg"/>
@@ -71,8 +73,7 @@
 		</EventTrigger>
 	</s:SurfaceWindow.Triggers>
     
-    <Grid        
-           x:Name="surfaceMainGrid" Width="1024" Height="768" >
+    <Grid x:Name="surfaceMainGrid" Width="1024" Height="768" >
     	<Grid.Background>
     		<ImageBrush ImageSource="Resources/WindowBackground.jpg" Opacity="0.6" Stretch="None"/>
     	</Grid.Background>
@@ -99,6 +100,13 @@
         </cs:FavouriteStack>
         <cs:ParticleSystemManager
             x:Name="particleSystem" Height="1024" Margin="0,-132" d:LayoutOverrides="HorizontalMargin" Width="1024"/>
+        <s:ScatterView Width="1024" Height="768" Margin="0,0,0,0" AllowDrop="True" Panel.ZIndex="1"
+                       ItemTemplate="{StaticResource ScatterViewItemDataTemplate}"
+                       
+                       s:SurfaceDragDrop.DragEnter="ScatterView_DragEnter"
+                       s:SurfaceDragDrop.DragLeave="ScatterView_DragLeave"
+                       s:SurfaceDragDrop.Drop="ScatterView_Drop"
+                       Background="Transparent" Name="scatterViewTarget"/>
     </Grid>
 
 </s:SurfaceWindow>

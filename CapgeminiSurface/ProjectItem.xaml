@@ -1,14 +1,17 @@
-﻿<cs:StackItem x:Class="CapgeminiSurface.ProjectItem"
+﻿<s:SurfaceUserControl x:Class="CapgeminiSurface.ProjectItem"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:s="http://schemas.microsoft.com/surface/2008"
     xmlns:cs="clr-namespace:CapgeminiSurface"
-    xmlns:resource="clr-namespace:CapgeminiSurface.Resources" HorizontalAlignment="Center" VerticalAlignment="Center" Height="145.62" Width="90" Foreground="{x:Null}" >
-    <Grid>
+    xmlns:resource="clr-namespace:CapgeminiSurface.Resources" 
+              HorizontalAlignment="Center" 
+              VerticalAlignment="Center" 
+              Height="145.62" Width="90" Foreground="{x:Null}">
+    <Grid >
         <Grid.Resources>
             <BooleanToVisibilityConverter x:Key="BoolToVisible" />
         </Grid.Resources>
-        <Grid x:Name="pictureGrid" Margin="0" Width="90" Height="145.62" Opacity="0.832" Background="Black"
+        <Grid x:Name="pictureGrid" Margin="0" Opacity="0.832" Background="Black"
               Visibility="{Binding IsPictureItem, Converter={StaticResource BoolToVisible}}">
             <TextBlock x:Name="projectName"  
     			HorizontalAlignment="Left" 
@@ -20,17 +23,17 @@
             <Image Source="{Binding FileName}" />
 
     	</Grid>
-        <Grid x:Name="videoGrid" Margin="0" Width="90" Height="145.62" Opacity="0.832" Background="Black"
+        <Grid x:Name="videoGrid" Margin="0" Opacity="0.832" 
               Visibility="{Binding IsVideoItem, Converter={StaticResource BoolToVisible}}">
-            <!--<MediaElement Source="{Binding FileName}" />-->
-            <TextBlock x:Name="projectName1"  
+            <MediaElement Source="{Binding FileName}" HorizontalAlignment="Stretch"  />
+            <!--<TextBlock x:Name="projectName1"  
     			HorizontalAlignment="Left" 
     			Margin="12,12,0,0" 
     			VerticalAlignment="Top" 
     			FontWeight="Bold" 
     			Foreground="White" 
-    			Text="{Binding FileName}"/>
+    			Text="{Binding FileName}"/>-->
 
     	</Grid>
     </Grid>
-</cs:StackItem>
+</s:SurfaceUserControl>

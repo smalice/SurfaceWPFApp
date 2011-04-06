@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
+using Microsoft.Surface.Presentation;
+using Microsoft.Surface.Presentation.Controls;
+using Microsoft.Surface.Presentation.Manipulations;
 
 namespace CapgeminiSurface
 {
     /// <summary>
     /// Interaction logic for ProjectItem.xaml
     /// </summary>
-    public partial class ProjectItem : StackItem
+    public partial class ProjectItem : SurfaceUserControl
     {
         public IList<string> parameters { get; set; }
         public ProjectItem()
@@ -37,5 +40,15 @@ namespace CapgeminiSurface
             }
             return tmp;
         }
+
+        //private void Grid_ContactHoldGesture(object sender, Microsoft.Surface.Presentation.ContactEventArgs e)
+        //{
+        //    bool b = true;
+        //}
+
+        //private void Grid_ContactDown(object sender, ContactEventArgs e)
+        //{
+        //    bool b = true;
+        //}
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.Surface;
 using Microsoft.Surface.Presentation;
 using Microsoft.Surface.Presentation.Controls;
 using Microsoft.Surface.Presentation.Manipulations;
+using System.Collections.ObjectModel;
 
 namespace CapgeminiSurface
 {
@@ -29,6 +30,21 @@ namespace CapgeminiSurface
 
         readonly Point _centerPoint = new Point(512, 384);
 
+        private ObservableCollection<ContentItem> targetItems;
+
+        public ObservableCollection<ContentItem> TargetItems
+        {
+            get
+            {
+                if (targetItems == null)
+                {
+                    targetItems = new ObservableCollection<ContentItem>();
+                }
+
+                return targetItems;
+            }
+        }
+
         public CapgeminiSurfaceWindow()
         {
             ModelManager.Instance.Load();
@@ -36,7 +52,7 @@ namespace CapgeminiSurface
             AddActivationHandlers();
             InitializeManipulationProcessor();
 
-            foreach (Customer costumer in ModelManager.Instance.EnergyCustomers)
+            foreach (Customer costumer in ModelManager.Instance.CapgeminiInfo)
             {
                 var card = new MenuCard {DataContext = costumer};
                 surfaceMainGrid.Children.Add(card);
@@ -53,6 +69,7 @@ namespace CapgeminiSurface
             }
 
             Logo.DeltaManipulationFinished += Rotate;
+            scatterViewTarget.ItemsSource = TargetItems;
         }
 
         private void InitializeManipulationProcessor()
@@ -177,6 +194,21 @@ namespace CapgeminiSurface
 
         private void OnApplicationDeactivated(object sender, EventArgs e)
         {
+        }
+
+        private void ScatterView_DragEnter(object sender, SurfaceDragDropEventArgs e)
+        {
+            e.Cursor.Visual.Tag = "DragEnter";
+        }
+
+        private void ScatterView_DragLeave(object sender, SurfaceDragDropEventArgs e)
+        {
+            e.Cursor.Visual.Tag = null;
+        }
+
+        private void ScatterView_Drop(object sender, SurfaceDragDropEventArgs e)
+        {
+            TargetItems.Add(e.Cursor.Data as ContentItem);
         }
     }
 }
