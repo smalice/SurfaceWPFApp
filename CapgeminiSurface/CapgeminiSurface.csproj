@@ -55,6 +55,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Controls.DataVisualization.Toolkit" />
     <Reference Include="System.Windows.Controls.Layout.Toolkit" />
     <Reference Include="System.Xml.Linq">
@@ -119,9 +120,6 @@
     <Compile Include="ParticleSystemManager.xaml.cs">
       <DependentUpon>ParticleSystemManager.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PictureItem.xaml.cs">
-      <DependentUpon>PictureItem.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ProjectItem.xaml.cs">
       <DependentUpon>ProjectItem.xaml</DependentUpon>
     </Compile>
@@ -157,14 +155,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="StackItem.xaml.cs">
-      <DependentUpon>StackItem.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Util\TSoundPlayer.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="VideoItem.xaml.cs">
-      <DependentUpon>VideoItem.xaml</DependentUpon>
     </Compile>
     <AppDesigner Include="Properties\" />
     <None Include="Resources\Pdf\ELEXON_Achieves_Smooth_Transition_During_Restructuring %281%29.pdf" />
@@ -235,6 +227,20 @@
     <Content Include="Resources\iconPreview.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Logos\EPiCentre.png" />
+    <Content Include="Resources\Videos\Adobe.wmv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Videos\OneManufacturer.wmv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Videos\CloudComputing.wmv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Videos\WomenExperts.wmv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\Logos\Capgemini_logo_hr.png" />
     <Resource Include="Resources\Logos\conocophillips_logo.png" />
     <Resource Include="Resources\Logos\dong_logo.png" />
     <Resource Include="Resources\Logos\epim-logo-motto.png" />
@@ -293,25 +299,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="PictureItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="ProjectItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Resource Include="StackItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Resource>
-    <Page Include="VideoItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <Generator>MSBuild:Compile</Generator>

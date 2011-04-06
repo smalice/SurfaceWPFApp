@@ -1,41 +1,42 @@
 ﻿using System.Collections.Generic;
+using Microsoft.Surface.Presentation;
+using Microsoft.Surface.Presentation.Controls;
+using Microsoft.Surface.Presentation.Manipulations;
+using CapgeminiSurface.Model;
 
 namespace CapgeminiSurface
 {
     /// <summary>
     /// Interaction logic for ProjectItem.xaml
     /// </summary>
-    public partial class ProjectItem : StackItem
+    public partial class ProjectItem : SurfaceUserControl
     {
-        public IList<string> parameters { get; set; }
+        bool isPlaying;
+
         public ProjectItem()
         {
             InitializeComponent();
         }
 
-        private string stringOptimizer(string text)
+        private void myMedia_ContactDown(object sender, ContactEventArgs e)
         {
-            string tmp = text;
-            int size = 50;
-            if (text.Length > size)
-            {
-                if (!text.Contains("\n"))
-                {
-                    tmp = text.Substring(0, size) + "\n";
-                    for (int position = 51; position < text.Length; position += (size + 1))
-                    {
-                        if (text.Substring(position).Length <= size)
-                        {
-                            tmp += text.Substring(position);
-                        }
-                        else
-                        {
-                            tmp += text.Substring(position, size) + "\n";
-                        }
-                    }
-                }
-            }
-            return tmp;
+            var content = this.DataContext as ContentItem;
+            if (!content.IsVideoItem)
+                return;
+            if (isPlaying)
+                myMedia.Pause();
+            else
+                myMedia.Play();
+            isPlaying = !isPlaying;
+        }
+
+        private void videoGrid_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var content = this.DataContext as ContentItem;
+            if (!content.IsVideoItem)
+                return;
+            myMedia.Play();
+            myMedia.Pause();
         }
     }
 }

@@ -28,6 +28,27 @@ namespace CapgeminiSurface
             collection.Source = ModelManager.Instance.SelectedCustomer.ContentItems;
             collection.GroupDescriptions.Add(new PropertyGroupDescription("ContentType"));
             favouriteStackContent.ItemsSource = collection.View;
+            //favouriteStackContent.DragLeave += new System.Windows.DragEventHandler(favouriteStackContent_DragLeave);
         }
+
+        //void favouriteStackContent_DragLeave(object sender, System.Windows.DragEventArgs e)
+        //{
+        //    var b = true;
+        //}
+
+        //private void ProjectItem_Drop(object sender, System.Windows.DragEventArgs e)
+        //{
+        //    var b = true;
+        //}
+
+        //private void ProjectItem_DragOver(object sender, System.Windows.DragEventArgs e)
+        //{
+        //    var b = true;
+        //}
+
+        //private void ProjectItem_ContactDown(object sender, Microsoft.Surface.Presentation.ContactEventArgs e)
+        //{
+        //    var b = true;
+       // }
     }
 }

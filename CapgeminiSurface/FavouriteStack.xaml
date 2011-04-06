@@ -22,6 +22,8 @@
                                 Background="White" 
                                 BorderBrush="White" 
                                 BorderThickness="3" 
+                                Height="145.62"
+                                Width="90"
                                 CornerRadius="5">
                                 <ContentPresenter />
                             </Border>
@@ -31,7 +33,7 @@
             </Style>
         </Grid.Resources>
         
-        <s:LibraryContainer Name="favouriteStackContent" Margin="0,0,-300,-300" Width="300" Height="300" CanSwitchViewingMode="False">
+        <s:LibraryContainer Name="favouriteStackContent" Margin="0,0,-300,-300" Width="300" Height="300" CanSwitchViewingMode="False" Foreground="{x:Null}">
             <s:LibraryContainer.StackView>
                 <s:StackView ItemTemplate="{StaticResource StackItemTemplate}" 
                              ItemContainerStyle="{StaticResource StackItemContainerStyle}">

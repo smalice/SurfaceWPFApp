@@ -60,7 +60,9 @@
     		<DiscreteObjectKeyFrame KeyTime="0:0:1.9" Value="{x:Static TileMode.None}"/>
     	</ObjectAnimationUsingKeyFrames>
     </Storyboard>
-        
+        <DataTemplate x:Key="ScatterViewItemDataTemplate" >
+            <cs:ProjectItem DataContext="{Binding}"/>
+        </DataTemplate>
     </s:SurfaceWindow.Resources>
 	<s:SurfaceWindow.Background>
 		<ImageBrush ImageSource="/Brand_Slogan_Cloud_Bkgd_HR_300dpi.jpg"/>
@@ -71,17 +73,12 @@
 		</EventTrigger>
 	</s:SurfaceWindow.Triggers>
     
-    <Grid        
-           x:Name="surfaceMainGrid" Width="1024" Height="768" >
+    <Grid x:Name="surfaceMainGrid" Width="1024" Height="768" >
     	<Grid.Background>
     		<ImageBrush ImageSource="Resources/WindowBackground.jpg" Opacity="0.6" Stretch="None"/>
     	</Grid.Background>
-        <cs:MenuLogo 
-            Grid.Row="1"
-            Grid.Column="1"
-            x:Name="Logo"
-            Panel.ZIndex="3"
-            />
+        <cs:MenuLogo x:Name="Logo"
+            Panel.ZIndex="3" Margin="0,0,0,113" />
         <cs:FavouriteStack 
             x:Name="favouriteStack" 
             HorizontalAlignment="Left" 
@@ -99,8 +96,18 @@
         </cs:FavouriteStack>
         <cs:ParticleSystemManager
             x:Name="particleSystem" Height="1024" Margin="0,-132" d:LayoutOverrides="HorizontalMargin" Width="1024"/>
-        <cs:CustomerFilter HorizontalAlignment="Left" Margin="12,600,0,0" x:Name="CustomerFilter" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" >
+
+        <cs:CustomerFilter HorizontalAlignment="Left" Margin="12,600,0,0" x:Name="CustomerFilter" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="2" >
         </cs:CustomerFilter>
+
+        <s:ScatterView Width="1024" Height="768" Margin="0,0,0,0" AllowDrop="True"
+                       ItemTemplate="{StaticResource ScatterViewItemDataTemplate}"
+                       
+                       s:SurfaceDragDrop.DragEnter="ScatterView_DragEnter"
+                       s:SurfaceDragDrop.DragLeave="ScatterView_DragLeave"
+                       s:SurfaceDragDrop.Drop="ScatterView_Drop"
+                       Background="Transparent" Name="scatterViewTarget" Panel.ZIndex="-1"/>
+
     </Grid>
 
 </s:SurfaceWindow>

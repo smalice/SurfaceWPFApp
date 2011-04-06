@@ -119,7 +119,7 @@
 			</Viewport3D>
 		</Grid>
 		<Grid x:Name="Controls" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="0,152,0,0">
-			<s:SurfaceMenu x:Name="surfaceMenu" Margin="8,0,-916,-652" BorderThickness="10" Height="88" VerticalAlignment="Bottom" Background="{x:Null}" RenderTransformOrigin="0.5,0.5">
+			<s:SurfaceMenu x:Name="surfaceMenu" Margin="8,0,-916,-652" BorderThickness="10" Height="88" VerticalAlignment="Bottom" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="2">
 				<s:SurfaceMenu.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -190,7 +190,7 @@
                     ContactEnter="SurfaceButton_ContactEnter"
                 />
 			</s:SurfaceMenu>
-			<s:SurfaceMenu x:Name="surfaceMenu_Invers" Margin="0,-32,-916,44" BorderThickness="10" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="1008">
+			<s:SurfaceMenu x:Name="surfaceMenu_Invers" Margin="0,-32,-916,44" BorderThickness="10" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="1008" Panel.ZIndex="2">
 				<s:SurfaceMenu.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
