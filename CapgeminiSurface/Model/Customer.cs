@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
 
 namespace CapgeminiSurface.Model
 {
-    public class Customer
+    public class Customer : INotifyPropertyChanged
     {
         string name;
         string link;
@@ -16,7 +17,11 @@ namespace CapgeminiSurface.Model
         public bool IsVisible
         {
             get { return isVisible; }
-            set { isVisible = value; }
+            set 
+            { 
+                isVisible = value;
+                OnPropertyChanged("IsVisible");
+            }
         }
 
         public string Name
@@ -45,5 +50,18 @@ namespace CapgeminiSurface.Model
 
         public List<ContentItem> ContentItems;
 
+        #region INotifyPropertyChanged Members
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        #endregion
     }
 }

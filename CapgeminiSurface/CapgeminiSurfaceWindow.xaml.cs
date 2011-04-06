@@ -53,7 +53,7 @@ namespace CapgeminiSurface
             InitializeManipulationProcessor();
 			AddFilterHandlers();
 
-            foreach (Customer costumer in ModelManager.Instance.CapgeminiInfo)
+            foreach (Customer costumer in ModelManager.Instance.AllCustomers)
             {
                 var card = new MenuCard {DataContext = costumer};
                 surfaceMainGrid.Children.Add(card);

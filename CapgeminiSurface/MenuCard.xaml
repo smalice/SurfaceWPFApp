@@ -8,7 +8,8 @@
     x:Class="CapgeminiSurface.MenuCard"
     Height="768" Width="1024">
 	<s:SurfaceUserControl.Resources>
-		<Storyboard 
+        <BooleanToVisibilityConverter x:Key="BoolToVisibleMC" />
+        <Storyboard 
             x:Key="dragOut">
 			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="card">
 				<SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
@@ -316,7 +317,7 @@
 			<BeginStoryboard Storyboard="{StaticResource FadeInCard}"/>
 		</EventTrigger>
 	</s:SurfaceUserControl.Triggers>
-    <Grid x:Name="cardBorderGrid">
+    <Grid x:Name="cardBorderGrid" Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibleMC}}">
         <Grid 
             x:Name="rotationGrid" 
             Height="768" 
