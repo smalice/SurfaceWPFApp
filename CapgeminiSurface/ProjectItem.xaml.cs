@@ -24,9 +24,20 @@ namespace CapgeminiSurface
             if (!content.IsVideoItem)
                 return;
             if (isPlaying)
-                myMedia.Pause();
+            {
+                if (myMedia.Position >= myMedia.NaturalDuration.TimeSpan)
+                {
+                    myMedia.Position = new System.TimeSpan();
+                    myMedia.Play();
+                    isPlaying = false;
+                }
+                else
+                    myMedia.Pause();
+            }
             else
+            {
                 myMedia.Play();
+            }
             isPlaying = !isPlaying;
         }
 
