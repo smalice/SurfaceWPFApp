@@ -77,12 +77,8 @@
     	<Grid.Background>
     		<ImageBrush ImageSource="Resources/WindowBackground.jpg" Opacity="0.6" Stretch="None"/>
     	</Grid.Background>
-        <cs:MenuLogo 
-            Grid.Row="1"
-            Grid.Column="1"
-            x:Name="Logo"
-            Panel.ZIndex="3"
-            />
+        <cs:MenuLogo x:Name="Logo"
+            Panel.ZIndex="3" Margin="0,0,0,113" />
         <cs:FavouriteStack 
             x:Name="favouriteStack" 
             HorizontalAlignment="Left" 

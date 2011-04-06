@@ -7,6 +7,8 @@ namespace CapgeminiSurface.Model
 {
     public class ContentItem
     {
+        private string name;
+
         private string fileName;
 
         public enum Type { VideoItem, PictureItem }
@@ -15,6 +17,12 @@ namespace CapgeminiSurface.Model
         {
             get { return "Resources/" + fileName; }
             set { fileName = value; }
+        }
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
         }
 
         public Type ContentType { get; set; }

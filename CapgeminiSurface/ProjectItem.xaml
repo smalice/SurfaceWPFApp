@@ -4,36 +4,34 @@
 	xmlns:s="http://schemas.microsoft.com/surface/2008"
     xmlns:cs="clr-namespace:CapgeminiSurface"
     xmlns:resource="clr-namespace:CapgeminiSurface.Resources" 
-              HorizontalAlignment="Center" 
-              VerticalAlignment="Center" 
-              Height="145.62" Width="90" Foreground="{x:Null}">
+              HorizontalAlignment="Stretch" 
+              VerticalAlignment="Stretch" 
+              MinHeight="145.62" MinWidth="90" Foreground="{x:Null}">
     <Grid >
         <Grid.Resources>
             <BooleanToVisibilityConverter x:Key="BoolToVisible" />
         </Grid.Resources>
-        <Grid x:Name="pictureGrid" Margin="0" Opacity="0.832" Background="Black"
+        <Grid x:Name="pictureGrid" Margin="0,0,0,0" Opacity="0.832" Background="Black"
               Visibility="{Binding IsPictureItem, Converter={StaticResource BoolToVisible}}">
-            <TextBlock x:Name="projectName"  
-    			HorizontalAlignment="Left" 
-    			Margin="12,12,0,0" 
-    			VerticalAlignment="Top" 
-    			FontWeight="Bold" 
-    			Foreground="White" 
-    			Text="{Binding FileName}"/>
-            <Image Source="{Binding FileName}" />
-
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0">
+                <TextBlock FontSize="10" Foreground="White" Text="{Binding Name}" 
+                           TextWrapping="Wrap" HorizontalAlignment="Stretch" MaxHeight="50" MinHeight="20"/>
+                <Image Source="{Binding FileName}" HorizontalAlignment="Stretch" Margin="0,5,0,0"/>
+            </StackPanel>
     	</Grid>
-        <Grid x:Name="videoGrid" Margin="0" Opacity="0.832" 
-              Visibility="{Binding IsVideoItem, Converter={StaticResource BoolToVisible}}">
-            <MediaElement Source="{Binding FileName}" HorizontalAlignment="Stretch"  />
-            <!--<TextBlock x:Name="projectName1"  
-    			HorizontalAlignment="Left" 
-    			Margin="12,12,0,0" 
-    			VerticalAlignment="Top" 
-    			FontWeight="Bold" 
-    			Foreground="White" 
-    			Text="{Binding FileName}"/>-->
-
+        <Grid x:Name="videoGrid" Margin="0,0,0,0" Opacity="0.832"
+              Visibility="{Binding IsVideoItem, Converter={StaticResource BoolToVisible}}"
+              Loaded="videoGrid_Loaded">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0">
+                <TextBlock FontSize="10" Foreground="Black" Text="{Binding Name}"  HorizontalAlignment="Stretch" TextWrapping="Wrap" />
+                <MediaElement Name="myMedia" Source="{Binding FileName}" LoadedBehavior="Manual" HorizontalAlignment="Stretch"
+                              s:Contacts.ContactDown="myMedia_ContactDown" Margin="0,5,0,0"/>
+            </StackPanel>
     	</Grid>
+        <!--<Grid x:Name="pdfGrid" Margin="0" Opacity="0.832" 
+              Visibility="{Binding IsVideoItem, Converter={StaticResource BoolToVisible}}"
+              Loaded="pdfGrid_Loaded">
+            <WindowsFormsHost Margin="1" Name="windowsFormsHost1" />
+        </Grid>-->
     </Grid>
 </s:SurfaceUserControl>
