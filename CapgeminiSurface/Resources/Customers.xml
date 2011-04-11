@@ -11,6 +11,11 @@
         <FileName>Logos/statoillogonegative.png</FileName>
         <ContentType>PictureItem</ContentType>
       </ContentItem>
+      <ContentItem>
+        <Name>Homepage</Name>
+        <FileName>Pages/statoil.png</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
     </ContentItems>
   </Customer>
   <Customer>
@@ -22,6 +27,11 @@
       <ContentItem>
         <Name>Logo</Name>
         <FileName>Logos/conocophillips_logo.png</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Homepage</Name>
+        <FileName>Pages/conoco.png</FileName>
         <ContentType>PictureItem</ContentType>
       </ContentItem>
     </ContentItems>
@@ -37,6 +47,11 @@
         <FileName>Logos/exxonmobil_logo1.png</FileName>
         <ContentType>PictureItem</ContentType>
       </ContentItem>
+      <ContentItem>
+        <Name>Homepage</Name>
+        <FileName>Pages/exxon.png</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
     </ContentItems>
   </Customer>
   <Customer>
@@ -48,6 +63,11 @@
       <ContentItem>
         <Name>Logo</Name>
         <FileName>Logos/Olf.png</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Homepage</Name>
+        <FileName>Pages/Olf.png</FileName>
         <ContentType>PictureItem</ContentType>
       </ContentItem>
     </ContentItems>
@@ -63,6 +83,11 @@
         <FileName>Logos/epim-logo-motto.png</FileName>
         <ContentType>PictureItem</ContentType>
       </ContentItem>
+      <ContentItem>
+        <Name>Homepage</Name>
+        <FileName>Pages/epim.png</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
     </ContentItems>
   </Customer>
   <Customer>
@@ -74,6 +99,11 @@
       <ContentItem>
         <Name>Logo</Name>
         <FileName>Logos/top_logo_tk.png</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Homepage</Name>
+        <FileName>Pages/Teekay.png</FileName>
         <ContentType>PictureItem</ContentType>
       </ContentItem>
     </ContentItems>
@@ -89,6 +119,21 @@
         <FileName>Logos/gdf.png</FileName>
         <ContentType>PictureItem</ContentType>
       </ContentItem>
+      <ContentItem>
+        <Name>Success Story: page 1</Name>
+        <FileName>SuccessStories/Gdf_SuccessStory_1.jpg</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Success Story: page 2</Name>
+        <FileName>SuccessStories/Gdf_SuccessStory_2.jpg</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Homepage</Name>
+        <FileName>Pages/GDF.png</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
     </ContentItems>
   </Customer>
   <Customer>
@@ -100,6 +145,11 @@
       <ContentItem>
         <Name>Logo</Name>
         <FileName>Logos/noreco_logo.png</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Homepage</Name>
+        <FileName>Pages/Noreco.png</FileName>
         <ContentType>PictureItem</ContentType>
       </ContentItem>
     </ContentItems>
@@ -115,6 +165,11 @@
         <FileName>Logos/fabricom-logo.png</FileName>
         <ContentType>PictureItem</ContentType>
       </ContentItem>
+      <ContentItem>
+        <Name>Homepage</Name>
+        <FileName>Pages/Fabricom.png</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
     </ContentItems>
   </Customer>
   <Customer>
@@ -126,6 +181,11 @@
       <ContentItem>
         <Name>Logo</Name>
         <FileName>Logos/total.png</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Homepage</Name>
+        <FileName>Pages/Total.png</FileName>
         <ContentType>PictureItem</ContentType>
       </ContentItem>
     </ContentItems>
@@ -141,6 +201,11 @@
         <FileName>Logos/track_id.png</FileName>
         <ContentType>PictureItem</ContentType>
       </ContentItem>
+      <ContentItem>
+        <Name>Homepage</Name>
+        <FileName>Pages/TracId.png</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
     </ContentItems>
   </Customer>
   <Customer>
@@ -152,6 +217,21 @@
       <ContentItem>
         <Name>Logo</Name>
         <FileName>Logos/dong_logo.png</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Homepage</Name>
+        <FileName>Pages/Dong.png</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Success Story: page 1</Name>
+        <FileName>SuccessStories/Dong.jpg</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Success Story: page 2</Name>
+        <FileName>SuccessStories/Dong2.jpg</FileName>
         <ContentType>PictureItem</ContentType>
       </ContentItem>
     </ContentItems>
@@ -167,6 +247,21 @@
         <FileName>Logos/Subsea_7.png</FileName>
         <ContentType>PictureItem</ContentType>
       </ContentItem>
+      <ContentItem>
+        <Name>Success Story: page 1</Name>
+        <FileName>SuccessStories/Subsea_1.jpg</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Success Story: page 2</Name>
+        <FileName>SuccessStories/Subsea_2.jpg</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Homepage</Name>
+        <FileName>Pages/Subsea.png</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
     </ContentItems>
   </Customer>
   <Customer>
@@ -178,6 +273,11 @@
       <ContentItem>
         <Name>Logo</Name>
         <FileName>Logos/SSBLogo.png</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Homepage</Name>
+        <FileName>Pages/SSbank.png</FileName>
         <ContentType>PictureItem</ContentType>
       </ContentItem>
     </ContentItems>
@@ -193,6 +293,11 @@
         <FileName>Logos/ge_money.png</FileName>
         <ContentType>PictureItem</ContentType>
       </ContentItem>
+      <ContentItem>
+        <Name>Homepage</Name>
+        <FileName>Pages/GEMoney.png</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
     </ContentItems>
   </Customer>
   <Customer>
@@ -204,6 +309,11 @@
       <ContentItem>
         <Name>Logo</Name>
         <FileName>Logos/SKAGEN_no_web.png</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Homepage</Name>
+        <FileName>Pages/Skagen.png</FileName>
         <ContentType>PictureItem</ContentType>
       </ContentItem>
     </ContentItems>
@@ -219,6 +329,11 @@
         <FileName>Logos/kystverket.png</FileName>
         <ContentType>PictureItem</ContentType>
       </ContentItem>
+      <ContentItem>
+        <Name>Homepage</Name>
+        <FileName>Pages/Kystverket.png</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
     </ContentItems>
   </Customer>
   <Customer>
@@ -230,6 +345,11 @@
       <ContentItem>
         <Name>Logo</Name>
         <FileName>Logos/Kverneland.png</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Homepage</Name>
+        <FileName>Pages/Kverneland.png</FileName>
         <ContentType>PictureItem</ContentType>
       </ContentItem>
     </ContentItems>
@@ -278,6 +398,11 @@
         <FileName>Logos/Capgemini_logo_hr.png</FileName>
         <ContentType>PictureItem</ContentType>
       </ContentItem>
+      <ContentItem>
+        <Name>BPM: A Step in the Right Direction?</Name>
+        <FileName>Videos/BPM.wmv</FileName>
+        <ContentType>VideoItem</ContentType>
+      </ContentItem>
     </ContentItems>
   </Customer>
   <Customer>
@@ -291,6 +416,11 @@
         <FileName>Logos/Capgemini_logo_hr.png</FileName>
         <ContentType>PictureItem</ContentType>
       </ContentItem>
+      <ContentItem>
+        <Name>Herbert Pleunik, BIM expert</Name>
+        <FileName>Videos/BIM.wmv</FileName>
+        <ContentType>VideoItem</ContentType>
+      </ContentItem>
     </ContentItems>
   </Customer>
   <Customer>
@@ -302,6 +432,11 @@
       <ContentItem>
         <Name>Logo</Name>
         <FileName>Logos/EPiCentre.png</FileName>
+        <ContentType>PictureItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Homepage</Name>
+        <FileName>Pages/Epicentre.png</FileName>
         <ContentType>PictureItem</ContentType>
       </ContentItem>
     </ContentItems>

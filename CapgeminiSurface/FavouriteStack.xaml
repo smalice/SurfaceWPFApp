@@ -18,13 +18,9 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type s:LibraryStackItem}">
-                            <Border 
-                                Background="White" 
-                                BorderBrush="White" 
-                                BorderThickness="3" 
-                                Height="145.62"
-                                Width="90"
-                                CornerRadius="5">
+                            <Border
+                                Background="White"
+                                >
                                 <ContentPresenter />
                             </Border>
                         </ControlTemplate>
@@ -32,11 +28,18 @@
                 </Setter>
             </Style>
         </Grid.Resources>
-        
-        <s:LibraryContainer Name="favouriteStackContent" Margin="0,0,-300,-300" Width="300" Height="300" CanSwitchViewingMode="False" Foreground="{x:Null}">
+
+        <s:LibraryContainer 
+            Name="favouriteStackContent" 
+            Margin="0,0,-300,-300" 
+            Width="300" 
+            Height="300" 
+            CanSwitchViewingMode="False" 
+            Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}">
             <s:LibraryContainer.StackView>
                 <s:StackView ItemTemplate="{StaticResource StackItemTemplate}" 
                              ItemContainerStyle="{StaticResource StackItemContainerStyle}">
+
                 </s:StackView>
             </s:LibraryContainer.StackView>
         </s:LibraryContainer>

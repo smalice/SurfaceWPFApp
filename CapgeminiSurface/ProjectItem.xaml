@@ -3,32 +3,61 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:s="http://schemas.microsoft.com/surface/2008"
     xmlns:cs="clr-namespace:CapgeminiSurface"
-    xmlns:resource="clr-namespace:CapgeminiSurface.Resources" 
-              MinHeight="145.62" MinWidth="90" Foreground="{x:Null}" MaxWidth="270" MaxHeight="436.86" Grid.IsSharedSizeScope="True">
-    <Grid MaxWidth="270" MaxHeight="436.86" >
+xmlns:resource="clr-namespace:CapgeminiSurface.Resources"                 
+    >
+    <Grid >
         <Grid.Resources>
             <BooleanToVisibilityConverter x:Key="BoolToVisible" />
         </Grid.Resources>
-
-        <Grid x:Name="pictureGrid" Margin="0,0,0,0" Opacity="0.67"
-
-              Visibility="{Binding IsPictureItem, Converter={StaticResource BoolToVisible}}" Background="{DynamicResource {x:Static SystemColors.DesktopBrushKey}}" Panel.ZIndex="10" MaxHeight="436.86" MaxWidth="270">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" Panel.ZIndex="10" MaxHeight="436.86" MaxWidth="270">
-                <TextBlock FontSize="10" Foreground="White" Text="{Binding Name}" 
-                           TextWrapping="Wrap" HorizontalAlignment="Stretch" MaxHeight="50" MinHeight="20" Panel.ZIndex="10"/>
-                <Image Source="{Binding FileName}" HorizontalAlignment="Stretch" Margin="0,5,0,0" MaxWidth="270" Panel.ZIndex="10"/>
+        <Grid 
+            x:Name="pictureGrid" 
+            Opacity="0.67"
+            Visibility="{Binding IsPictureItem, Converter={StaticResource BoolToVisible}}" 
+            Panel.ZIndex="10" 
+            MinHeight="132"
+            MinWidth="200"
+            Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
+            <StackPanel 
+                Panel.ZIndex="10" >
+                <TextBlock 
+                    FontSize="13.333" 
+                    Foreground="Black" 
+                    Text="{Binding Name}" 
+                    TextWrapping="Wrap" 
+                    MaxHeight="50" 
+                    MinHeight="20" 
+                    Panel.ZIndex="10" Margin="2" 
+                    Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}"/>
+                <Image 
+                    Stretch="Fill"
+                    Source="{Binding FileName}" 
+                    Panel.ZIndex="10" Margin="2,0,2,2"/>
             </StackPanel>
-    	</Grid>
-        <Grid x:Name="videoGrid" Margin="0,0,0,0" Opacity="0.67"
+        </Grid>
+        <Grid x:Name="videoGrid" 
               Visibility="{Binding IsVideoItem, Converter={StaticResource BoolToVisible}}"
-              Loaded="videoGrid_Loaded" Panel.ZIndex="10" MaxHeight="436.86" MaxWidth="270" Background="{DynamicResource {x:Static SystemColors.DesktopBrushKey}}">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0" Panel.ZIndex="10" MaxHeight="436.86" MaxWidth="270">
-                <TextBlock FontSize="10" Foreground="White" Text="{Binding Name}"  HorizontalAlignment="Stretch" TextWrapping="Wrap" Panel.ZIndex="10" />
-                <MediaElement Name="myMedia" Source="{Binding FileName}" LoadedBehavior="Manual" HorizontalAlignment="Stretch"
-                              s:Contacts.ContactDown="myMedia_ContactDown" Margin="0,5,0,0" MaxWidth="270" Panel.ZIndex="10"/>
+              Loaded="videoGrid_Loaded" 
+              Panel.ZIndex="10"
+              Background="White">
+            <StackPanel 
+                Panel.ZIndex="10" >
+                <TextBlock 
+                    FontSize="13.333" 
+                    Foreground="Black" 
+                    Text="{Binding Name}"  
+                    TextWrapping="Wrap"              
+                    Panel.ZIndex="10" Margin="2" Background="White" />
+                <MediaElement 
+                    Name="myMedia"          
+                    Stretch="Fill"
+                    Source="{Binding FileName}" 
+                    LoadedBehavior="Manual" 
+                    s:Contacts.ContactDown="myMedia_ContactDown" 
+                    Margin="2,0,2,2" 
+                    Panel.ZIndex="10"/>
             </StackPanel>
 
-    	</Grid>
+        </Grid>
         <!--<Grid x:Name="pdfGrid" Margin="0" Opacity="0.832" 
               Visibility="{Binding IsVideoItem, Converter={StaticResource BoolToVisible}}"
               Loaded="pdfGrid_Loaded">
