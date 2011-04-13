@@ -1,4 +1,4 @@
-﻿<s:SurfaceWindow 
+﻿<s:SurfaceWindow
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:s="http://schemas.microsoft.com/surface/2008" 
@@ -10,104 +10,236 @@
     x:Class="CapgeminiSurface.CapgeminiSurfaceWindow"
     Title="CapgeminiSurface"
     Width="1024"    
-    Height="768" WindowStyle="None"
-    >
-  <s:SurfaceWindow.Resources>
-    <ImageBrush 
-        x:Key="WindowBackground" 
-        Stretch="None" 
-        Opacity="0.6" 
-        ImageSource="pack://application:,,,/Resources/WindowBackground.jpg" />
-    <Storyboard x:Key="RevealFavouriteStack">
-    	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="favouriteStack">
-    		
-            <SplineDoubleKeyFrame KeyTime="0" Value="0.01"/>
-    		<SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
-    	</DoubleAnimationUsingKeyFrames>
-    	<Int32AnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.ZIndex)" Storyboard.TargetName="favouriteStack">
-    		<SplineInt32KeyFrame KeyTime="0" Value="4"/>
-    	</Int32AnimationUsingKeyFrames>
-        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="favouriteStack">
-            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
-        </ObjectAnimationUsingKeyFrames>
+    Height="768" 
+    WindowStyle="None">
+    <s:SurfaceWindow.Resources>
+        <Storyboard x:Key="RevealFavouriteStack">
+            <DoubleAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(UIElement.Opacity)" 
+                Storyboard.TargetName="favouriteStack">
+                <SplineDoubleKeyFrame 
+                    KeyTime="0" 
+                    Value="0.01"/>
+                <SplineDoubleKeyFrame 
+                    KeyTime="0:0:0.5" 
+                    Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <Int32AnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(Panel.ZIndex)" 
+                Storyboard.TargetName="favouriteStack">
+                <SplineInt32KeyFrame 
+                    KeyTime="0" 
+                    Value="4"/>
+            </Int32AnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(UIElement.Visibility)" 
+                Storyboard.TargetName="favouriteStack">
+                <DiscreteObjectKeyFrame 
+                    KeyTime="0" 
+                    Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
         </Storyboard>
-    <Storyboard x:Key="HideFavouriteStack">
-    	<Int32AnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.ZIndex)" Storyboard.TargetName="favouriteStack">
-    		<SplineInt32KeyFrame KeyTime="0" Value="4"/>
-    		<SplineInt32KeyFrame KeyTime="0:0:0.4" Value="4"/>
-    		<SplineInt32KeyFrame KeyTime="0:0:0.5" Value="0"/>
-    	</Int32AnimationUsingKeyFrames>
-    	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="favouriteStack">
-    		<SplineDoubleKeyFrame KeyTime="0" Value="1"/>
-    		<SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
-    	</DoubleAnimationUsingKeyFrames>
-    	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="favouriteStack">
-    		<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
-    		<DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Hidden}"/>
-    	</ObjectAnimationUsingKeyFrames>
-    </Storyboard>
-    <Storyboard x:Key="CapgeminiAni">
-    	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="surfaceMainGrid">
-    		<SplineDoubleKeyFrame KeyTime="0" Value="0"/>
-    		<SplineDoubleKeyFrame KeyTime="0:0:1.9" Value="1"/>
-    	</DoubleAnimationUsingKeyFrames>
-    	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(TileBrush.Stretch)" Storyboard.TargetName="surfaceMainGrid">
-    		<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Stretch.None}"/>
-    		<DiscreteObjectKeyFrame KeyTime="0:0:1.9" Value="{x:Static Stretch.None}"/>
-    	</ObjectAnimationUsingKeyFrames>
-    	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(TileBrush.TileMode)" Storyboard.TargetName="surfaceMainGrid">
-    		<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static TileMode.None}"/>
-    		<DiscreteObjectKeyFrame KeyTime="0:0:1.9" Value="{x:Static TileMode.None}"/>
-    	</ObjectAnimationUsingKeyFrames>
-    </Storyboard>
-        <DataTemplate x:Key="ScatterViewItemDataTemplate" >
-            <cs:ProjectItem DataContext="{Binding}"/>
+        <Storyboard 
+            x:Key="HideFavouriteStack">
+            <Int32AnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(Panel.ZIndex)" 
+                Storyboard.TargetName="favouriteStack">
+                <SplineInt32KeyFrame 
+                    KeyTime="0" 
+                    Value="4"/>
+                <SplineInt32KeyFrame 
+                    KeyTime="0:0:0.4" 
+                    Value="4"/>
+                <SplineInt32KeyFrame 
+                    KeyTime="0:0:0.5" 
+                    Value="0"/>
+            </Int32AnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(UIElement.Opacity)" 
+                Storyboard.TargetName="favouriteStack">
+                <SplineDoubleKeyFrame 
+                    KeyTime="0" 
+                    Value="1"/>
+                <SplineDoubleKeyFrame 
+                    KeyTime="0:0:0.5" 
+                    Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(UIElement.Visibility)" 
+                Storyboard.TargetName="favouriteStack">
+                <DiscreteObjectKeyFrame 
+                    KeyTime="0" 
+                    Value="{x:Static Visibility.Visible}"/>
+                <DiscreteObjectKeyFrame 
+                    KeyTime="0:0:0.5" 
+                    Value="{x:Static Visibility.Hidden}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="CapgeminiAni">
+            <DoubleAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(UIElement.Opacity)" 
+                Storyboard.TargetName="surfaceMainGrid">
+                <SplineDoubleKeyFrame 
+                    KeyTime="0" 
+                    Value="0"/>
+                <SplineDoubleKeyFrame 
+                    KeyTime="0:0:1.9" 
+                    Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(Panel.Background).(TileBrush.Stretch)" 
+                Storyboard.TargetName="surfaceMainGrid">
+                <DiscreteObjectKeyFrame 
+                    KeyTime="0" 
+                    Value="{x:Static Stretch.None}"/>
+                <DiscreteObjectKeyFrame 
+                    KeyTime="0:0:1.9" 
+                    Value="{x:Static Stretch.None}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(Panel.Background).(TileBrush.TileMode)" 
+                Storyboard.TargetName="surfaceMainGrid">
+                <DiscreteObjectKeyFrame 
+                    KeyTime="0" 
+                    Value="{x:Static TileMode.None}"/>
+                <DiscreteObjectKeyFrame 
+                    KeyTime="0:0:1.9" 
+                    Value="{x:Static TileMode.None}"/>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <DataTemplate 
+            x:Key="ScatterViewItemDataTemplate" >
+            <cs:ProjectItem 
+                DataContext="{Binding}"/>
         </DataTemplate>
+        <Storyboard x:Key="HideLogoStack">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Logo">
+        		<SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+        		<SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Logo">
+        		<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+        		<DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Hidden}"/>
+        	</ObjectAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="favouriteStack">
+        		<SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+        		<SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="favouriteStack">
+        		<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+        		<DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Hidden}"/>
+        	</ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="ShowLogoStack">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="favouriteStack">
+        		<SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="favouriteStack">
+        		<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+        		<DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Visible}"/>
+        	</ObjectAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Logo">
+        		<SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+        	</DoubleAnimationUsingKeyFrames>
+        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Logo">
+        		<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+        		<DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Visible}"/>
+        	</ObjectAnimationUsingKeyFrames>
+        </Storyboard>
     </s:SurfaceWindow.Resources>
-	<s:SurfaceWindow.Background>
-		<ImageBrush ImageSource="/Brand_Slogan_Cloud_Bkgd_HR_300dpi.jpg"/>
-	</s:SurfaceWindow.Background>
-	<s:SurfaceWindow.Triggers>
-		<EventTrigger RoutedEvent="FrameworkElement.Loaded">
-			<BeginStoryboard Storyboard="{StaticResource CapgeminiAni}"/>
-		</EventTrigger>
-	</s:SurfaceWindow.Triggers>
-    
-    <Grid x:Name="surfaceMainGrid" Width="1024" Height="768" >
-    	<Grid.Background>
-    		<ImageBrush ImageSource="Resources/WindowBackground.jpg" Opacity="0.6" Stretch="None"/>
-    	</Grid.Background>
-        <cs:MenuLogo x:Name="Logo"
-            Panel.ZIndex="3" Margin="0,0,0,113" />
+    <s:SurfaceWindow.Background>
+        <ImageBrush 
+            ImageSource="pack://application:,,,/Resources/Background/Brand_Slogan_Cloud_Bkgd_HR_300dpi.jpg" 
+            Opacity="0.20" />
+    </s:SurfaceWindow.Background>
+    <s:SurfaceWindow.Triggers>
+        <EventTrigger 
+            RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard 
+                Storyboard="{StaticResource CapgeminiAni}"/>
+            <BeginStoryboard Storyboard="{StaticResource HideLogoStack}"/>
+            <BeginStoryboard Storyboard="{StaticResource ShowLogoStack}"/>
+        </EventTrigger>
+    </s:SurfaceWindow.Triggers>
+
+    <Grid 
+        x:Name="surfaceMainGrid" 
+        Width="1024" 
+        Height="768" >
+        <Grid.Background>
+            <ImageBrush 
+                ImageSource="pack://application:,,,/Resources/Background/WindowBackground.jpg" 
+                Opacity="0" 
+                Stretch="None"/>
+        </Grid.Background>
+        <cs:MenuLogo 
+            x:Name="Logo"
+            Panel.ZIndex="3" 
+            Margin="0,0,0,113" />
         <cs:FavouriteStack 
             x:Name="favouriteStack" 
             HorizontalAlignment="Left" 
             VerticalAlignment="Top" 
             RenderTransformOrigin="0.5,0.5" 
             Margin="8,0,0,0">
-        	<cs:FavouriteStack.RenderTransform>
+            <cs:FavouriteStack.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform 
+                        X="355" 
+                        Y="235"/>
+                </TransformGroup>
+            </cs:FavouriteStack.RenderTransform>
+        </cs:FavouriteStack>
+        <cs:CustomerFilter 
+            HorizontalAlignment="Left" 
+            Margin="12,600,0,0" 
+            x:Name="CustomerFilter" 
+            VerticalAlignment="Top" 
+            RenderTransformOrigin="0.5,0.5" 
+            Panel.ZIndex="11" >
+        </cs:CustomerFilter>
+        <cs:ParticleSystemManager
+        	x:Name="particleSystem" 
+        	Height="1024" 
+        	Margin="16,-120,-16,-136" 
+        	Width="1024"
+            Panel.ZIndex="-1"/>
+        <s:ScatterView 
+        	Width="1024" 
+        	Height="768" 
+        	AllowDrop="True"
+        	ItemTemplate="{StaticResource ScatterViewItemDataTemplate}"
+        	s:SurfaceDragDrop.DragEnter="ScatterViewDragEnter"
+        	s:SurfaceDragDrop.DragLeave="ScatterViewDragLeave"
+        	s:SurfaceDragDrop.Drop="ScatterViewDrop"
+        	Background="Transparent" 
+        	x:Name="scatterViewTarget" 
+        	Panel.ZIndex="-2"/>
+        <s:SurfaceToggleButton 
+            Content="Logo" 
+            HorizontalAlignment="Left" 
+            Margin="0" 
+            VerticalAlignment="Bottom" 
+            IsChecked="True" 
+            RenderTransformOrigin="0.5,0.5" 
+            FontSize="16" 
+            BorderThickness="8"
+            Checked="SurfaceToggleButtonChecked"
+            Unchecked="SurfaceToggleButtonUnchecked"
+            Panel.ZIndex="11" >
+        	<s:SurfaceToggleButton.RenderTransform>
         		<TransformGroup>
         			<ScaleTransform/>
         			<SkewTransform/>
-        			<RotateTransform/>
-        			<TranslateTransform X="355" Y="235"/>
+        			<RotateTransform Angle="90"/>
+        			<TranslateTransform Y="-370" X="-10"/>
         		</TransformGroup>
-        	</cs:FavouriteStack.RenderTransform>
-        </cs:FavouriteStack>
-        <cs:ParticleSystemManager
-            x:Name="particleSystem" Height="1024" Margin="0,-132" d:LayoutOverrides="HorizontalMargin" Width="1024"/>
-
-        <cs:CustomerFilter HorizontalAlignment="Left" Margin="12,600,0,0" x:Name="CustomerFilter" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="2" >
-        </cs:CustomerFilter>
-
-        <s:ScatterView Width="1024" Height="768" Margin="0,0,0,0" AllowDrop="True"
-                       ItemTemplate="{StaticResource ScatterViewItemDataTemplate}"
-                       
-                       s:SurfaceDragDrop.DragEnter="ScatterView_DragEnter"
-                       s:SurfaceDragDrop.DragLeave="ScatterView_DragLeave"
-                       s:SurfaceDragDrop.Drop="ScatterView_Drop"
-                       Background="Transparent" Name="scatterViewTarget" Panel.ZIndex="-1"/>
-
+        	</s:SurfaceToggleButton.RenderTransform>
+        </s:SurfaceToggleButton>
     </Grid>
-
 </s:SurfaceWindow>

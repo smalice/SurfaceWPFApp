@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Windows;
-using Microsoft.Surface.Presentation;
-using Microsoft.Surface.Presentation.Controls;
 
 namespace CapgeminiSurface
 {
-
-    public partial class CustomerFilter : SurfaceUserControl
+    public partial class CustomerFilter
     {
 
     	public EventHandler EnergyFilterChecked;
@@ -22,42 +19,42 @@ namespace CapgeminiSurface
 			VisualStateManager.GoToState(this, "Hide", true);
 		}
 
-		private void EnergyButton_Checked(object sender, RoutedEventArgs e)
+		private void EnergyButtonChecked(object sender, RoutedEventArgs e)
 		{
 			EnergyFilterChecked(this, e);
 		}
 
-		private void EnergyButton_Unchecked(object sender, RoutedEventArgs e)
+		private void EnergyButtonUnchecked(object sender, RoutedEventArgs e)
 		{
 			EnergyFilterUnchecked(this, e);
 		}
 
-		private void CapgeminiButton_Checked(object sender, RoutedEventArgs e)
+		private void CapgeminiButtonChecked(object sender, RoutedEventArgs e)
 		{
 			CapgeminiFilterChecked(this, e);
 		}
 
-		private void CapgeminiButton_Unchecked(object sender, RoutedEventArgs e)
+		private void CapgeminiButtonUnchecked(object sender, RoutedEventArgs e)
 		{
 			CapgeminiFilterUnchecked(this, e);
 		}
 
-		private void OtherButton_Checked(object sender, RoutedEventArgs e)
+		private void OtherButtonChecked(object sender, RoutedEventArgs e)
 		{
 			OtherFilterChecked(this, e);
 		}
 
-		private void OtherButton_Unchecked(object sender, RoutedEventArgs e)
+		private void OtherButtonUnchecked(object sender, RoutedEventArgs e)
 		{
 			OtherFilterUnchecked(this, e);
 		}
 
-    	private void ShowButton_Checked(object sender, RoutedEventArgs e)
+    	private void ShowButtonChecked(object sender, RoutedEventArgs e)
     	{
 			VisualStateManager.GoToState(this, "Show", true);
     	}
 
-    	private void ShowButton_Unchecked(object sender, RoutedEventArgs e)
+    	private void ShowButtonUnchecked(object sender, RoutedEventArgs e)
     	{
 			VisualStateManager.GoToState(this, "Hide", true);
     	}

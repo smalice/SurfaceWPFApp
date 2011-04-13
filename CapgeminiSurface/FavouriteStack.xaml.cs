@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Windows.Controls;
 using System.Windows.Data;
 using System.ComponentModel;
 using CapgeminiSurface.Model;
@@ -8,33 +6,30 @@ using CapgeminiSurface.Model;
 namespace CapgeminiSurface
 {
 
-    public partial class FavouriteStack : UserControl
+    public partial class FavouriteStack
     {
-        CollectionViewSource collection = new CollectionViewSource();
+        #region Initialization
+        
+        readonly CollectionViewSource _collection = new CollectionViewSource();
 
         public FavouriteStack()
         {
-            InitializeComponent();
-            
+            InitializeComponent();    
         }
 
-        private void SurfaceStack_Initialized(object sender, EventArgs e)
+        #endregion
+
+
+        private void SurfaceStackInitialized(object sender, EventArgs e)
         {
-            ModelManager.Instance.PropertyChanged += new PropertyChangedEventHandler(Instance_PropertyChanged);
+            ModelManager.Instance.PropertyChanged += InstancePropertyChanged;
         }
 
-        void Instance_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        void InstancePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (ModelManager.Instance.SelectedCustomer == null)
-            {
-                collection.Source = null;
-            }
-            else
-            {
-                collection.Source = ModelManager.Instance.SelectedCustomer.ContentItems;
-            }
-            collection.GroupDescriptions.Add(new PropertyGroupDescription("ContentType"));
-            favouriteStackContent.ItemsSource = collection.View;
+            _collection.Source = ModelManager.Instance.SelectedCustomer == null ? null : ModelManager.Instance.SelectedCustomer.ContentItems;
+            _collection.GroupDescriptions.Add(new PropertyGroupDescription("ContentType"));
+            favouriteStackContent.ItemsSource = _collection.View;
         }
     }
 }

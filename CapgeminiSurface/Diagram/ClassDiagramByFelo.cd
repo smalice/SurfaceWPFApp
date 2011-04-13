@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="CapgeminiSurface.App" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CapgeminiSurface.CapgeminiSurfaceWindow">
+    <Position X="5.75" Y="2.5" Width="3.25" />
+    <NestedTypes>
+      <Enum Name="CapgeminiSurface.CapgeminiSurfaceWindow.States" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>CapgeminiSurfaceWindow.xaml.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAASABAokAgAFoACCAMAAyAAEAgAAAAABgEEA=</HashCode>
+      <FileName>CapgeminiSurfaceWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CapgeminiSurface.CustomerFilter">
+    <Position X="0.5" Y="0.5" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ACAQAAAEAAEAAAgABCBAAAAEAAAAAAAAAAACEAECAgA=</HashCode>
+      <FileName>CustomerFilter.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CapgeminiSurface.FavouriteStack">
+    <Position X="10.25" Y="6" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAEAAAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>FavouriteStack.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CapgeminiSurface.MenuCard">
+    <Position X="12" Y="0.5" Width="2.75" />
+    <NestedTypes>
+      <Enum Name="CapgeminiSurface.MenuCard.States" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>MenuCard.xaml.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>CAAAAAAACSAAAIAEAAAgACiAABCiIAAQAAAAAAAACAA=</HashCode>
+      <FileName>MenuCard.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CapgeminiSurface.MenuLogo">
+    <Position X="9.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAQIAAAAAgAACAAACgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MenuLogo.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CapgeminiSurface.ParticleSystemManager">
+    <Position X="3" Y="3.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AgCAACIAwCAQQgAGgAQIQAQQG0ICAkUAxQIAQGEkAAk=</HashCode>
+      <FileName>ParticleSystemManager.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CapgeminiSurface.Particle">
+    <Position X="0.5" Y="11.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIACgAAhAAAAAAAAAAAIAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>ParticleSystemManager.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CapgeminiSurface.ParticleSystemManagerEntity">
+    <Position X="0.5" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAABAAAAAAAAAhAAAAAAAAAIAAAEAA=</HashCode>
+      <FileName>ParticleSystemManager.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CapgeminiSurface.ParticleSystem">
+    <Position X="0.5" Y="6.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AIQgAgAAAAAACAAAhgCAAEQgAAAAHFAAAAAACAIBAAE=</HashCode>
+      <FileName>ParticleSystemManager.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Particle" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="CapgeminiSurface.ProjectItem">
+    <Position X="10.25" Y="8" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAABAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>ProjectItem.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CapgeminiSurface.Model.Customer" BaseTypeListCollapsed="true">
+    <Position X="10.5" Y="14.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAEAEAAAIBAAAAQAgAAEAAAEAAAIQAAACEA=</HashCode>
+      <FileName>Model\Customer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CapgeminiSurface.Model.ModelManager" BaseTypeListCollapsed="true">
+    <Position X="6" Y="13" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAgIAAAAgAAAAAIAAAAAAAkABAAAAAQCAIACAAAAg=</HashCode>
+      <FileName>Model\ModelManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SelectedCustomer" />
+      <Property Name="Instance" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="AllCustomers" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.1" Collapsed="true" />
+  </Class>
+  <Class Name="CapgeminiSurface.Model.Picture">
+    <Position X="8.75" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAA=</HashCode>
+      <FileName>Model\Picture.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CapgeminiSurface.Model.Project">
+    <Position X="5.25" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAIAAAAAQAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Project.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CapgeminiSurface.Model.Video">
+    <Position X="7" Y="16.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAA=</HashCode>
+      <FileName>Model\Video.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CapgeminiSurface.Model.VisitCard">
+    <Position X="3.25" Y="16.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAACAAAAAgAAAAAAQAAAAEAAAABAAAABQAAAA=</HashCode>
+      <FileName>Model\VisitCard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CapgeminiSurface.Util.ThreadedSoundPlayer">
+    <Position X="3.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAgAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Util\TSoundPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

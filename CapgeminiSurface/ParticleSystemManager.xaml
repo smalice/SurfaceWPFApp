@@ -2,84 +2,198 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:s="http://schemas.microsoft.com/surface/2008"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:CapgeminiSurface" mc:Ignorable="d" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" 
     x:Class="CapgeminiSurface.ParticleSystemManager"
     Width="1024" 
     Height="768" 
     BorderThickness="0.0">
 	<s:SurfaceUserControl.Resources>
 		<Storyboard x:Key="ControlsAni">
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="surfaceMenu">
-				<SplineDoubleKeyFrame KeyTime="0" Value="-1024"/>
-				<SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+			<DoubleAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" 
+                Storyboard.TargetName="surfaceMenu">
+				<SplineDoubleKeyFrame 
+                    KeyTime="0" 
+                    Value="-1024"/>
+				<SplineDoubleKeyFrame 
+                    KeyTime="0:0:0.5" 
+                    Value="0"/>
 			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(SkewTransform.AngleX)" Storyboard.TargetName="surfaceMenu">
-				<SplineDoubleKeyFrame KeyTime="0" Value="60"/>
-				<SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+			<DoubleAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(SkewTransform.AngleX)" 
+                Storyboard.TargetName="surfaceMenu">
+				<SplineDoubleKeyFrame 
+                    KeyTime="0" 
+                    Value="60"/>
+				<SplineDoubleKeyFrame 
+                    KeyTime="0:0:0.5" 
+                    Value="0"/>
 			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="surfaceMenu">
-				<SplineDoubleKeyFrame KeyTime="0" Value="0.2"/>
-				<SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0.2"/>
-				<SplineDoubleKeyFrame KeyTime="0:0:0.7" Value="1"/>
+			<DoubleAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" 
+                Storyboard.TargetName="surfaceMenu">
+				<SplineDoubleKeyFrame 
+                    KeyTime="0" 
+                    Value="0.2"/>
+				<SplineDoubleKeyFrame 
+                    KeyTime="0:0:0.5" 
+                    Value="0.2"/>
+				<SplineDoubleKeyFrame 
+                    KeyTime="0:0:0.7" 
+                    Value="1"/>
 			</DoubleAnimationUsingKeyFrames>
-			<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="surfaceMenu">
-				<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
-				<DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Visible}"/>
+			<ObjectAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(UIElement.Visibility)" 
+                Storyboard.TargetName="surfaceMenu">
+				<DiscreteObjectKeyFrame 
+                    KeyTime="0" 
+                    Value="{x:Static Visibility.Visible}"/>
+				<DiscreteObjectKeyFrame 
+                    KeyTime="0:0:0.5" 
+                    Value="{x:Static Visibility.Visible}"/>
 			</ObjectAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="surfaceMenu_Invers">
-				<SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
-				<SplineDoubleKeyFrame KeyTime="0:0:0.7" Value="0"/>
+			<DoubleAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" 
+                Storyboard.TargetName="surfaceMenu_Invers">
+				<SplineDoubleKeyFrame 
+                    KeyTime="0:0:0.5" 
+                    Value="0"/>
+				<SplineDoubleKeyFrame 
+                    KeyTime="0:0:0.7" 
+                    Value="0"/>
 			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="surfaceMenu_Invers">
-				<SplineDoubleKeyFrame KeyTime="0" Value="0.1"/>
-				<SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0.1"/>
-				<SplineDoubleKeyFrame KeyTime="0:0:0.7" Value="1"/>
+			<DoubleAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" 
+                Storyboard.TargetName="surfaceMenu_Invers">
+				<SplineDoubleKeyFrame 
+                    KeyTime="0" 
+                    Value="0.1"/>
+				<SplineDoubleKeyFrame 
+                    KeyTime="0:0:0.5" 
+                    Value="0.1"/>
+				<SplineDoubleKeyFrame 
+                    KeyTime="0:0:0.7" 
+                    Value="1"/>
 			</DoubleAnimationUsingKeyFrames>
-			<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="surfaceMenu_Invers">
-				<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
-				<DiscreteObjectKeyFrame KeyTime="0:0:0.1" Value="{x:Static Visibility.Visible}"/>
-				<DiscreteObjectKeyFrame KeyTime="0:0:0.5" Value="{x:Static Visibility.Visible}"/>
+			<ObjectAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(UIElement.Visibility)" 
+                Storyboard.TargetName="surfaceMenu_Invers">
+				<DiscreteObjectKeyFrame 
+                    KeyTime="0" 
+                    Value="{x:Static Visibility.Hidden}"/>
+				<DiscreteObjectKeyFrame 
+                    KeyTime="0:0:0.1" 
+                    Value="{x:Static Visibility.Visible}"/>
+				<DiscreteObjectKeyFrame 
+                    KeyTime="0:0:0.5" 
+                    Value="{x:Static Visibility.Visible}"/>
 			</ObjectAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="surfaceMenu_Invers">
-				<SplineDoubleKeyFrame KeyTime="0" Value="0"/>
-				<SplineDoubleKeyFrame KeyTime="0:0:0.1" Value="1"/>
+			<DoubleAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(UIElement.Opacity)" 
+                Storyboard.TargetName="surfaceMenu_Invers">
+				<SplineDoubleKeyFrame 
+                    KeyTime="0" 
+                    Value="0"/>
+				<SplineDoubleKeyFrame 
+                    KeyTime="0:0:0.1" 
+                    Value="1"/>
 			</DoubleAnimationUsingKeyFrames>
 		</Storyboard>
-		<Storyboard x:Key="ControlsAniRev">
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="surfaceMenu">
-				<SplineDoubleKeyFrame KeyTime="0" Value="0"/>
-				<SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
-				<SplineDoubleKeyFrame KeyTime="0:0:0.7" Value="-1024"/>
+		<Storyboard 
+            x:Key="ControlsAniRev">
+			<DoubleAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" 
+                Storyboard.TargetName="surfaceMenu">
+				<SplineDoubleKeyFrame 
+                    KeyTime="0" 
+                    Value="0"/>
+				<SplineDoubleKeyFrame 
+                    KeyTime="0:0:0.2" 
+                    Value="0"/>
+				<SplineDoubleKeyFrame 
+                    KeyTime="0:0:0.7" 
+                    Value="-1024"/>
 			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="surfaceMenu">
-				<SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+			<DoubleAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(UIElement.Opacity)" 
+                Storyboard.TargetName="surfaceMenu">
+				<SplineDoubleKeyFrame 
+                    KeyTime="0" 
+                    Value="1"/>
 			</DoubleAnimationUsingKeyFrames>
-			<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="surfaceMenu">
-				<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
-				<DiscreteObjectKeyFrame KeyTime="0:0:0.2" Value="{x:Static Visibility.Visible}"/>
-				<DiscreteObjectKeyFrame KeyTime="0:0:0.7" Value="{x:Static Visibility.Hidden}"/>
+			<ObjectAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(UIElement.Visibility)" 
+                Storyboard.TargetName="surfaceMenu">
+				<DiscreteObjectKeyFrame 
+                    KeyTime="0" 
+                    Value="{x:Static Visibility.Visible}"/>
+				<DiscreteObjectKeyFrame 
+                    KeyTime="0:0:0.2" 
+                    Value="{x:Static 
+                    Visibility.Visible}"/>
+				<DiscreteObjectKeyFrame 
+                    KeyTime="0:0:0.7" 
+                    Value="{x:Static 
+                    Visibility.Hidden}"/>
 			</ObjectAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(SkewTransform.AngleX)" Storyboard.TargetName="surfaceMenu">
-				<SplineDoubleKeyFrame KeyTime="0" Value="0"/>
-				<SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="-30"/>
+			<DoubleAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(SkewTransform.AngleX)" 
+                Storyboard.TargetName="surfaceMenu">
+				<SplineDoubleKeyFrame 
+                    KeyTime="0" 
+                    Value="0"/>
+				<SplineDoubleKeyFrame 
+                    KeyTime="0:0:0.2" 
+                    Value="-30"/>
 			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="surfaceMenu">
-				<SplineDoubleKeyFrame KeyTime="0" Value="1"/>
-				<SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0.1"/>
+			<DoubleAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" 
+                Storyboard.TargetName="surfaceMenu">
+				<SplineDoubleKeyFrame 
+                    KeyTime="0" 
+                    Value="1"/>
+				<SplineDoubleKeyFrame 
+                    KeyTime="0:0:0.2" 
+                    Value="0.1"/>
 			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="surfaceMenu_Invers">
-				<SplineDoubleKeyFrame KeyTime="0" Value="0"/>
-				<SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
-				<SplineDoubleKeyFrame KeyTime="0:0:0.7" Value="-1024"/>
+			<DoubleAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" 
+                Storyboard.TargetName="surfaceMenu_Invers">
+				<SplineDoubleKeyFrame 
+                    KeyTime="0" 
+                    Value="0"/>
+				<SplineDoubleKeyFrame 
+                    KeyTime="0:0:0.2" 
+                    Value="0"/>
+				<SplineDoubleKeyFrame 
+                    KeyTime="0:0:0.7"
+                    Value="-1024"/>
 			</DoubleAnimationUsingKeyFrames>
-			<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="surfaceMenu_Invers">
-				<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
-				<DiscreteObjectKeyFrame KeyTime="0:0:0.2" Value="{x:Static Visibility.Visible}"/>
-				<DiscreteObjectKeyFrame KeyTime="0:0:0.7" Value="{x:Static Visibility.Hidden}"/>
+			<ObjectAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(UIElement.Visibility)" 
+                Storyboard.TargetName="surfaceMenu_Invers">
+				<DiscreteObjectKeyFrame 
+                    KeyTime="0" 
+                    Value="{x:Static 
+                    Visibility.Visible}"/>
+				<DiscreteObjectKeyFrame 
+                    KeyTime="0:0:0.2" 
+                    Value="{x:Static Visibility.Visible}"/>
+				<DiscreteObjectKeyFrame 
+                    KeyTime="0:0:0.7" 
+                    Value="{x:Static Visibility.Hidden}"/>
 			</ObjectAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="surfaceMenu_Invers">
-				<SplineDoubleKeyFrame KeyTime="0" Value="1"/>
-				<SplineDoubleKeyFrame KeyTime="0:0:0.2" Value="0.1"/>
+			<DoubleAnimationUsingKeyFrames 
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" 
+                Storyboard.TargetName="surfaceMenu_Invers">
+				<SplineDoubleKeyFrame 
+                    KeyTime="0" 
+                    Value="1"/>
+				<SplineDoubleKeyFrame 
+                    KeyTime="0:0:0.2" 
+                    Value="0.1"/>
 			</DoubleAnimationUsingKeyFrames>
 		</Storyboard>
 	</s:SurfaceUserControl.Resources>
@@ -118,38 +232,61 @@
 				</ModelVisual3D>
 			</Viewport3D>
 		</Grid>
-		<Grid x:Name="Controls" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="0,152,0,0">
-			<s:SurfaceMenu x:Name="surfaceMenu" Margin="8,0,-916,-652" BorderThickness="10" Height="88" VerticalAlignment="Bottom" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="2">
+		<Grid 
+            x:Name="Controls" 
+            HorizontalAlignment="Left" 
+            Height="100" 
+            VerticalAlignment="Top" 
+            Width="100" 
+            Margin="0,152,0,0">
+			<s:SurfaceMenu 
+                x:Name="surfaceMenu" 
+                Margin="8,0,-916,-652" 
+                BorderThickness="10" 
+                Height="88" 
+                VerticalAlignment="Bottom" 
+                Background="{x:Null}" 
+                RenderTransformOrigin="0.5,0.5" 
+                Panel.ZIndex="2">
 				<s:SurfaceMenu.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
 						<SkewTransform/>
 						<RotateTransform/>
-						<TranslateTransform X="-1024"/>
+						<TranslateTransform 
+                            X="-1024"/>
 					</TransformGroup>
 				</s:SurfaceMenu.RenderTransform>
 				<Separator 
 					Width="22" 
 					Visibility="Hidden"/>
-				<s:SurfaceTextBox x:Name="TextSize" TextWrapping="Wrap" Text="Size" Background="{x:Null}"/>
+				<s:SurfaceTextBox 
+                    x:Name="TextSize" 
+                    TextWrapping="Wrap" 
+                    Text="Size" 
+                    Background="{x:Null}"/>
 				<s:SurfaceSlider
 					x:Name="sSlider"
 					Height="40" 
 					Width="100" 
 					VerticalAlignment="Center" 
 					HorizontalAlignment="Center"
-					ContactLeave="SurfaceSlider_ContactLeave" 
+					ContactLeave="SurfaceSliderContactLeave" 
 					ToolTip="Size of Particles" 
 					Minimum="1" 
 					TickPlacement="Both"/>
-				<s:SurfaceTextBox x:Name="TextSpeed" TextWrapping="Wrap" Text="Velocity" Background="{x:Null}"/>
+				<s:SurfaceTextBox 
+                    x:Name="TextSpeed" 
+                    TextWrapping="Wrap" 
+                    Text="Velocity" 
+                    Background="{x:Null}"/>
 				<s:SurfaceSlider
 					x:Name="sSpeed"
 					Height="40" 
 					Width="150" 
 					VerticalAlignment="Center" 
 					HorizontalAlignment="Center"
-					ContactLeave="sSpeed_ContactLeave" 
+					ContactLeave="SSpeedContactLeave" 
 					ToolTip="Particle Velocity" 
 					Minimum="1" 
 					TickPlacement="Both" 
@@ -165,7 +302,7 @@
 					Width="150" 
 					VerticalAlignment="Center" 
 					HorizontalAlignment="Center"
-					ContactLeave="sAmount_ContactLeave"
+					ContactLeave="SAmountContactLeave"
 					ToolTip="Amount of Particles" 
 					Minimum="1" 
 					TickPlacement="Both"/>
@@ -175,8 +312,8 @@
 				<s:SurfaceToggleButton 
 					Height="48" 
 					Width="104"
-                    Unchecked="SurfaceToggleButton_Unchecked"
-                    Checked="SurfaceToggleButton_Checked"
+                    Unchecked="SurfaceToggleButtonUnchecked"
+                    Checked="SurfaceToggleButtonChecked"
 					IsChecked="True" 
 					ToolTip="Activate/Deactivate Particles" 
 					Content="Particles" 
@@ -187,84 +324,91 @@
                     Height="48" 
                     Width="104" 
                     FontSize="18.667"
-                    ContactEnter="SurfaceButton_ContactEnter"
+                    ContactEnter="SurfaceButtonContactEnter"
                 />
 			</s:SurfaceMenu>
-			<s:SurfaceMenu x:Name="surfaceMenu_Invers" Margin="0,-32,-916,44" BorderThickness="10" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="1008" Panel.ZIndex="2">
+			<s:SurfaceMenu 
+                x:Name="surfaceMenu_Invers" 
+                Margin="0,-32,-916,44" 
+                BorderThickness="10" 
+                Background="{x:Null}" 
+                RenderTransformOrigin="0.5,0.5" 
+                HorizontalAlignment="Right" 
+                Width="1008" 
+                Panel.ZIndex="2">
 				<s:SurfaceMenu.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
 						<SkewTransform/>
-						<RotateTransform Angle="180"/>
-						<TranslateTransform X="-1024"/>
+						<RotateTransform 
+                            Angle="180"/>
+						<TranslateTransform 
+                            X="-1024"/>
 					</TransformGroup>
 				</s:SurfaceMenu.RenderTransform>
 				<Separator 
 					Width="44" 
 					Visibility="Hidden"/>
-				<s:SurfaceToggleButton x:Name="WhiteButton" 
+				<s:SurfaceToggleButton 
+                    x:Name="WhiteButton" 
 					Height="48" 
 					Width="104"
-					Unchecked="WhiteButton_Unchecked"
-					Checked="WhiteButton_Checked"
+					Unchecked="WhiteButtonUnchecked"
+					Checked="WhiteButtonChecked"
 					IsChecked="True" 
 					Content="White" 
-					FontSize="18.667"
-                />
-				<s:SurfaceToggleButton x:Name="BlueButton" 
+					FontSize="18.667"/>
+				<s:SurfaceToggleButton 
+                    x:Name="BlueButton" 
 					Height="48" 
 					Width="104"
-					Unchecked="BlueButton_Unchecked"
-                    Checked="BlueButton_Checked"
+					Unchecked="BlueButtonUnchecked"
+                    Checked="BlueButtonChecked"
 					IsChecked="True" 
 					Content="Blue" 
-					FontSize="18.667"
-                />
-				<s:SurfaceToggleButton x:Name="YellowButton" 
+					FontSize="18.667"/>
+				<s:SurfaceToggleButton 
+                    x:Name="YellowButton" 
 					Height="48" 
 					Width="104"
 					Content="Yellow" 
 					FontSize="18.667"
-                    Unchecked="YellowButton_Unchecked"
-                    Checked="YellowButton_Checked"
-                />
-				<s:SurfaceToggleButton x:Name="GreenButton" 
+                    Unchecked="YellowButtonUnchecked"
+                    Checked="YellowButtonChecked"/>
+				<s:SurfaceToggleButton 
+                    x:Name="GreenButton" 
 					Height="48" 
 					Width="104"
 					Content="Green" 
 					FontSize="18.667"
-                    Unchecked="GreenButton_Unchecked"
-                    Checked="GreenButton_Checked"
-                />
-				<s:SurfaceToggleButton x:Name="PinkButton" 
+                    Unchecked="GreenButtonUnchecked"
+                    Checked="GreenButtonChecked"/>
+				<s:SurfaceToggleButton 
+                    x:Name="PinkButton" 
 					Height="48" 
 					Width="104"
 					Content="Pink" 
 					FontSize="18.667"
-                    Unchecked="PinkButton_Unchecked"
-                    Checked="PinkButton_Checked"
-                />
-				<s:SurfaceToggleButton x:Name="RedButton" 
+                    Unchecked="PinkButtonUnchecked"
+                    Checked="PinkButtonChecked"/>
+				<s:SurfaceToggleButton 
+                    x:Name="RedButton" 
 					Height="48" 
 					Width="104" 
 					Content="Red" 
 					FontSize="18.667"
-                    Unchecked="RedButton_Unchecked"
-                    Checked="RedButton_Checked"
-                />
+                    Unchecked="RedButtonUnchecked"
+                    Checked="RedButtonChecked"/>
 				<s:SurfaceButton 
 					Content="Hide" 
 					Height="48" 
 					Width="104" 
 					FontSize="18.667"
-					ContactEnter="SurfaceButton_ContactEnter"
-                />
+					ContactEnter="SurfaceButtonContactEnter"/>
 				<Separator 
 					Width="22" 
 					Visibility="Hidden"/>
 			</s:SurfaceMenu>
 		</Grid>
-    
 	</Grid>
-    
 </s:SurfaceUserControl>

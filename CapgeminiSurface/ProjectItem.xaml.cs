@@ -1,35 +1,34 @@
-﻿using System.Collections.Generic;
-using Microsoft.Surface.Presentation;
-using Microsoft.Surface.Presentation.Controls;
-using Microsoft.Surface.Presentation.Manipulations;
+﻿using Microsoft.Surface.Presentation;
 using CapgeminiSurface.Model;
 
 namespace CapgeminiSurface
 {
-    /// <summary>
-    /// Interaction logic for ProjectItem.xaml
-    /// </summary>
-    public partial class ProjectItem : SurfaceUserControl
+    public partial class ProjectItem
     {
-        bool isPlaying;
+        #region Initialization
+
+        bool _isPlaying;
 
         public ProjectItem()
         {
             InitializeComponent();
         }
 
-        private void myMedia_ContactDown(object sender, ContactEventArgs e)
+        #endregion
+
+        private void MyMediaContactDown(object sender, ContactEventArgs e)
         {
-            var content = this.DataContext as ContentItem;
-            if (!content.IsVideoItem)
-                return;
-            if (isPlaying)
+            var content = DataContext as ContentItem;
+            if (content != null)
+                if (!content.IsVideoItem)
+                    return;
+            if (_isPlaying)
             {
                 if (myMedia.Position >= myMedia.NaturalDuration.TimeSpan)
                 {
                     myMedia.Position = new System.TimeSpan();
                     myMedia.Play();
-                    isPlaying = false;
+                    _isPlaying = false;
                 }
                 else
                     myMedia.Pause();
@@ -38,14 +37,15 @@ namespace CapgeminiSurface
             {
                 myMedia.Play();
             }
-            isPlaying = !isPlaying;
+            _isPlaying = !_isPlaying;
         }
 
-        private void videoGrid_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private void VideoGridLoaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            var content = this.DataContext as ContentItem;
-            if (!content.IsVideoItem)
-                return;
+            var content = DataContext as ContentItem;
+            if (content != null)
+                if (!content.IsVideoItem)
+                    return;
             myMedia.Play();
             myMedia.Pause();
         }

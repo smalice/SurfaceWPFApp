@@ -135,6 +135,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="Diagram\ClassDiagramByFelo.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -161,11 +162,12 @@
       <SubType>Component</SubType>
     </Compile>
     <AppDesigner Include="Properties\" />
-    <None Include="tempLogoIcon.png">
+    <None Include="Resources\Logos\tempLogoIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Background\WindowBackground.jpg" />
     <Content Include="Resources\Pages\conoco.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -255,8 +257,7 @@
     <Resource Include="Resources\Sounds\Swoosh.wav" />
     <Resource Include="Resources\Sounds\Tap.wav" />
     <Resource Include="Resources\Sounds\Tick.wav" />
-    <Resource Include="Brand_Slogan_Cloud_Bkgd_HR_300dpi.jpg" />
-    <Resource Include="Resources\Brand_Slogan_Cloud_Bkgd_HR_300dpi.jpg" />
+    <Resource Include="Resources\Background\Brand_Slogan_Cloud_Bkgd_HR_300dpi.jpg" />
     <Content Include="Resources\Customers.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -322,12 +323,9 @@
     <Resource Include="Resources\Logos\top_logo_tk.png" />
     <Resource Include="Resources\Logos\total.png" />
     <Resource Include="Resources\Logos\track_id.png" />
-    <Resource Include="Resources\statoilLogo.png" />
-    <Resource Include="Resources\temporaryLogo.png" />
+    <Resource Include="Resources\Logos\statoilLogo.png" />
+    <Resource Include="Resources\Logos\temporaryLogo.png" />
     <Resource Include="CapgeminiSurface.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\WindowBackground.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="CapgeminiSurfaceWindow.xaml">

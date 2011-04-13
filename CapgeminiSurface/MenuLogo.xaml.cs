@@ -1,20 +1,20 @@
 ﻿using System;
-using System.IO;
 using System.Windows;
 using CapgeminiSurface.Util;
 using Microsoft.Surface.Presentation;
-using Microsoft.Surface.Presentation.Controls;
 using Microsoft.Surface.Presentation.Manipulations;
 using System.Windows.Media.Animation;
 
 namespace CapgeminiSurface
 {
-    public partial class MenuLogo : SurfaceUserControl
+    public partial class MenuLogo
 
     {
-        readonly Point centerPoint = new Point(150, 150);
+        #region Initialization
+        
+        readonly Point _centerPoint = new Point(150, 150);
          
-        private Affine2DManipulationProcessor manipulationProcessor;
+        private Affine2DManipulationProcessor _manipulationProcessor;
 
         public EventHandler<Affine2DOperationDeltaEventArgs> DeltaManipulationFinished;
 
@@ -24,46 +24,46 @@ namespace CapgeminiSurface
             InitializeManipulationProcessor();
         }
 
+        #endregion
+
+        #region Rotation
+        
         private void InitializeManipulationProcessor()
         {
-            manipulationProcessor = new Affine2DManipulationProcessor(Affine2DManipulations.Rotate, logo, centerPoint);
-            manipulationProcessor.Affine2DManipulationDelta += OnManipulationDelta;
+            _manipulationProcessor = new Affine2DManipulationProcessor(Affine2DManipulations.Rotate, logo, _centerPoint);
+            _manipulationProcessor.Affine2DManipulationDelta += OnManipulationDelta;
         }
 
         private void OnManipulationDelta(object sender, Affine2DOperationDeltaEventArgs e)
         {
             logoRotateTransform.Angle += e.RotationDelta;
-            rotateCards(e.RotationDelta);
-            DeltaManipulationFinished(this, e);
-            
+            DeltaManipulationFinished(this, e);            
         }
 
+        #endregion
+
+        #region SurfaceInteraction
+        
         protected override void OnContactDown(ContactEventArgs e)
         {
             base.OnContactDown(e);
 
             e.Contact.Capture(this);
 
-            manipulationProcessor.BeginTrack(e.Contact);
+            _manipulationProcessor.BeginTrack(e.Contact);
 
             e.Handled = true;
         }
 
         protected override void OnContactTapGesture(ContactEventArgs e)
         {
-            Storyboard textFadeOut = (Storyboard)FindResource("TextFadeOut");
+            var textFadeOut = (Storyboard)FindResource("TextFadeOut");
 
             textFadeOut.Begin();
 
             new ThreadedSoundPlayer(Properties.Resources.Tap).PlaySound();
-
-            //textFadeOut.AutoReverse = true;
         }
 
-        public void rotateCards(double rotationValue)
-        {
-            
-        }
-
+        #endregion
     }
 }

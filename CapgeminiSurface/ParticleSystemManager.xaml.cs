@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -9,309 +10,291 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using CapgeminiSurface.Util;
 using Microsoft.Surface.Presentation;
-using Microsoft.Surface.Presentation.Controls;
-using Microsoft.Surface.Presentation.Manipulations;
 
 namespace CapgeminiSurface
 {
-    public partial class ParticleSystemManager : SurfaceUserControl
+    #region PartialClass
+
+    public partial class ParticleSystemManager
     {
-        private Affine2DManipulationProcessor _manipulationProcessor;
-        readonly Point _centerPoint = new Point(512, 512);
+        private double _minParticleSize = 1.0;
+        private double _maxParticleLife = 10.0;
+        private const double RendersPerSecond = 24.0;
 
-        private double minParticleSize = 1.0;
-        private double maxParticleLife = 10.0;
-        private double rendersPerSecond = 24.0;
+        private bool _whiteParticles;
+        private bool _blueParticles;
+        private bool _greenParticles;
+        private bool _redParticles;
+        private bool _yellowParticles;
+        private bool _pinkParticles;
 
-        private double particleX;
-        private double particleY;
-        private double particleZ;
+        public double ParticleSpeed { get; set; }
+        public bool GenerateParticles { get; set; }
 
-        private bool whiteParticles;
-        private bool blueParticles;
-        private bool greenParticles;
-        private bool redParticles;
-        private bool yellowParticles;
-        private bool pinkParticles;
+        public Point3D ParticlePoint3D { get; set; }
 
-        public double particleSpeed { get; set; }
-        public bool generateParticles { get; set; }
+        private int _maxParticlesPerColor = 1000;
 
-        public Point3D particlePoint3D { get; set; }
+        private Point3D _spawnPoint;
+        private double _elapsed;
+        private double _totalElapsed;
+        private int _lastTick;
+        private int _currentTick;
 
-        private int maxParticlesPerColor = 1000;
+        private readonly DispatcherTimer _frameTimer;
 
-        private Point3D spawnPoint;
-        private double elapsed;
-        private double totalElapsed;
-        private int lastTick;
-        private int currentTick;
+        private readonly ParticleSystemManagerEntity _particleSystemManagerEntity;
 
-        private readonly DispatcherTimer frameTimer;
-
-        private readonly ParticleSystemManagerEntity particleSystemManagerEntity;
-
-        private readonly Random random;
+        private readonly Random _random;
 
         public ParticleSystemManager()
         {
             InitializeComponent();
 
-            sAmount.Value = maxParticlesPerColor;
+            sAmount.Value = _maxParticlesPerColor;
             
-            generateParticles = true;
+            GenerateParticles = true;
 
-            setParticleDuration(10.0);
-            setSpeedSlider(15.0);
+            SetParticleDuration(10.0);
+            SetSpeedSlider(15.0);
 
-            particlePoint3D = new Point3D(particleX, particleY, particleZ);
+            _frameTimer = new DispatcherTimer();
+            _frameTimer.Tick += OnFrame;
+            _frameTimer.Interval = TimeSpan.FromSeconds(1.0/RendersPerSecond);
+            _frameTimer.Start();
 
-            frameTimer = new DispatcherTimer();
-            frameTimer.Tick += OnFrame;
-            frameTimer.Interval = TimeSpan.FromSeconds(1.0/rendersPerSecond);
-            frameTimer.Start();
+            _spawnPoint = new Point3D(0, 0, 0.0);
+            _lastTick = Environment.TickCount;
 
-            spawnPoint = new Point3D(0, 0, 0.0);
-            lastTick = Environment.TickCount;
+            _particleSystemManagerEntity = new ParticleSystemManagerEntity();
 
-            particleSystemManagerEntity = new ParticleSystemManagerEntity();
-
-            WorldModels.Children.Add(particleSystemManagerEntity.CreateParticleSystem(maxParticlesPerColor,
+            WorldModels.Children.Add(_particleSystemManagerEntity.CreateParticleSystem(_maxParticlesPerColor,
                                                                                       Colors.Silver));
-            WorldModels.Children.Add(particleSystemManagerEntity.CreateParticleSystem(maxParticlesPerColor,
+            WorldModels.Children.Add(_particleSystemManagerEntity.CreateParticleSystem(_maxParticlesPerColor,
                                                                                       Colors.LightBlue));
-            WorldModels.Children.Add(particleSystemManagerEntity.CreateParticleSystem(maxParticlesPerColor,
+            WorldModels.Children.Add(_particleSystemManagerEntity.CreateParticleSystem(_maxParticlesPerColor,
                                                                                       Colors.DarkRed));
-            WorldModels.Children.Add(particleSystemManagerEntity.CreateParticleSystem(maxParticlesPerColor,
+            WorldModels.Children.Add(_particleSystemManagerEntity.CreateParticleSystem(_maxParticlesPerColor,
                                                                                       Colors.LightSeaGreen));
-            WorldModels.Children.Add(particleSystemManagerEntity.CreateParticleSystem(maxParticlesPerColor,
+            WorldModels.Children.Add(_particleSystemManagerEntity.CreateParticleSystem(_maxParticlesPerColor,
                                                                                       Colors.Yellow));
-            WorldModels.Children.Add(particleSystemManagerEntity.CreateParticleSystem(maxParticlesPerColor,
+            WorldModels.Children.Add(_particleSystemManagerEntity.CreateParticleSystem(_maxParticlesPerColor,
                                                                                       Colors.Pink));
-            random = new Random(GetHashCode());
+            _random = new Random(GetHashCode());
         }
 
-        public void setSpeedSlider(double number)
+        public void SetSpeedSlider(double number)
         {
-            particleSpeed = number;
-            sSpeed.Value = (int)particleSpeed;
+            ParticleSpeed = number;
+            sSpeed.Value = (int)ParticleSpeed;
         }
 
-        public void setAmountParticles(int number)
+        public void SetAmountParticles(int number)
         {
-            maxParticlesPerColor = number;
+            _maxParticlesPerColor = number;
         }
 
-        public void setParticleDuration(double number)
+        public void SetParticleDuration(double number)
         {
-            maxParticleLife = number;
-            sAmount.Value = maxParticleLife;
-        }
-
-        private void InitializeManipulationProcessor()
-        {
-            _manipulationProcessor = new Affine2DManipulationProcessor(Affine2DManipulations.Rotate, ParticleGrid, _centerPoint );
-            _manipulationProcessor.Affine2DManipulationDelta += OnManipulationDelta;
-        }
-
-        private void OnManipulationDelta(object sender, Affine2DOperationDeltaEventArgs e)
-        {
-            particleGridTransform.Angle += e.RotationDelta;
+            _maxParticleLife = number;
+            sAmount.Value = _maxParticleLife;
         }
 
         private void OnFrame(object sender, EventArgs e)
         {
-            currentTick = Environment.TickCount;
-            elapsed = (currentTick - lastTick)/1000.0;
-            totalElapsed += elapsed;
-            lastTick = currentTick;
+            _currentTick = Environment.TickCount;
+            _elapsed = (_currentTick - _lastTick)/1000.0;
+            _totalElapsed += _elapsed;
+            _lastTick = _currentTick;
 
-            particleSystemManagerEntity.Update((float) elapsed);
+            _particleSystemManagerEntity.Update((float) _elapsed);
 
             // #FELO: ON<->OFF Switch
-            if (generateParticles)
+            if (GenerateParticles)
             {
-                if (whiteParticles)
+                if (_whiteParticles)
                 {
-                    particleSystemManagerEntity.SpawnParticle(spawnPoint, particleSpeed, Colors.Silver,
-                                          minParticleSize + random.NextDouble(),
-                                          maxParticleLife * random.NextDouble());
-                    particleSystemManagerEntity.SpawnParticle(spawnPoint, particleSpeed, Colors.Silver,
-                                          minParticleSize + random.NextDouble(),
-                                          maxParticleLife * random.NextDouble());
+                    _particleSystemManagerEntity.SpawnParticle(_spawnPoint, ParticleSpeed, Colors.Silver,
+                                          _minParticleSize + _random.NextDouble(),
+                                          _maxParticleLife * _random.NextDouble());
+                    _particleSystemManagerEntity.SpawnParticle(_spawnPoint, ParticleSpeed, Colors.Silver,
+                                          _minParticleSize + _random.NextDouble(),
+                                          _maxParticleLife * _random.NextDouble());
                 }
-                if (redParticles)
+                if (_redParticles)
                 {
-                    particleSystemManagerEntity.SpawnParticle(spawnPoint, particleSpeed, Colors.DarkRed,
-                                                              minParticleSize + random.NextDouble(),
-                                                              maxParticleLife * random.NextDouble());
-                    particleSystemManagerEntity.SpawnParticle(spawnPoint, particleSpeed, Colors.DarkRed,
-                                                      minParticleSize + random.NextDouble(),
-                                                      maxParticleLife * random.NextDouble());
+                    _particleSystemManagerEntity.SpawnParticle(_spawnPoint, ParticleSpeed, Colors.DarkRed,
+                                                              _minParticleSize + _random.NextDouble(),
+                                                              _maxParticleLife * _random.NextDouble());
+                    _particleSystemManagerEntity.SpawnParticle(_spawnPoint, ParticleSpeed, Colors.DarkRed,
+                                                      _minParticleSize + _random.NextDouble(),
+                                                      _maxParticleLife * _random.NextDouble());
                 }
-                if (blueParticles)
+                if (_blueParticles)
                 {
-                    particleSystemManagerEntity.SpawnParticle(spawnPoint, particleSpeed, Colors.LightBlue,
-                                                              minParticleSize + random.NextDouble(),
-                                                              maxParticleLife * random.NextDouble());
-                    particleSystemManagerEntity.SpawnParticle(spawnPoint, particleSpeed, Colors.LightBlue,
-                                                              minParticleSize + random.NextDouble(),
-                                                              maxParticleLife * random.NextDouble());
+                    _particleSystemManagerEntity.SpawnParticle(_spawnPoint, ParticleSpeed, Colors.LightBlue,
+                                                              _minParticleSize + _random.NextDouble(),
+                                                              _maxParticleLife * _random.NextDouble());
+                    _particleSystemManagerEntity.SpawnParticle(_spawnPoint, ParticleSpeed, Colors.LightBlue,
+                                                              _minParticleSize + _random.NextDouble(),
+                                                              _maxParticleLife * _random.NextDouble());
 
                 }
-                if (greenParticles)
+                if (_greenParticles)
                 {
-                    particleSystemManagerEntity.SpawnParticle(spawnPoint, particleSpeed, Colors.LightSeaGreen,
-                                                              minParticleSize + random.NextDouble(),
-                                                              maxParticleLife*random.NextDouble());
-                    particleSystemManagerEntity.SpawnParticle(spawnPoint, particleSpeed, Colors.LightSeaGreen,
-                                                              minParticleSize + random.NextDouble(),
-                                                              maxParticleLife * random.NextDouble());
+                    _particleSystemManagerEntity.SpawnParticle(_spawnPoint, ParticleSpeed, Colors.LightSeaGreen,
+                                                              _minParticleSize + _random.NextDouble(),
+                                                              _maxParticleLife*_random.NextDouble());
+                    _particleSystemManagerEntity.SpawnParticle(_spawnPoint, ParticleSpeed, Colors.LightSeaGreen,
+                                                              _minParticleSize + _random.NextDouble(),
+                                                              _maxParticleLife * _random.NextDouble());
                 }
-                if (pinkParticles)
+                if (_pinkParticles)
                 {
-                    particleSystemManagerEntity.SpawnParticle(spawnPoint, particleSpeed, Colors.Pink,
-                                                              minParticleSize + random.NextDouble(),
-                                                              maxParticleLife * random.NextDouble());
-                    particleSystemManagerEntity.SpawnParticle(spawnPoint, particleSpeed, Colors.Pink,
-                                                              minParticleSize + random.NextDouble(),
-                                                              maxParticleLife * random.NextDouble()); 
+                    _particleSystemManagerEntity.SpawnParticle(_spawnPoint, ParticleSpeed, Colors.Pink,
+                                                              _minParticleSize + _random.NextDouble(),
+                                                              _maxParticleLife * _random.NextDouble());
+                    _particleSystemManagerEntity.SpawnParticle(_spawnPoint, ParticleSpeed, Colors.Pink,
+                                                              _minParticleSize + _random.NextDouble(),
+                                                              _maxParticleLife * _random.NextDouble()); 
                 }
-                if (yellowParticles)
+                if (_yellowParticles)
                 {
-                    particleSystemManagerEntity.SpawnParticle(spawnPoint, particleSpeed, Colors.Yellow,
-                                                              minParticleSize + random.NextDouble(),
-                                                              maxParticleLife * random.NextDouble());
-                    particleSystemManagerEntity.SpawnParticle(spawnPoint, particleSpeed, Colors.Yellow,
-                                                             minParticleSize + random.NextDouble(),
-                                                             maxParticleLife * random.NextDouble());
+                    _particleSystemManagerEntity.SpawnParticle(_spawnPoint, ParticleSpeed, Colors.Yellow,
+                                                              _minParticleSize + _random.NextDouble(),
+                                                              _maxParticleLife * _random.NextDouble());
+                    _particleSystemManagerEntity.SpawnParticle(_spawnPoint, ParticleSpeed, Colors.Yellow,
+                                                             _minParticleSize + _random.NextDouble(),
+                                                             _maxParticleLife * _random.NextDouble());
                 }
                 // #FELO: Respawn point.
-                spawnPoint = particlePoint3D;
+                _spawnPoint = ParticlePoint3D;
             }
         }
 
-        private void SurfaceSlider_ContactLeave(object sender, ContactEventArgs e)
+        private void SurfaceSliderContactLeave(object sender, ContactEventArgs e)
         {
             new ThreadedSoundPlayer(Properties.Resources.Tap).PlaySound();
-            minParticleSize = sSlider.Value;
+            _minParticleSize = sSlider.Value;
         }
 
-        private void sSpeed_ContactLeave(object sender, ContactEventArgs e)
+        private void SSpeedContactLeave(object sender, ContactEventArgs e)
         {
             new ThreadedSoundPlayer(Properties.Resources.Tap).PlaySound();
-            setSpeedSlider(sSpeed.Value);
+            SetSpeedSlider(sSpeed.Value);
         }
 
-        private void sAmount_ContactLeave(object sender, ContactEventArgs e)
+        private void SAmountContactLeave(object sender, ContactEventArgs e)
         {
             new ThreadedSoundPlayer(Properties.Resources.Tap).PlaySound();
-            setParticleDuration(sAmount.Value);
+            SetParticleDuration(sAmount.Value);
         }
 
-        public void toggleControlPanel()
+        public void ToggleControlPanel()
         {
-            Storyboard controlsAniStory = (Storyboard)FindResource("ControlsAni");
+            var controlsAniStory = (Storyboard)FindResource("ControlsAni");
             controlsAniStory.Remove();
             controlsAniStory.Begin();
         }
 
-        private void SurfaceToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        private void SurfaceToggleButtonUnchecked(object sender, RoutedEventArgs e)
         {
             new ThreadedSoundPlayer(Properties.Resources.Tap).PlaySound();
-            generateParticles = false;
+            GenerateParticles = false;
         }
 
-        private void SurfaceToggleButton_Checked(object sender, RoutedEventArgs e)
+        private void SurfaceToggleButtonChecked(object sender, RoutedEventArgs e)
         {
             new ThreadedSoundPlayer(Properties.Resources.Tap).PlaySound();
-            generateParticles = true;
+            GenerateParticles = true;
         }
 
-        private void SurfaceButton_ContactEnter(object sender, ContactEventArgs e)
+        private void SurfaceButtonContactEnter(object sender, ContactEventArgs e)
         {
             new ThreadedSoundPlayer(Properties.Resources.Tap).PlaySound();
-            Storyboard controlsAniStory = (Storyboard)FindResource("ControlsAniRev");
+            var controlsAniStory = (Storyboard)FindResource("ControlsAniRev");
             controlsAniStory.Remove();
             controlsAniStory.Begin();   
         }
 
-        private void WhiteButton_Unchecked(object sender, RoutedEventArgs e)
+        private void WhiteButtonUnchecked(object sender, RoutedEventArgs e)
         {
             new ThreadedSoundPlayer(Properties.Resources.Tap).PlaySound();
-            whiteParticles = false;
+            _whiteParticles = false;
         }
 
-        private void WhiteButton_Checked(object sender, RoutedEventArgs e)
+        private void WhiteButtonChecked(object sender, RoutedEventArgs e)
         {
             new ThreadedSoundPlayer(Properties.Resources.Tap).PlaySound();
-            whiteParticles = true;
+            _whiteParticles = true;
         }
 
-        private void BlueButton_Unchecked(object sender, RoutedEventArgs e)
+        private void BlueButtonUnchecked(object sender, RoutedEventArgs e)
         {
             new ThreadedSoundPlayer(Properties.Resources.Tap).PlaySound();
-            blueParticles = false;
+            _blueParticles = false;
         }
 
-        private void BlueButton_Checked(object sender, RoutedEventArgs e)
+        private void BlueButtonChecked(object sender, RoutedEventArgs e)
         {
             new ThreadedSoundPlayer(Properties.Resources.Tap).PlaySound();
-            blueParticles = true;
+            _blueParticles = true;
         }
 
-        private void RedButton_Unchecked(object sender, RoutedEventArgs e)
+        private void RedButtonUnchecked(object sender, RoutedEventArgs e)
         {
             new ThreadedSoundPlayer(Properties.Resources.Tap).PlaySound();
-            redParticles = false;
+            _redParticles = false;
         }
 
-        private void RedButton_Checked(object sender, RoutedEventArgs e)
+        private void RedButtonChecked(object sender, RoutedEventArgs e)
         {
             new ThreadedSoundPlayer(Properties.Resources.Tap).PlaySound();
-            redParticles = true;
+            _redParticles = true;
         }
 
-        private void GreenButton_Unchecked(object sender, RoutedEventArgs e)
+        private void GreenButtonUnchecked(object sender, RoutedEventArgs e)
         {
             new ThreadedSoundPlayer(Properties.Resources.Tap).PlaySound();
-            greenParticles = false;
+            _greenParticles = false;
 
         }
 
-        private void GreenButton_Checked(object sender, RoutedEventArgs e)
+        private void GreenButtonChecked(object sender, RoutedEventArgs e)
         {
             new ThreadedSoundPlayer(Properties.Resources.Tap).PlaySound();
-            greenParticles = true;
+            _greenParticles = true;
         }
 
-        private void YellowButton_Unchecked(object sender, RoutedEventArgs e)
+        private void YellowButtonUnchecked(object sender, RoutedEventArgs e)
         {
             new ThreadedSoundPlayer(Properties.Resources.Tap).PlaySound();
-            yellowParticles = false;
+            _yellowParticles = false;
         }
 
-        private void YellowButton_Checked(object sender, RoutedEventArgs e)
+        private void YellowButtonChecked(object sender, RoutedEventArgs e)
         {
             new ThreadedSoundPlayer(Properties.Resources.Tap).PlaySound();
-            yellowParticles = true;
+            _yellowParticles = true;
         }
 
-        private void PinkButton_Unchecked(object sender, RoutedEventArgs e)
+        private void PinkButtonUnchecked(object sender, RoutedEventArgs e)
         {
             new ThreadedSoundPlayer(Properties.Resources.Tap).PlaySound();
-            pinkParticles = false;
+            _pinkParticles = false;
         }
 
-        private void PinkButton_Checked(object sender, RoutedEventArgs e)
+        private void PinkButtonChecked(object sender, RoutedEventArgs e)
         {
             new ThreadedSoundPlayer(Properties.Resources.Tap).PlaySound();
-            pinkParticles = true;
+            _pinkParticles = true;
         }
     }
 
+    #endregion
+
     #region GenericParticleSystemClasses
-    
+
     public class Particle
     {
         public Point3D Position;
@@ -325,16 +308,18 @@ namespace CapgeminiSurface
 
     public class ParticleSystemManagerEntity
     {
-        private readonly Dictionary<Color, ParticleSystem> particleSystems;
+        private readonly Dictionary<Color, ParticleSystem> _particleSystems;
+
+        private int _countParticleErrors;
 
         public ParticleSystemManagerEntity()
         {
-            particleSystems = new Dictionary<Color, ParticleSystem>();
+            _particleSystems = new Dictionary<Color, ParticleSystem>();
         }
 
         public void Update(float elapsed)
         {
-            foreach (ParticleSystem particleSystem in particleSystems.Values)
+            foreach (ParticleSystem particleSystem in _particleSystems.Values)
             {
                 particleSystem.Update(elapsed);
             }
@@ -344,18 +329,19 @@ namespace CapgeminiSurface
         {
             try
             {
-                ParticleSystem particleSystem = particleSystems[color];
+                ParticleSystem particleSystem = _particleSystems[color];
                 particleSystem.SpawnParticle(position, speed, size, duration, new Particle());
             }
-            catch
+            catch (Exception)
             {
+                _countParticleErrors += 1;
             }
         }
 
         public Model3D CreateParticleSystem(int maxCount, Color color)
         {
             var particleSystem = new ParticleSystem(maxCount, color);
-            particleSystems.Add(color, particleSystem);
+            _particleSystems.Add(color, particleSystem);
             return particleSystem.ParticleModel;
         }
 
@@ -363,45 +349,39 @@ namespace CapgeminiSurface
         {
             get
             {
-                int count = 0;
-                foreach (ParticleSystem particleSystem in particleSystems.Values)
-                    count += particleSystem.Count;
-                return count;
+                return _particleSystems.Values.Sum(particleSystem => particleSystem.Count);
             }
         }
     }
 
     public class ParticleSystem
     {
-        private readonly List<Particle> particleList;
-        private readonly GeometryModel3D particleModel;
-        private int maxParticleCount;
-        private Random random;
+        private readonly List<Particle> _particleList;
+        private readonly GeometryModel3D _particleModel;
+        private int _maxParticleCount;
+        private Random _random;
 
         private const double InitialSpeedConst = 0.25f;
         private const double DecayAmount = 1.0f;
         private const double ParticleSizeConst = 32.0;
         private const double StandardColorOffset = 0.25;
         private const double StandardColorOffsetBorder = 1.0;
-        private float directionX = 1.0f;
-        private float directionY = 1.0f;
-        private float directionDistortionX = 2.0f;
-        private float directionDistortionY = 2.0f;
+        private const float DirectionX = 1.0f;
+        private const float DirectionY = 1.0f;
+        private const float DirectionDistortionX = 2.0f;
+        private const float DirectionDistortionY = 2.0f;
 
 
         public ParticleSystem(int maxCount, Color color)
         {
-            maxParticleCount = maxCount;
+            _maxParticleCount = maxCount;
 
-            particleModel = new GeometryModel3D();
-            particleModel.Geometry = new MeshGeometry3D();
+            _particleModel = new GeometryModel3D {Geometry = new MeshGeometry3D()};
 
-            particleList = new List<Particle>();
+            _particleList = new List<Particle>();
 
             //FELO: Drawing particle: Ellipse.
-            var ellipse = new Ellipse();
-            ellipse.Width = ParticleSizeConst;
-            ellipse.Height = ParticleSizeConst;
+            var ellipse = new Ellipse {Width = ParticleSizeConst, Height = ParticleSizeConst};
             var radialGradientBrush = new RadialGradientBrush();
             radialGradientBrush.GradientStops.Add(new GradientStop(Color.FromArgb(0xFF, color.R, color.G, color.B), StandardColorOffset));
             radialGradientBrush.GradientStops.Add(new GradientStop(Color.FromArgb(0x00, color.R, color.G, color.B), StandardColorOffsetBorder));
@@ -414,8 +394,6 @@ namespace CapgeminiSurface
 
         public void ApplyMaterialToBrush(Ellipse ellipse)
         {
-            Brush brush = null;
-
             #if USE_VISUALBRUSH  //--------------------------------------------------------------
 
             brush = new VisualBrush(e);
@@ -425,7 +403,7 @@ namespace CapgeminiSurface
             var renderTarget = new RenderTargetBitmap(32, 32, 96, 96, PixelFormats.Pbgra32);
             renderTarget.Render(ellipse);
             renderTarget.Freeze();
-            brush = new ImageBrush(renderTarget);
+            Brush brush = new ImageBrush(renderTarget);
 
             #endif  //---------------------------------------------------------------------------
 
@@ -434,32 +412,32 @@ namespace CapgeminiSurface
             // #FELO: EmissiveMaterial is more radiating. Could actually be a good alternative.
             //var material = new EmissiveMaterial(brush);
 
-            particleModel.Material = material;
+            _particleModel.Material = material;
 
-            random = new Random(brush.GetHashCode());
+            _random = new Random(brush.GetHashCode());
         }
 
         public int MaxParticleCount
         {
-            get { return maxParticleCount; }
-            set { maxParticleCount = value; }
+            get { return _maxParticleCount; }
+            set { _maxParticleCount = value; }
         }
 
         public int Count
         {
-            get { return particleList.Count; }
+            get { return _particleList.Count; }
         }
 
         public Model3D ParticleModel
         {
-            get { return particleModel; }
+            get { return _particleModel; }
         }
 
         public void Update(double elapsed)
         {
             var recycleList = new List<Particle>();
 
-            foreach (Particle p in particleList)
+            foreach (Particle p in _particleList)
             {
                 p.Position += p.Velocity * elapsed;
                 p.Duration -= p.Decay * elapsed;
@@ -472,7 +450,7 @@ namespace CapgeminiSurface
 
             foreach (Particle p in recycleList)
             {
-                particleList.Remove(p);
+                _particleList.Remove(p);
             }
           
             Update3DGeometry();
@@ -484,11 +462,11 @@ namespace CapgeminiSurface
             var indices = new Int32Collection();
             var texcoords = new PointCollection();
 
-            for (int i = 0; i < particleList.Count; ++i)
+            for (int i = 0; i < _particleList.Count; ++i)
             {
                 int positionIndex = i*4;
                 //int indexIndex = i*6;
-                Particle particle = particleList[i];
+                Particle particle = _particleList[i];
 
                 var p1 = new Point3D(particle.Position.X, particle.Position.Y, particle.Position.Z);
                 var p2 = new Point3D(particle.Position.X, particle.Position.Y + particle.Size, particle.Position.Z);
@@ -519,14 +497,14 @@ namespace CapgeminiSurface
                 indices.Add(positionIndex + 2);
             }
 
-            ((MeshGeometry3D) particleModel.Geometry).Positions = positions;
-            ((MeshGeometry3D) particleModel.Geometry).TriangleIndices = indices;
-            ((MeshGeometry3D) particleModel.Geometry).TextureCoordinates = texcoords;
+            ((MeshGeometry3D) _particleModel.Geometry).Positions = positions;
+            ((MeshGeometry3D) _particleModel.Geometry).TriangleIndices = indices;
+            ((MeshGeometry3D) _particleModel.Geometry).TextureCoordinates = texcoords;
         }
 
         public void SpawnParticle(Point3D position, double speed, double size, double duration, Particle particle)
         {
-            if (particleList.Count > maxParticleCount)
+            if (_particleList.Count > _maxParticleCount)
             {
                 return;
             }
@@ -537,18 +515,29 @@ namespace CapgeminiSurface
             particle.Size = size;
 
             // #FELO: -1 to 1 for x and -1 to 1 for y coordinate creates 360 degree spread.
-            float x = directionX - (float)random.NextDouble() * directionDistortionX;
-            float z = directionY - (float)random.NextDouble() * directionDistortionY;
+            float x = DirectionX - (float)_random.NextDouble() * DirectionDistortionX;
+            float z = DirectionY - (float)_random.NextDouble() * DirectionDistortionY;
 
             var vector3D = new Vector3D( x, z, 0.0 );
             vector3D.Normalize();
-            vector3D *= ( InitialSpeedConst + (float)random.NextDouble() ) * (float)speed;
+            vector3D *= ( InitialSpeedConst + (float)_random.NextDouble() ) * (float)speed;
 
             particle.Velocity = new Vector3D( vector3D.X, vector3D.Y, vector3D.Z);
 
             particle.Decay = DecayAmount;
 
-            particleList.Add(particle);
+            _particleList.Add(particle);
+        }
+
+        public Particle Particle
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+            }
         }
     }
 

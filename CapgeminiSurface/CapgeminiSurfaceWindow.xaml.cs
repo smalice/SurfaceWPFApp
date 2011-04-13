@@ -4,7 +4,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using CapgeminiSurface.Model;
-using Microsoft.Surface;
 using Microsoft.Surface.Presentation;
 using Microsoft.Surface.Presentation.Controls;
 using Microsoft.Surface.Presentation.Manipulations;
@@ -12,8 +11,10 @@ using System.Collections.ObjectModel;
 
 namespace CapgeminiSurface
 {
-    public partial class CapgeminiSurfaceWindow : SurfaceWindow
+    public partial class CapgeminiSurfaceWindow
     {
+        #region Initialization
+        
         public enum States
         {
             AllCardRotation = 0,
@@ -30,70 +31,63 @@ namespace CapgeminiSurface
 
         readonly Point _centerPoint = new Point(512, 384);
 
-        private ObservableCollection<ContentItem> targetItems;
+        private ObservableCollection<ContentItem> _targetItems;
 
         public ObservableCollection<ContentItem> TargetItems
         {
-            get
-            {
-                if (targetItems == null)
-                {
-                    targetItems = new ObservableCollection<ContentItem>();
-                }
-
-                return targetItems;
-            }
+            get { return _targetItems ?? (_targetItems = new ObservableCollection<ContentItem>()); }
         }
 
         public CapgeminiSurfaceWindow()
         {
             ModelManager.Instance.Load();
             InitializeComponent();
-            AddActivationHandlers();
             InitializeManipulationProcessor();
 			AddFilterHandlers();
 
             foreach (Customer costumer in ModelManager.Instance.AllCustomers)
             {
-                var card = new MenuCard {DataContext = costumer};
-                surfaceMainGrid.Children.Add(card);
-                Grid.SetColumn(card, 0);
-                Grid.SetRow(card, 0);
-                Panel.SetZIndex(card, 2);
-                card.cardRotateTransform.Angle = _randomStartAngle.Next(0, 360);
-                MenuCardHolder.Add(card);
-                card.ContactTapGesture += CardContactTapGesture;
-                card.ContactDown += CardContactDown;
-                card.scatCard.Activated += ScatCardActivated;
-                card.scatCard.ScatterManipulationCompleted += CardScatterManipulationComp;
-                card.SetZorder += CardContactDown;
+                InitializeCard(costumer);
             }
             Logo.DeltaManipulationFinished += Rotate;
             scatterViewTarget.ItemsSource = TargetItems;
-            ModelManager.Instance.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(Instance_PropertyChanged);
+            ModelManager.Instance.PropertyChanged += InstancePropertyChanged;
         }
 
-        void Instance_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void AddFilterHandlers()
         {
-            if (ModelManager.Instance.SelectedCustomer == null)
-                targetItems.Clear();
+            CustomerFilter.EnergyFilterChecked += HandleEneryFilterChecked;
+            CustomerFilter.EnergyFilterUnchecked += HandleEneryFilterUnchecked;
+
+            CustomerFilter.CapgeminiFilterChecked += HandleCapgeminiFilterChecked;
+            CustomerFilter.CapgeminiFilterUnchecked += HandleCapgeminiFilterUnchecked;
+
+            CustomerFilter.OtherFilterChecked += HandleOtherFilterChecked;
+            CustomerFilter.OtherFilterUnchecked += HandleOtherFilterUnchecked;
         }
-		
-		private void AddFilterHandlers()
-    	{
-    		this.CustomerFilter.EnergyFilterChecked += HandleEneryFilterChecked;
-    		this.CustomerFilter.EnergyFilterUnchecked += HandleEneryFilterUnchecked;
 
-			this.CustomerFilter.CapgeminiFilterChecked += HandleCapgeminiFilterChecked;
-			this.CustomerFilter.CapgeminiFilterUnchecked += HandleCapgeminiFilterUnchecked;
+        private void InitializeCard(Customer costumer)
+        {
+            var card = new MenuCard { DataContext = costumer };
+            surfaceMainGrid.Children.Add(card);
+            Grid.SetColumn(card, 0);
+            Grid.SetRow(card, 0);
+            Panel.SetZIndex(card, 2);
+            card.cardRotateTransform.Angle = _randomStartAngle.Next(0, 360);
+            MenuCardHolder.Add(card);
+            card.ContactTapGesture += CardContactTapGesture;
+            card.ContactDown += CardContactDown;
+            card.scatCard.ScatterManipulationCompleted += CardScatterManipulationComp;
+            card.SetZorder += CardContactDown;
+        }
 
-			this.CustomerFilter.OtherFilterChecked += HandleOtherFilterChecked;
-			this.CustomerFilter.OtherFilterUnchecked += HandleOtherFilterUnchecked;
-    	}
+        #endregion
 
+        #region Rotation
+        
         private void InitializeManipulationProcessor()
         {
-            _manipulationProcessor = new Affine2DManipulationProcessor(Affine2DManipulations.Rotate, particleSystem , _centerPoint );
+            _manipulationProcessor = new Affine2DManipulationProcessor(Affine2DManipulations.Rotate, particleSystem, _centerPoint);
             _manipulationProcessor.Affine2DManipulationDelta += OnManipulationDelta;
         }
 
@@ -111,9 +105,13 @@ namespace CapgeminiSurface
                 card.OnManipulationDelta(sender, eventArgs);
             }
 
-            particleSystem.toggleControlPanel();
+            particleSystem.ToggleControlPanel();
         }
 
+        #endregion
+
+        #region SurfaceInteraction
+        
         private void CardScatterManipulationComp(object sender, ScatterManipulationCompletedEventArgs e)
         {
             foreach (MenuCard card in MenuCardHolder)
@@ -123,15 +121,9 @@ namespace CapgeminiSurface
             CurrentState = States.AllCardRotation;
 
             var hideFavouriteStack = (Storyboard)FindResource("HideFavouriteStack");
-
             hideFavouriteStack.Begin();
 
-            particleSystem.setSpeedSlider(15.0);
-        }
-
-        private void ScatCardActivated(object sender, RoutedEventArgs e)
-        {
-            
+            particleSystem.SetSpeedSlider(15.0);
         }
 
         private void CardContactDown(object sender, ContactEventArgs e)
@@ -142,14 +134,7 @@ namespace CapgeminiSurface
             {          
                 foreach (MenuCard card in MenuCardHolder)	
                 {
-                    if (card.Equals(obj))
-                    {
-                        Panel.SetZIndex(card, 2);		
-                    }   
-                    else
-                    {
-                        Panel.SetZIndex(card, 1);               
-                    }
+                    Panel.SetZIndex(card, card.Equals(obj) ? 2 : 1);
                 }
                 obj.AfterContactdown(e);
             }
@@ -177,46 +162,69 @@ namespace CapgeminiSurface
                         revealFavouriteStack.Begin();
                     }
 
-                    particleSystem.setSpeedSlider(5.0);
+                    particleSystem.SetSpeedSlider(5.0);
                 }
                 obj.AfterOnTapGesture(e);
             }
 
         }
 
-        protected override void OnClosed(EventArgs e)
+        private void ScatterViewDragEnter(object sender, SurfaceDragDropEventArgs e)
         {
-            base.OnClosed(e);
-            RemoveActivationHandlers();
+            e.Cursor.Visual.Tag = "DragEnter";
         }
 
-        private void AddActivationHandlers()
+        private void ScatterViewDragLeave(object sender, SurfaceDragDropEventArgs e)
         {
-            ApplicationLauncher.ApplicationActivated += OnApplicationActivated;
-            ApplicationLauncher.ApplicationPreviewed += OnApplicationPreviewed;
-            ApplicationLauncher.ApplicationDeactivated += OnApplicationDeactivated;
+            e.Cursor.Visual.Tag = null;
         }
 
-        private void RemoveActivationHandlers()
+        private void ScatterViewDrop(object sender, SurfaceDragDropEventArgs e)
         {
-            ApplicationLauncher.ApplicationActivated -= OnApplicationActivated;
-            ApplicationLauncher.ApplicationPreviewed -= OnApplicationPreviewed;
-            ApplicationLauncher.ApplicationDeactivated -= OnApplicationDeactivated;
+            TargetItems.Add(e.Cursor.Data as ContentItem);
         }
 
-        private void OnApplicationActivated(object sender, EventArgs e)
+        private void SurfaceToggleButtonChecked(object sender, RoutedEventArgs e)
         {
+            var animation = (Storyboard)FindResource("ShowLogoStack");
+            animation.Begin();
+
+            particleSystem.GenerateParticles = true;
+
+            foreach (MenuCard card in MenuCardHolder)
+            {
+                card.Opacity = 1;
+                card.IsEnabled = true;
+                Panel.SetZIndex(card, 2);
+            }
         }
 
-        private void OnApplicationPreviewed(object sender, EventArgs e)
+        private void SurfaceToggleButtonUnchecked(object sender, RoutedEventArgs e)
         {
+            var animation = (Storyboard)FindResource("HideLogoStack");
+            animation.Begin();
+
+            particleSystem.GenerateParticles = false;
+
+            foreach (MenuCard card in MenuCardHolder)
+            {
+                card.Opacity = 0;
+                card.IsEnabled = false;
+                Panel.SetZIndex(card, -10);
+            }
         }
 
-        private void OnApplicationDeactivated(object sender, EventArgs e)
+        #endregion
+
+        #region FilterHandling
+        
+        void InstancePropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            if (ModelManager.Instance.SelectedCustomer == null)
+                _targetItems.Clear();
         }
 
-        private void HandleEneryFilterUnchecked(object sender, EventArgs e)
+        private static void HandleEneryFilterUnchecked(object sender, EventArgs e)
         {
             foreach (var energyCustomer in ModelManager.Instance.EnergyCustomers)
             {
@@ -224,7 +232,7 @@ namespace CapgeminiSurface
             }
         }
 
-        private void HandleEneryFilterChecked(object sender, EventArgs e)
+        private static void HandleEneryFilterChecked(object sender, EventArgs e)
         {
             foreach (var energyCustomer in ModelManager.Instance.EnergyCustomers)
             {
@@ -232,7 +240,7 @@ namespace CapgeminiSurface
             }
         }
 
-        private void HandleOtherFilterChecked(object sender, EventArgs e)
+        private static void HandleOtherFilterChecked(object sender, EventArgs e)
         {
             foreach (var otherCustomer in ModelManager.Instance.OtherCustomers)
             {
@@ -240,7 +248,7 @@ namespace CapgeminiSurface
             }
         }
 
-        private void HandleOtherFilterUnchecked(object sender, EventArgs e)
+        private static void HandleOtherFilterUnchecked(object sender, EventArgs e)
         {
             foreach (var otherCustomer in ModelManager.Instance.OtherCustomers)
             {
@@ -248,7 +256,7 @@ namespace CapgeminiSurface
             }
         }
 
-        private void HandleCapgeminiFilterChecked(object sender, EventArgs e)
+        private static void HandleCapgeminiFilterChecked(object sender, EventArgs e)
         {
             foreach (var capgeminiCustomer in ModelManager.Instance.CapgeminiInfo)
             {
@@ -256,7 +264,7 @@ namespace CapgeminiSurface
             }
         }
 
-        private void HandleCapgeminiFilterUnchecked(object sender, EventArgs e)
+        private static void HandleCapgeminiFilterUnchecked(object sender, EventArgs e)
         {
             foreach (var capgeminiCustomer in ModelManager.Instance.CapgeminiInfo)
             {
@@ -264,19 +272,6 @@ namespace CapgeminiSurface
             }
         }
 
-        private void ScatterView_DragEnter(object sender, SurfaceDragDropEventArgs e)
-        {
-            e.Cursor.Visual.Tag = "DragEnter";
-        }
-
-        private void ScatterView_DragLeave(object sender, SurfaceDragDropEventArgs e)
-        {
-            e.Cursor.Visual.Tag = null;
-        }
-
-        private void ScatterView_Drop(object sender, SurfaceDragDropEventArgs e)
-        {
-            TargetItems.Add(e.Cursor.Data as ContentItem);
-        }
+        #endregion
     }
 }

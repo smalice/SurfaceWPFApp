@@ -1,20 +1,19 @@
-﻿<s:SurfaceUserControl x:Class="CapgeminiSurface.ProjectItem"
+﻿<s:SurfaceUserControl 
+    x:Class="CapgeminiSurface.ProjectItem"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:s="http://schemas.microsoft.com/surface/2008"
-    xmlns:cs="clr-namespace:CapgeminiSurface"
-xmlns:resource="clr-namespace:CapgeminiSurface.Resources"                 
-    >
+	xmlns:s="http://schemas.microsoft.com/surface/2008">
     <Grid >
         <Grid.Resources>
-            <BooleanToVisibilityConverter x:Key="BoolToVisible" />
+            <BooleanToVisibilityConverter 
+                x:Key="BoolToVisible" />
         </Grid.Resources>
         <Grid 
             x:Name="pictureGrid" 
             Opacity="0.67"
             Visibility="{Binding IsPictureItem, Converter={StaticResource BoolToVisible}}" 
             Panel.ZIndex="10" 
-            MinHeight="132"
+            MinHeight="148"
             MinWidth="200"
             Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
             <StackPanel 
@@ -26,17 +25,26 @@ xmlns:resource="clr-namespace:CapgeminiSurface.Resources"
                     TextWrapping="Wrap" 
                     MaxHeight="50" 
                     MinHeight="20" 
-                    Panel.ZIndex="10" Margin="2" 
+                    Panel.ZIndex="10" 
+                    Margin="2" 
                     Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}"/>
                 <Image 
                     Stretch="Fill"
                     Source="{Binding FileName}" 
-                    Panel.ZIndex="10" Margin="2,0,2,2"/>
+                    Panel.ZIndex="10" 
+                    Margin="2,0,2,2"/>
+                <s:SurfaceTextBox 
+                    TextWrapping="Wrap" 
+                    Text="Description" 
+                    VerticalContentAlignment="Bottom"
+                    VerticalAlignment="Bottom"
+                    Background="White"
+                    />
             </StackPanel>
         </Grid>
         <Grid x:Name="videoGrid" 
               Visibility="{Binding IsVideoItem, Converter={StaticResource BoolToVisible}}"
-              Loaded="videoGrid_Loaded" 
+              Loaded="VideoGridLoaded" 
               Panel.ZIndex="10"
               Background="White">
             <StackPanel 
@@ -46,17 +54,25 @@ xmlns:resource="clr-namespace:CapgeminiSurface.Resources"
                     Foreground="Black" 
                     Text="{Binding Name}"  
                     TextWrapping="Wrap"              
-                    Panel.ZIndex="10" Margin="2" Background="White" />
+                    Panel.ZIndex="10" 
+                    Margin="2" 
+                    Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}" />
                 <MediaElement 
                     Name="myMedia"          
                     Stretch="Fill"
                     Source="{Binding FileName}" 
                     LoadedBehavior="Manual" 
-                    s:Contacts.ContactDown="myMedia_ContactDown" 
-                    Margin="2,0,2,2" 
+                    s:Contacts.ContactDown="MyMediaContactDown" 
+                    Margin="2,0" 
                     Panel.ZIndex="10"/>
+                <s:SurfaceTextBox 
+                    TextWrapping="Wrap" 
+                    Text="Description" 
+                    VerticalContentAlignment="Bottom"
+                    VerticalAlignment="Bottom"
+                    Background="White"
+                    />
             </StackPanel>
-
         </Grid>
         <!--<Grid x:Name="pdfGrid" Margin="0" Opacity="0.832" 
               Visibility="{Binding IsVideoItem, Converter={StaticResource BoolToVisible}}"

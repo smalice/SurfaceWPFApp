@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Media.Animation;
 using CapgeminiSurface.Model;
@@ -9,19 +10,18 @@ using Microsoft.Surface.Presentation.Manipulations;
 
 namespace CapgeminiSurface
 {
-
-    public partial class MenuCard : SurfaceUserControl
+    public partial class MenuCard
     {
+        #region Initialization
+        
         readonly Point _centerPoint = new Point(512, 384);
-
-        private Affine2DManipulationProcessor _manipulationProcessor;
 
         public EventHandler<ContactEventArgs> SetZorder;
 
-        public enum States : int 
-            {   StateRotation = 0, 
-                StateUnlocked = 1, 
-            };
+        public enum States
+        {   StateRotation = 0, 
+            StateUnlocked = 1, 
+        };
 
         public States CurrentState = States.StateRotation;
 
@@ -35,6 +35,12 @@ namespace CapgeminiSurface
             CurrentState = States.StateRotation;
             CardOut = false;
         }
+        
+        #endregion
+
+        #region Rotation
+
+        private Affine2DManipulationProcessor _manipulationProcessor;
 
         private void InitializeManipulationProcessor()
         {
@@ -42,6 +48,10 @@ namespace CapgeminiSurface
             _manipulationProcessor.Affine2DManipulationDelta += OnManipulationDelta;
         }
 
+        #endregion
+
+        #region SurfaceInteraction
+        
         public void OnManipulationDelta(object sender, Affine2DOperationDeltaEventArgs e)
         {
             cardRotateTransform.Angle += e.RotationDelta;  
@@ -61,9 +71,7 @@ namespace CapgeminiSurface
         {
             if (CurrentState.Equals(States.StateRotation))
             {
-                Storyboard tapTheCard = (Storyboard)FindResource("TapTheCard");
-                tapTheCard.Remove();
-                tapTheCard.Begin();
+                AfterContactDownAnimation();
 
                 base.OnContactDown(e);
 
@@ -77,71 +85,93 @@ namespace CapgeminiSurface
 
         protected override void OnContactTapGesture(ContactEventArgs e)
         {
+            PlaySound(Properties.Resources.Tap);
+
             if (!CurrentState.Equals(States.StateRotation) && CardOut)
             {
                 e.Handled = true;
             }
-
-            new ThreadedSoundPlayer(Properties.Resources.Tap).PlaySound();
-
-            if (CardOut)
-                ModelManager.Instance.SelectedCustomer = null;
-            else
-                ModelManager.Instance.SelectedCustomer = this.DataContext as Customer;
+            
+            if (!CardOut)
+                ModelManager.Instance.SelectedCustomer = DataContext as Customer;
         }
 
         public void AfterOnTapGesture(ContactEventArgs e)
         {
-            Storyboard tapTheCard = (Storyboard)FindResource("TapTheCard");
-            tapTheCard.Remove();
-
-            Storyboard dragOutCard = (Storyboard)FindResource("dragOut");
-            dragOutCard.Remove();
-            dragOutCard.Begin();
-
-            Storyboard cardIsOut = (Storyboard)FindResource("CardIsOut");
-            cardIsOut.Remove();
-            cardIsOut.Begin();
+            OnTapAnimation();
             
             CardOut = true;
 
-            CurrentState = MenuCard.States.StateUnlocked;
+            CurrentState = States.StateUnlocked;
         }
 
         private void ScatCardScatterManipulationCompleted(object sender, ScatterManipulationCompletedEventArgs e)
         {
             if (CurrentState.Equals(States.StateUnlocked) && CardOut)
             {
-                Storyboard cardIsOut = (Storyboard)FindResource("CardIsOut");
-                cardIsOut.Remove();
+                RemoveCurrentAnimation();
 
                 CardOut = false;
 
                 CurrentState = States.StateRotation;
+
+                ModelManager.Instance.SelectedCustomer = null;
             }
             else
                 e.Handled = true;
         }
 
-        private void ScatCardActivated(object sender, RoutedEventArgs e)
-        {
+        #endregion
 
+        #region Animation
+
+        private void RemoveCurrentAnimation()
+        {
+            PlayAnimation("CardIsOut", false, true);
+        }
+
+        private void OnTapAnimation()
+        {
+            PlayAnimation("TapTheCard", false, true);
+            PlayAnimation("dragOut", true, true);
+            PlayAnimation("CardIsOut",true,true);
         }
 
         public void FadeInCardAnimation()
         {
-            Storyboard fadeOutCard = (Storyboard)FindResource("FadeOutCard");
-            fadeOutCard.Remove();
-            Storyboard fadeInCard = (Storyboard)FindResource("FadeInCard");
-            fadeInCard.Begin();
+            PlayAnimation("FadeOutCard",false,true);
+            PlayAnimation("FadeInCard",true,true);
         }
 
         public void FadeOutCardAnimation()
         {
-            Storyboard fadeInCard = (Storyboard)FindResource("FadeInCard");
-            fadeInCard.Remove();
-            Storyboard fadeOutCard = (Storyboard)FindResource("FadeOutCard");
-            fadeOutCard.Begin();
+            PlayAnimation("FadeInCard",false,true);
+            PlayAnimation("FadeOutCard",true,true);
         }
+
+        private void AfterContactDownAnimation()
+        {
+            PlayAnimation("TapTheCard",true,true);
+        }
+        
+        private void PlayAnimation(String name, Boolean play, Boolean remove)
+        {
+            var animation = (Storyboard)FindResource(name);
+            if (remove)
+                animation.Remove();
+            if (play)
+                animation.Begin();
+        }
+    
+        #endregion
+
+        #region Sound
+        
+        private static void PlaySound(UnmanagedMemoryStream unmanagedMemoryStream)
+        {
+            new ThreadedSoundPlayer(unmanagedMemoryStream).PlaySound();
+        }
+
+        #endregion
     }
 }
