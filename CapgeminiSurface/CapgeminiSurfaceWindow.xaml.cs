@@ -38,6 +38,10 @@ namespace CapgeminiSurface
             get { return _targetItems ?? (_targetItems = new ObservableCollection<ContentItem>()); }
         }
 
+        private bool isSendingAfterDrop;
+        private Point dropPoint;
+        private double dropOrientation;
+
         public CapgeminiSurfaceWindow()
         {
             ModelManager.Instance.Load();
@@ -182,6 +186,11 @@ namespace CapgeminiSurface
         private void ScatterViewDrop(object sender, SurfaceDragDropEventArgs e)
         {
             TargetItems.Add(e.Cursor.Data as ContentItem);
+            var item = scatterViewTarget.Items[scatterViewTarget.Items.Count - 1];
+            dropPoint = e.Cursor.GetPosition(scatterViewTarget);
+            dropOrientation = e.Cursor.GetOrientation(scatterViewTarget);
+            isSendingAfterDrop = true;
+            scatterViewTarget.Activate(item);
         }
 
         private void SurfaceToggleButtonChecked(object sender, RoutedEventArgs e)
@@ -273,5 +282,13 @@ namespace CapgeminiSurface
         }
 
         #endregion
+
+        private void scatterViewTarget_Activated(object sender, RoutedEventArgs e)
+        {
+            if (!isSendingAfterDrop) return;
+            (e.OriginalSource as ScatterViewItem).Center = dropPoint;
+            (e.OriginalSource as ScatterViewItem).Orientation = dropOrientation;
+            isSendingAfterDrop = false;
+        }
     }
 }

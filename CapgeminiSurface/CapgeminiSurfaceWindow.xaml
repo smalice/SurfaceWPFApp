@@ -217,6 +217,7 @@
         	s:SurfaceDragDrop.DragEnter="ScatterViewDragEnter"
         	s:SurfaceDragDrop.DragLeave="ScatterViewDragLeave"
         	s:SurfaceDragDrop.Drop="ScatterViewDrop"
+            s:ScatterViewItem.Activated="scatterViewTarget_Activated"
         	Background="Transparent" 
         	x:Name="scatterViewTarget" 
         	Panel.ZIndex="-2"/>
