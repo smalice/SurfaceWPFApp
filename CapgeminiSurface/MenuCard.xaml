@@ -764,7 +764,7 @@
 	</s:SurfaceUserControl.Resources>
 	<s:SurfaceUserControl.Triggers>
 		<EventTrigger 
-            RoutedEvent="s:ScatterViewItem.ScatterManipulationCompleted" 
+            RoutedEvent="s:ScatterViewItem.Activated" 
             SourceName="scatCard">
 			<BeginStoryboard 
                 Storyboard="{StaticResource dragIn}"/>
@@ -831,7 +831,9 @@
                         Center="512,250" 
                         BorderThickness="8" 
                         Opacity="0.8"
-                        ScatterManipulationCompleted="ScatCardScatterManipulationCompleted">
+                        Activated="ScatCardActivated"
+                        ScatterManipulationStarted="ScatCardScatterManipulationStarted"
+                        ScatterManipulationDelta="ScatCardScatterManipulationDelta">
                         <StackPanel>
                             <Label 
                                 Content="{Binding Name}"

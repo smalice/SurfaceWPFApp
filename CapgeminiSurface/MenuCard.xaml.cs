@@ -105,7 +105,7 @@ namespace CapgeminiSurface
             CurrentState = States.StateUnlocked;
         }
 
-        private void ScatCardScatterManipulationCompleted(object sender, ScatterManipulationCompletedEventArgs e)
+        private void ScatCardActivated(object sender, RoutedEventArgs e)
         {
             if (CurrentState.Equals(States.StateUnlocked) && CardOut)
             {
@@ -119,6 +119,18 @@ namespace CapgeminiSurface
             }
             else
                 e.Handled = true;
+        }
+
+
+        private void ScatCardScatterManipulationStarted(object sender, ScatterManipulationStartedEventArgs e)
+        {
+            
+            e.Handled = true;
+        }
+
+        private void ScatCardScatterManipulationDelta(object sender, ScatterManipulationDeltaEventArgs e)
+        {
+            e.Handled = true;
         }
 
         #endregion
