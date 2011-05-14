@@ -41,6 +41,7 @@
     <OutputPath>.\bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
@@ -225,6 +226,7 @@
     <Content Include="Resources\Pages\TracId.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Silver-Play-Button.png" />
     <Content Include="Resources\Sounds\chat-inbound.wav" />
     <Content Include="Resources\Sounds\CHIMES.WAV" />
     <Content Include="Resources\Sounds\contacts-offline.wav" />
