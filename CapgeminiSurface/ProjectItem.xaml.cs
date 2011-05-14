@@ -15,7 +15,7 @@ namespace CapgeminiSurface
         }
 
         #endregion
-
+		
         private void MyMediaContactDown(object sender, ContactEventArgs e)
         {
             var content = DataContext as ContentItem;
@@ -45,9 +45,12 @@ namespace CapgeminiSurface
             var content = DataContext as ContentItem;
             if (content != null)
                 if (!content.IsVideoItem)
-                    return;
-            myMedia.Play();
+					return;
+            
+			myMedia.Play();
             myMedia.Pause();
         }
+		
+		
     }
 }

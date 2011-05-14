@@ -41,6 +41,10 @@ namespace CapgeminiSurface
         private bool isSendingAfterDrop;
         private Point dropPoint;
         private double dropOrientation;
+		private double dropScatHeight;
+		private double dropScatWidth;
+		
+		private double newAngle;
 
         public CapgeminiSurfaceWindow()
         {
@@ -49,6 +53,8 @@ namespace CapgeminiSurface
             InitializeManipulationProcessor();
 			AddFilterHandlers();
 
+			newAngle = _randomStartAngle.Next(0, 360);
+			
             foreach (Customer costumer in ModelManager.Instance.AllCustomers)
             {
                 InitializeCard(costumer);
@@ -76,8 +82,9 @@ namespace CapgeminiSurface
             surfaceMainGrid.Children.Add(card);
             Grid.SetColumn(card, 0);
             Grid.SetRow(card, 0);
+			card.cardRotateTransform.Angle=newAngle;
+			newAngle+=25;
             Panel.SetZIndex(card, 2);
-            card.cardRotateTransform.Angle = _randomStartAngle.Next(0, 360);
             MenuCardHolder.Add(card);
             card.ContactTapGesture += CardContactTapGesture;
             card.ContactDown += CardContactDown;
@@ -189,6 +196,8 @@ namespace CapgeminiSurface
             var item = scatterViewTarget.Items[scatterViewTarget.Items.Count - 1];
             dropPoint = e.Cursor.GetPosition(scatterViewTarget);
             dropOrientation = e.Cursor.GetOrientation(scatterViewTarget);
+			dropScatHeight = e.Cursor.Visual.Height;
+			dropScatWidth = e.Cursor.Visual.Width;
             isSendingAfterDrop = true;
             scatterViewTarget.Activate(item);
         }
@@ -288,6 +297,8 @@ namespace CapgeminiSurface
             if (!isSendingAfterDrop) return;
             (e.OriginalSource as ScatterViewItem).Center = dropPoint;
             (e.OriginalSource as ScatterViewItem).Orientation = dropOrientation;
+			(e.OriginalSource as ScatterViewItem).Height = dropScatHeight;
+			(e.OriginalSource as ScatterViewItem).Width = dropScatWidth;
             isSendingAfterDrop = false;
         }
     }

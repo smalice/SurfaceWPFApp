@@ -38,11 +38,11 @@
             Width="300" 
             Height="300" 
             CanSwitchViewingMode="False" 
-            Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}">
+            Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" OverridesDefaultStyle="False" IsSelectorExpanded="True">
             <s:LibraryContainer.StackView>
                 <s:StackView 
                     ItemTemplate="{StaticResource StackItemTemplate}" 
-                    ItemContainerStyle="{StaticResource StackItemContainerStyle}">
+                    ItemContainerStyle="{StaticResource StackItemContainerStyle}" NormalizedTransitionSize="1,1">
                 </s:StackView>
             </s:LibraryContainer.StackView>
         </s:LibraryContainer>

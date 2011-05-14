@@ -10,11 +10,8 @@
         </Grid.Resources>
         <Grid 
             x:Name="pictureGrid" 
-            Opacity="0.67"
             Visibility="{Binding IsPictureItem, Converter={StaticResource BoolToVisible}}" 
             Panel.ZIndex="10" 
-            MinHeight="148"
-            MinWidth="200"
             Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
             <StackPanel 
                 Panel.ZIndex="10" >
@@ -28,19 +25,20 @@
                     Panel.ZIndex="10" 
                     Margin="2" 
                     Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}"/>
-                <Image 
-                    Stretch="Fill"
-                    Source="{Binding FileName}" 
-                    Panel.ZIndex="10" 
-                    Margin="2,0,2,2"/>
                 <s:SurfaceTextBox 
                     TextWrapping="Wrap" 
                     Text="Description" 
                     VerticalContentAlignment="Bottom"
                     VerticalAlignment="Bottom"
-                    Background="White"
+                    Background="White" Visibility="Hidden"
                     />
             </StackPanel>
+            <s:SurfaceScrollViewer IsPanningEnabled="False" Margin="0,24,0,0">
+            	<Image
+            		Source="{Binding FileName}" 
+            		Panel.ZIndex="10" 
+            		Margin="0,0,0,2" ScrollViewer.VerticalScrollBarVisibility="Disabled" Stretch="Fill"/>
+            </s:SurfaceScrollViewer>
         </Grid>
         <Grid x:Name="videoGrid" 
               Visibility="{Binding IsVideoItem, Converter={StaticResource BoolToVisible}}"
@@ -57,22 +55,21 @@
                     Panel.ZIndex="10" 
                     Margin="2" 
                     Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}" />
-                <MediaElement 
-                    Name="myMedia"          
-                    Stretch="Fill"
-                    Source="{Binding FileName}" 
-                    LoadedBehavior="Manual" 
-                    s:Contacts.ContactDown="MyMediaContactDown" 
-                    Margin="2,0" 
-                    Panel.ZIndex="10"/>
                 <s:SurfaceTextBox 
                     TextWrapping="Wrap" 
                     Text="Description" 
                     VerticalContentAlignment="Bottom"
                     VerticalAlignment="Bottom"
-                    Background="White"
+                    Background="White" Visibility="Collapsed"
                     />
             </StackPanel>
+            <MediaElement 
+            	x:Name="myMedia"
+            	Source="{Binding FileName}" 
+            	LoadedBehavior="Manual" 
+				Margin="0,20,0,2" 
+            	s:Contacts.ContactDown="MyMediaContactDown"  
+            	Panel.ZIndex="10"/>
         </Grid>
         <!--<Grid x:Name="pdfGrid" Margin="0" Opacity="0.832" 
               Visibility="{Binding IsVideoItem, Converter={StaticResource BoolToVisible}}"
