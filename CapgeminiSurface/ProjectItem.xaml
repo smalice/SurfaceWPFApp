@@ -33,7 +33,7 @@
                     Background="White" Visibility="Hidden"
                     />
             </StackPanel>
-            <s:SurfaceScrollViewer IsPanningEnabled="False" Margin="0,24,0,0">
+            <s:SurfaceScrollViewer IsPanningEnabled="False" Margin="0,24,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
             	<Image
             		Source="{Binding FileName}" 
             		Panel.ZIndex="10" 

@@ -297,8 +297,16 @@ namespace CapgeminiSurface
             if (!isSendingAfterDrop) return;
             (e.OriginalSource as ScatterViewItem).Center = dropPoint;
             (e.OriginalSource as ScatterViewItem).Orientation = dropOrientation;
-			(e.OriginalSource as ScatterViewItem).Height = dropScatHeight;
-			(e.OriginalSource as ScatterViewItem).Width = dropScatWidth;
+//			if (dropScatHeight < 100.0)
+//			{
+//				dropScatHeight=(dropScatHeight*1.5);
+//			}
+//			if (dropScatWidth < 150.0)
+//			{
+//				dropScatWidth=(dropScatWidth*1.5);
+//			}
+			(e.OriginalSource as ScatterViewItem).Height = (dropScatHeight);
+			(e.OriginalSource as ScatterViewItem).Width = (dropScatWidth);
             isSendingAfterDrop = false;
         }
     }
