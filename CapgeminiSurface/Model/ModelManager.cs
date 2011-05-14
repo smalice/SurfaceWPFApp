@@ -24,9 +24,9 @@ namespace CapgeminiSurface.Model
 
         public List<Customer> AllCustomers;
         public List<Customer> EnergyCustomers = new List<Customer>();
-        public List<Customer> OtherCustomers = new List<Customer>();
         public List<Customer> CapgeminiInfo = new List<Customer>();
-
+        public List<Customer> OtherCustomers = new List<Customer>();
+		
         static ModelManager instance;
 
         static public ModelManager Instance
@@ -56,15 +56,14 @@ namespace CapgeminiSurface.Model
             {
                 switch (customer.Category)
                 {
-                    case "Energy":
-                        customer.IsVisible = true;
-                        EnergyCustomers.Add(customer);
-                        break;
                     case "Other":
                         OtherCustomers.Add(customer);
                         break;
-                    case "Capgemini":
+					case "Capgemini":
                         CapgeminiInfo.Add(customer);
+                        break;
+					case "Energy":
+                        EnergyCustomers.Add(customer);
                         break;
                 }
             }

@@ -70,8 +70,18 @@
 				Margin="0,20,0,2" MediaEnded="myMedia_MediaEnded"
             	s:Contacts.ContactDown="MyMediaContactDown"  
             	Panel.ZIndex="10"/>
-            <Image Name="playButton" Source="pack://application:,,,/Resources/Silver-Play-Button.png" Margin="50,72,50,52" 
-                   Panel.ZIndex="11" Opacity="0.5" s:Contacts.ContactDown="playButton_ContactDown" />
+            <Image 
+				Name="playButton" 
+				Source="pack://application:,,,/Resources/Silver-Play-Button.png" 
+				Margin="0,22,0,0" 
+                Panel.ZIndex="11" 
+				Opacity="0.5" 
+				s:Contacts.ContactDown="playButton_ContactDown" 
+				VerticalAlignment="Center" 
+				HorizontalAlignment="Center" 
+				Stretch="Fill" 
+				Width="100" 
+				Height="100" />
         </Grid>
         <!--<Grid x:Name="pdfGrid" Margin="0" Opacity="0.832" 
               Visibility="{Binding IsVideoItem, Converter={StaticResource BoolToVisible}}"

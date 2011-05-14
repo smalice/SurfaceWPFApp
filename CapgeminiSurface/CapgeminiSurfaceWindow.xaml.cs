@@ -52,7 +52,7 @@ namespace CapgeminiSurface
             InitializeComponent();
             InitializeManipulationProcessor();
 			AddFilterHandlers();
-
+			
 			newAngle = _randomStartAngle.Next(0, 360);
 			
             foreach (Customer costumer in ModelManager.Instance.AllCustomers)

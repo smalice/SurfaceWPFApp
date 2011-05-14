@@ -59,6 +59,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Controls.DataVisualization.Toolkit" />
     <Reference Include="System.Windows.Controls.Layout.Toolkit" />
+    <Reference Include="System.Windows.Interactivity" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
