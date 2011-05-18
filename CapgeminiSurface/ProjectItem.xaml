@@ -25,6 +25,17 @@
                     Panel.ZIndex="10" 
                     Margin="2" 
                     Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}"/>
+                <Image 
+                	x:Name="closeButton" 
+                	Source="Resources/closeButton.png" 
+                	Margin="0,-24,2,0" 
+                	Panel.ZIndex="11" 
+                	s:Contacts.ContactDown="closeButton_ContactDown" 
+                	VerticalAlignment="Center" 
+                	HorizontalAlignment="Right" 
+                	Stretch="Fill" 
+                	Width="20" 
+                	Height="20" />
                 <s:SurfaceTextBox 
                     TextWrapping="Wrap" 
                     Text="Description" 
@@ -33,7 +44,7 @@
                     Background="White" Visibility="Hidden"
                     />
             </StackPanel>
-            <s:SurfaceScrollViewer IsPanningEnabled="False" Margin="0,24,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <s:SurfaceScrollViewer IsPanningEnabled="False" Margin="2,24,2,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
             	<Image
             		Source="{Binding FileName}" 
             		Panel.ZIndex="10" 
@@ -55,6 +66,17 @@
                     Panel.ZIndex="10" 
                     Margin="2" 
                     Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}" />
+                <Image 
+                	x:Name="closeButtonVid" 
+                	Source="Resources/closeButton.png" 
+                	Margin="0,-20,2,0" 
+                	Panel.ZIndex="11" 
+                	s:Contacts.ContactDown="closeButton_ContactDown" 
+                	VerticalAlignment="Center" 
+                	HorizontalAlignment="Right" 
+                	Stretch="Fill" 
+                	Width="18" 
+                	Height="18" />
                 <s:SurfaceTextBox 
                     TextWrapping="Wrap" 
                     Text="Description" 

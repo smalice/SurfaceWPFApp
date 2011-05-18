@@ -105,6 +105,7 @@
     <Compile Include="FavouriteStack.xaml.cs">
       <DependentUpon>FavouriteStack.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GuiHelpers.cs" />
     <Compile Include="MenuCard.xaml.cs">
       <DependentUpon>MenuCard.xaml</DependentUpon>
     </Compile>
@@ -227,6 +228,7 @@
     <Content Include="Resources\Pages\TracId.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\closeButton.png" />
     <Resource Include="Resources\Silver-Play-Button.png" />
     <Content Include="Resources\Sounds\chat-inbound.wav" />
     <Content Include="Resources\Sounds\CHIMES.WAV" />
