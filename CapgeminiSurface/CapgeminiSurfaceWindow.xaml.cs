@@ -43,7 +43,6 @@ namespace CapgeminiSurface
         private double dropOrientation;
 		private double dropScatHeight;
 		private double dropScatWidth;
-		
 		private double newAngle;
 
         public CapgeminiSurfaceWindow()
@@ -52,12 +51,12 @@ namespace CapgeminiSurface
             InitializeComponent();
             InitializeManipulationProcessor();
 			AddFilterHandlers();
-
+			
 			newAngle = _randomStartAngle.Next(0, 360);
 			
-            foreach (Customer costumer in ModelManager.Instance.AllCustomers)
+            foreach (Customer customer in ModelManager.Instance.AllCustomers)
             {
-                InitializeCard(costumer);
+                InitializeCard(customer);
             }
             Logo.DeltaManipulationFinished += Rotate;
             scatterViewTarget.ItemsSource = TargetItems;
@@ -125,6 +124,8 @@ namespace CapgeminiSurface
         
         private void CardScatterManipulationComp(object sender, ScatterManipulationCompletedEventArgs e)
         {
+            _targetItems.Clear();
+
             foreach (MenuCard card in MenuCardHolder)
             {
                 card.FadeInCardAnimation();
@@ -142,7 +143,7 @@ namespace CapgeminiSurface
             var obj = sender as MenuCard;
 
             if (obj != null && CurrentState.Equals(States.AllCardRotation))
-            {          
+            {
                 foreach (MenuCard card in MenuCardHolder)	
                 {
                     Panel.SetZIndex(card, card.Equals(obj) ? 2 : 1);
@@ -177,7 +178,6 @@ namespace CapgeminiSurface
                 }
                 obj.AfterOnTapGesture(e);
             }
-
         }
 
         private void ScatterViewDragEnter(object sender, SurfaceDragDropEventArgs e)
@@ -200,6 +200,8 @@ namespace CapgeminiSurface
 			dropScatWidth = e.Cursor.Visual.Width;
             isSendingAfterDrop = true;
             scatterViewTarget.Activate(item);
+            favouriteStack.RemoveInstancePropertyObject(item);
+
         }
 
         private void SurfaceToggleButtonChecked(object sender, RoutedEventArgs e)
@@ -240,6 +242,7 @@ namespace CapgeminiSurface
         {
             if (ModelManager.Instance.SelectedCustomer == null)
                 _targetItems.Clear();
+            
         }
 
         private static void HandleEneryFilterUnchecked(object sender, EventArgs e)
@@ -297,9 +300,19 @@ namespace CapgeminiSurface
             if (!isSendingAfterDrop) return;
             (e.OriginalSource as ScatterViewItem).Center = dropPoint;
             (e.OriginalSource as ScatterViewItem).Orientation = dropOrientation;
-			(e.OriginalSource as ScatterViewItem).Height = dropScatHeight;
-			(e.OriginalSource as ScatterViewItem).Width = dropScatWidth;
+			if (dropScatHeight < 100.0)
+			{
+				dropScatHeight=(dropScatHeight*1.5);
+			}
+			if (dropScatWidth < 150.0)
+			{
+				dropScatWidth=(dropScatWidth*1.5);
+			}
+			(e.OriginalSource as ScatterViewItem).Height = (dropScatHeight);
+			(e.OriginalSource as ScatterViewItem).Width = (dropScatWidth);
             isSendingAfterDrop = false;
         }
+
+        public object ScatterCloseButton { get; set; }
     }
 }
