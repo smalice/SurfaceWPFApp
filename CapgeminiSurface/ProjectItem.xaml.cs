@@ -1,4 +1,5 @@
-﻿using Microsoft.Surface.Presentation;
+﻿using System;
+using Microsoft.Surface.Presentation;
 using CapgeminiSurface.Model;
 using System.Windows;
 
@@ -13,6 +14,15 @@ namespace CapgeminiSurface
         public ProjectItem()
         {
             InitializeComponent();
+            myBrowser.Loaded += new RoutedEventHandler(myBrowser_Loaded);
+        }
+
+        void myBrowser_Loaded(object sender, RoutedEventArgs e)
+        {
+            var content = DataContext as ContentItem;
+            if (content == null || !content.IsLinkItem)
+                return;
+            myBrowser.Navigate(content.Name);
         }
 
         #endregion
@@ -89,6 +99,14 @@ namespace CapgeminiSurface
                 playButton.Visibility = Visibility.Hidden;
             }
             _isPlaying = !_isPlaying;
+        }
+
+        private void SurfaceButton_Click(object sender, RoutedEventArgs e)
+        {
+            var content = DataContext as ContentItem;
+            if (content == null || !content.IsLinkItem)
+                return;
+            myBrowser.Navigate(content.Name);
         }
 		
 		

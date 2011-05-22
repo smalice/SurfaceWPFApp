@@ -32,7 +32,12 @@ namespace CapgeminiSurface.Model
 
         public string Link
         {
-            set { link = value; }
+            set
+            {
+                link = value;
+                if (link != null && ContentItems != null)
+                    ContentItems.Add(new ContentItem() { Name = link, ContentType = ContentItem.Type.LinkItem });
+            }
             get { return link; }
         }
 
