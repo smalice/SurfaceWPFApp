@@ -1,9 +1,10 @@
-﻿<s:SurfaceUserControl 
-    x:Class="CapgeminiSurface.ProjectItem"
+﻿<s:SurfaceUserControl
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:s="http://schemas.microsoft.com/surface/2008" 
-    xmlns:cj="clr-namespace:Cjc.ChromiumBrowser;assembly=Cjc.ChromiumBrowser">
+    xmlns:cj="clr-namespace:Cjc.ChromiumBrowser;assembly=Cjc.ChromiumBrowser" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" 
+    x:Class="CapgeminiSurface.ProjectItem"
+    >
     <Grid >
         <Grid.Resources>
             <BooleanToVisibilityConverter 
@@ -21,7 +22,7 @@
                     Foreground="Black" 
                     Text="{Binding Name}" 
                     TextWrapping="Wrap" 
-                    MaxHeight="50" 
+                    MaxHeight="16.0933333333333" 
                     MinHeight="20" 
                     Panel.ZIndex="10" 
                     Margin="2" 
@@ -66,7 +67,7 @@
                     TextWrapping="Wrap"              
                     Panel.ZIndex="10" 
                     Margin="2" 
-                    Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}" />
+                    Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}" MaxHeight="16.0933333333333" />
                 <Image 
                 	x:Name="closeButtonVid" 
                 	Source="Resources/closeButton.png" 
@@ -94,7 +95,7 @@
             	s:Contacts.ContactDown="MyMediaContactDown"  
             	Panel.ZIndex="10"/>
             <Image 
-				Name="playButton" 
+				x:Name="playButton" 
 				Source="pack://application:,,,/Resources/Silver-Play-Button.png" 
 				Margin="0,22,0,0" 
                 Panel.ZIndex="11" 
@@ -108,12 +109,49 @@
         </Grid>
         <Grid x:Name="webGrid" Panel.ZIndex="10" 
               Visibility="{Binding IsLinkItem, Converter={StaticResource BoolToVisible}}"
-              Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
+              Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" ScrollViewer.VerticalScrollBarVisibility="Disabled">
             <StackPanel>
-            <s:SurfaceButton Click="SurfaceButton_Click" Content="click me" />
-                <cj:WebBrowser Panel.ZIndex="10" 
-            		    Margin="10,10,10,12" Name="myBrowser" Width="400" Height="400" />
+            <TextBlock 
+                	FontSize="13.333" 
+                	Foreground="Black" 
+                	Text="{Binding Name}"  
+                	TextWrapping="Wrap"              
+                	Panel.ZIndex="10" 
+                	Margin="2" 
+                	Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}" MaxHeight="16.0933333333333" />
+                <Image 
+                	x:Name="closeButtonWeb" 
+                	Source="Resources/closeButton.png" 
+                	Margin="0,-20,2,0" 
+                	Panel.ZIndex="11" 
+                	s:Contacts.ContactDown="closeButton_ContactDown" 
+                	VerticalAlignment="Center" 
+                	HorizontalAlignment="Right" 
+                	Stretch="Fill" 
+                	Width="18" 
+                	Height="18" />
+                <Image 
+                	x:Name="refreshButton" 
+                	Source="Resources/refresh.png" 
+                	Margin="0,-20,20,0" 
+                	Panel.ZIndex="11" 
+                	s:Contacts.ContactDown="SurfaceButton_Click" 
+                	VerticalAlignment="Center" 
+                	HorizontalAlignment="Right" 
+                	Stretch="Fill" 
+                	Width="16" 
+                	Height="16" Opacity="0.75" />
             </StackPanel>
+            <cj:WebBrowser 
+            	Panel.ZIndex="10" 
+            	x:Name="myBrowser" 
+				ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+				HorizontalContentAlignment="Stretch" 
+				VerticalContentAlignment="Stretch" 
+				Margin="2,20,2,2" 
+				EnableAsyncRendering="True" 
+				MinWidth="250" 
+				MinHeight="100" />
         </Grid>
     </Grid>
 </s:SurfaceUserControl>
