@@ -26,6 +26,7 @@ namespace CapgeminiSurface.Model
         public List<Customer> EnergyCustomers = new List<Customer>();
         public List<Customer> CapgeminiInfo = new List<Customer>();
         public List<Customer> OtherCustomers = new List<Customer>();
+		public List<Customer> NdcInfo = new List<Customer>();
 		
         static ModelManager instance;
 
@@ -65,6 +66,9 @@ namespace CapgeminiSurface.Model
 					case "Energy":
                         EnergyCustomers.Add(customer);
                         break;
+					case "Ndc":
+						NdcInfo.Add(customer);
+						break;
                 }
             }
         }

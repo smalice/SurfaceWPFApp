@@ -31,7 +31,7 @@
                             Storyboard.TargetName="surfaceUserControl">
 							<SplineDoubleKeyFrame 
                                 KeyTime="0" 
-                                Value="-397"/>
+                                Value="-520"/>
 						</DoubleAnimationUsingKeyFrames>
 					</Storyboard>
 				</VisualState>
@@ -42,7 +42,7 @@
     	</VisualStateManager.CustomVisualStateManager>    
 		<Rectangle 
             Stroke="White" 
-            Margin="-87,-11,-370,-39" 
+            Margin="-87,-11,-440,-39" 
             RadiusX="25" 
             RadiusY="25" 
             StrokeThickness="4">
@@ -53,7 +53,7 @@
 		<StackPanel 
             x:Name="stackPanel" 
             Orientation="Horizontal" 
-            Margin="0,-32,-370,-60" HorizontalAlignment="Center" VerticalAlignment="Center" Height="94" Width="435">
+            Margin="2,-32,-492,-60" HorizontalAlignment="Center" VerticalAlignment="Center" Height="94" Width="558">
 			<s:SurfaceToggleButton 
                 x:Name="EnergyButton"  
                 Checked="EnergyButtonChecked" 
@@ -89,6 +89,24 @@
 		                <DropShadowEffect/>
 	                </Image.Effect>
                 </Image>
+			</s:SurfaceToggleButton>
+			<s:SurfaceToggleButton 
+                x:Name="NdcButton"  
+                Checked="NdcButtonChecked" 
+                Unchecked="NdcButtonUnchecked"  
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center" 
+                Height="72" 
+                Width="123">
+				<Image 
+                    Source="Resources\Logos\NDC.png" 
+                    Height="60" 
+                    Width="60" 
+                    ToolTip="Show/Hide Ndc ??">
+					<Image.Effect>
+						<DropShadowEffect/>
+					</Image.Effect>
+				</Image>
 			</s:SurfaceToggleButton>
 			<s:SurfaceToggleButton 
                 x:Name="OtherButton"   

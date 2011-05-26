@@ -416,12 +416,66 @@
         <FileName>Logos/Capgemini_logo_hr.png</FileName>
         <ContentType>PictureItem</ContentType>
       </ContentItem>
-      <ContentItem>
-        <Name>Herbert Pleunik, BIM expert</Name>
-        <FileName>Videos/BIM.wmv</FileName>
-        <ContentType>VideoItem</ContentType>
-      </ContentItem>
+	  <ContentItem>
+		<Name>Herbert Pleunik, BIM expert</Name>
+		<FileName>Videos/BIM.wmv</FileName>
+		<ContentType>VideoItem</ContentType>
+	  </ContentItem>
     </ContentItems>
+  </Customer>
+  <Customer>
+	<Name>NDCDay1</Name>
+	<Link>http://www.ndc2011.no/</Link>
+	<Logo>Logos/NDC.png</Logo>
+	<Category>Ndc</Category>
+	<ContentItems>
+	  <ContentItem>
+		<Name>Logo</Name>
+		<FileName>Logos/NDC.png</FileName>
+		<ContentType>PictureItem</ContentType>
+	  </ContentItem>
+	  <ContentItem>
+		<Name>Day1</Name>
+		<FileName>NDC/Day1.png</FileName>
+		<ContentType>PictureItem</ContentType>
+	  </ContentItem>
+	</ContentItems>
+  </Customer>
+  <Customer>
+	<Name>NDCDay2</Name>
+	<Link>http://www.ndc2011.no/</Link>
+	<Logo>Logos/NDC.png</Logo>
+	<Category>Ndc</Category>
+	<ContentItems>
+	  <ContentItem>
+		<Name>Logo</Name>
+		<FileName>Logos/NDC.png</FileName>
+		<ContentType>PictureItem</ContentType>
+	  </ContentItem>
+	  <ContentItem>
+		<Name>Day2</Name>
+		<FileName>NDC/Day2.png</FileName>
+		<ContentType>PictureItem</ContentType>
+	  </ContentItem>
+	</ContentItems>
+  </Customer>
+  <Customer>
+	<Name>NDCDay3</Name>
+	<Link>http://www.ndc2011.no/</Link>
+	<Logo>Logos/NDC.png</Logo>
+	<Category>Ndc</Category>
+	<ContentItems>
+	  <ContentItem>
+		<Name>Logo</Name>
+		<FileName>Logos/NDC.png</FileName>
+		<ContentType>PictureItem</ContentType>
+	  </ContentItem>
+	  <ContentItem>
+		<Name>Day3</Name>
+		<FileName>NDC/Day3.png</FileName>
+		<ContentType>PictureItem</ContentType>
+	  </ContentItem>
+	</ContentItems>
   </Customer>
   <Customer>
     <Name>EPiCentre</Name>

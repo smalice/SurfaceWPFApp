@@ -12,6 +12,8 @@ namespace CapgeminiSurface
 		public EventHandler CapgeminiFilterUnchecked;
 		public EventHandler OtherFilterChecked;
 		public EventHandler OtherFilterUnchecked;
+		public EventHandler NdcFilterChecked;
+		public EventHandler NdcFilterUnchecked;
 		
 		public CustomerFilter()
         {
@@ -47,6 +49,16 @@ namespace CapgeminiSurface
 		private void OtherButtonUnchecked(object sender, RoutedEventArgs e)
 		{
 			OtherFilterUnchecked(this, e);
+		}
+
+		private void NdcButtonChecked(object sender, RoutedEventArgs e)
+		{
+			NdcFilterChecked(this, e);
+		}
+
+		private void NdcButtonUnchecked(object sender, RoutedEventArgs e)
+		{
+			NdcFilterUnchecked(this, e);
 		}
 
     	private void ShowButtonChecked(object sender, RoutedEventArgs e)

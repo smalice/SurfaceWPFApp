@@ -73,6 +73,9 @@ namespace CapgeminiSurface
 
             CustomerFilter.OtherFilterChecked += HandleOtherFilterChecked;
             CustomerFilter.OtherFilterUnchecked += HandleOtherFilterUnchecked;
+
+			CustomerFilter.NdcFilterChecked += HandleNdcFilterChecked;
+			CustomerFilter.NdcFilterUnchecked += HandleNdcFilterUnchecked;
         }
 
         private void InitializeCard(Customer costumer)
@@ -292,6 +295,22 @@ namespace CapgeminiSurface
                 capgeminiCustomer.IsVisible = false;
             }
         }
+
+		private static void HandleNdcFilterChecked(object sender, EventArgs e)
+		{
+			foreach (var ndcCustomer in ModelManager.Instance.NdcInfo)
+			{
+				ndcCustomer.IsVisible = true;
+			}
+		}
+
+		private static void HandleNdcFilterUnchecked(object sender, EventArgs e)
+		{
+			foreach (var ndcCustomer in ModelManager.Instance.NdcInfo)
+			{
+				ndcCustomer.IsVisible = false;
+			}
+		}
 
         #endregion
 
