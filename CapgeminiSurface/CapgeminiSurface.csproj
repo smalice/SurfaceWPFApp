@@ -57,12 +57,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\Cjc.ChromiumBrowser.dll</HintPath>
     </Reference>
+    <Reference Include="InTheHand.Net.Personal">
+      <HintPath>.\InTheHand.Net.Personal.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Expression.Interactions" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.Services.Client" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Controls.DataVisualization.Toolkit" />
     <Reference Include="System.Windows.Controls.Layout.Toolkit" />
     <Reference Include="System.Windows.Interactivity" />
@@ -105,6 +111,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bluetooth\BluetoothDevice.cs" />
+    <Compile Include="Bluetooth\BluetoothMonitor.cs" />
+    <Compile Include="Bluetooth\ObexAudio.cs" />
+    <Compile Include="Bluetooth\ObexContact.cs" />
+    <Compile Include="Bluetooth\ObexImage.cs" />
+    <Compile Include="Bluetooth\ObexItem.cs" />
     <Compile Include="CustomerFilter.xaml.cs">
       <DependentUpon>CustomerFilter.xaml</DependentUpon>
     </Compile>
@@ -145,6 +157,9 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Diagram\ClassDiagramByFelo.cd" />
+    <Content Include="InTheHand.Net.Personal.dll.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -177,6 +192,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Background\WindowBackground.jpg" />
+    <Resource Include="32feet.License.txt" />
     <Content Include="Awesomium.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -196,6 +212,13 @@
     <Resource Include="Resources\NDC\Day2.png" />
     <Resource Include="Resources\NDC\Day3.png" />
     <Resource Include="Resources\Logos\NDC.png" />
+    <Content Include="InTheHand.Net.Personal.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\cellphone.png" />
+    <Resource Include="Resources\handheld.png" />
+    <Resource Include="Resources\Laptop.png" />
+    <Resource Include="Resources\objectTransfer.gif" />
     <Content Include="Resources\Pages\conoco.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -291,6 +314,7 @@
     <Resource Include="Resources\Background\Brand_Slogan_Cloud_Bkgd_HR_300dpi.jpg" />
     <Content Include="Resources\Customers.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Resources\icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -415,5 +439,6 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

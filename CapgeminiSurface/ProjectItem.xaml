@@ -146,6 +146,7 @@
             	Panel.ZIndex="10" 
             	x:Name="myBrowser" 
 				ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
 				HorizontalContentAlignment="Stretch" 
 				VerticalContentAlignment="Stretch" 
 				Margin="2,20,2,2" 
