@@ -456,10 +456,23 @@ namespace CapgeminiSurface
                     if (e.Cursor.Data is ContentItem)
                     {
                         ContentItem ci = e.Cursor.Data as ContentItem;
+                        ObexItem oi = null;
                         if (ci.IsPictureItem)
                         {
-                            ObexItem oi = new ObexImage() { ImageUri = new Uri("pack://application:,,,/" + ci.FileName) };
-
+                            oi = new ObexImage() { ImageUri = new Uri("pack://application:,,,/" + ci.FileName) };                            
+                        } 
+                        else if (ci.IsVisitItem)
+                        {
+                            oi = new ObexContactItem() 
+                            {
+                                FirstName = ci.Name, 
+                                LastName = ci.FileName, 
+                                EmailAddress = ci.Email,
+                                MobileTelephoneNumber = ci.Tlf
+                            };
+                        }
+                        if (oi != null)
+                        { 
                             // Pause discovery as it interferes with/slows down beam process
                             monitor.StopDiscovery();
 

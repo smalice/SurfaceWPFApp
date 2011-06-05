@@ -147,6 +147,9 @@
       <DependentUpon>ProjectItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Resources\visitCardLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Service References\ConferenceDataService\Reference.datasvcmap">
       <Generator>DataServiceClientGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

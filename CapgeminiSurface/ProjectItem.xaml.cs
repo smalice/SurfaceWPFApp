@@ -171,7 +171,7 @@ namespace CapgeminiSurface
             for (int i = 0; i < 7; i++)
             {
                 StackPanel sp = new StackPanel();
-                sp.Children.Add(new Label() { Content = string.Format("Track {0}",i) });
+                sp.Children.Add(new Label() { Content = string.Format("Track {0}",i+1) });
                 foreach (var ses in client.GetSessions(i+1))
                 {
                     sp.Children.Add(new TextBlock() { Text = ses.Title, TextWrapping=TextWrapping.Wrap });
