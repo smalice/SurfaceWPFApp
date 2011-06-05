@@ -146,6 +146,7 @@
             	Panel.ZIndex="10" 
             	x:Name="myBrowser" 
 				ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
 				HorizontalContentAlignment="Stretch" 
 				VerticalContentAlignment="Stretch" 
 				Margin="2,20,2,2" 
@@ -153,6 +154,32 @@
 				MinWidth="250" 
 				MinHeight="100"
 				 />
+        </Grid>
+        <Grid x:Name="agendaGrid" Panel.ZIndex="10" 
+              Visibility="{Binding IsAgendaItem, Converter={StaticResource BoolToVisible}}" Loaded="agendaGrid_Loaded"
+              Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="50" />
+            </Grid.ColumnDefinitions>
+        </Grid>
+        <Grid x:Name="visitGrid" Panel.ZIndex="10" 
+              Visibility="{Binding IsVisitItem, Converter={StaticResource BoolToVisible}}"
+              Background="White" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            <StackPanel VerticalAlignment="Bottom">
+                <TextBlock Text="{Binding FullName}" Foreground="Blue" HorizontalAlignment="Center" />
+                <TextBlock Text="{Binding Job}" Foreground="Blue" HorizontalAlignment="Center" />
+                <TextBlock Text="Capgemini Norge AS" Foreground="Blue" HorizontalAlignment="Center" Margin="0,20,0,0" />
+                <TextBlock Text="{Binding Tlf}" Foreground="Blue" HorizontalAlignment="Center" />
+                <TextBlock Text="{Binding Email}" Foreground="Blue" HorizontalAlignment="Center" />
+                <TextBlock Text="www.no.capgemini.com" Foreground="Blue" HorizontalAlignment="Center" />
+                <Image Source="pack://application:,,,/Resources/visitCardLogo.png" HorizontalAlignment="Stretch" />
+            </StackPanel>
         </Grid>
     </Grid>
 </s:SurfaceUserControl>

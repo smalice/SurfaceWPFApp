@@ -385,6 +385,22 @@
         <FileName>Logos/Capgemini_logo_hr.png</FileName>
         <ContentType>PictureItem</ContentType>
       </ContentItem>
+      <ContentItem>
+        <Name>Alisa</Name>
+        <FileName>Smerdova</FileName>
+        <Job>Senior Consultant</Job>
+        <Tlf>+47 90 95 94 84</Tlf>
+        <Email>alisa.smerdova@capgemini.com</Email>
+        <ContentType>VisitItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Felipe</Name>
+        <FileName>Longe</FileName>
+        <Job>Consultant</Job>
+        <Tlf>+47 </Tlf>
+        <Email>felipe.longe@capgemini.com</Email>
+        <ContentType>VisitItem</ContentType>
+      </ContentItem>
     </ContentItems>
   </Customer>
   <Customer>
@@ -437,7 +453,7 @@
 	  <ContentItem>
 		<Name>Day1</Name>
 		<FileName>NDC/Day1.png</FileName>
-		<ContentType>PictureItem</ContentType>
+		<ContentType>AgendaItem</ContentType>
 	  </ContentItem>
 	</ContentItems>
   </Customer>
@@ -455,7 +471,7 @@
 	  <ContentItem>
 		<Name>Day2</Name>
 		<FileName>NDC/Day2.png</FileName>
-		<ContentType>PictureItem</ContentType>
+		<ContentType>AgendaItem</ContentType>
 	  </ContentItem>
 	</ContentItems>
   </Customer>
@@ -473,7 +489,7 @@
 	  <ContentItem>
 		<Name>Day3</Name>
 		<FileName>NDC/Day3.png</FileName>
-		<ContentType>PictureItem</ContentType>
+		<ContentType>AgendaItem</ContentType>
 	  </ContentItem>
 	</ContentItems>
   </Customer>

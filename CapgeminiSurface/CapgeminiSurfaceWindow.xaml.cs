@@ -8,6 +8,10 @@ using Microsoft.Surface.Presentation;
 using Microsoft.Surface.Presentation.Controls;
 using Microsoft.Surface.Presentation.Manipulations;
 using System.Collections.ObjectModel;
+using SurfaceBluetooth;
+using InTheHand.Net;
+using InTheHand.Net.Bluetooth;
+using InTheHand.Net.Sockets;
 
 namespace CapgeminiSurface
 {
@@ -44,6 +48,7 @@ namespace CapgeminiSurface
 		private double dropScatHeight;
 		private double dropScatWidth;
 		private double newAngle;
+        private BluetoothMonitor monitor;
 
         public CapgeminiSurfaceWindow()
         {
@@ -94,6 +99,42 @@ namespace CapgeminiSurface
             card.SetZorder += CardContactDown;
         }
 
+        private void surfaceWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            InitializeBT();
+        }
+
+        private void InitializeBT()
+        {
+            if (monitor == null)
+            {
+                try
+                {
+                    monitor = new BluetoothMonitor();
+                }
+                catch
+                {
+                    // Can't function without a bluetooth radio present so alert the user
+                    Microsoft.Surface.UserNotifications.RequestNotification("Surface Bluetooth", "No Bluetooth Hardware Detected");
+                    return;
+                }
+
+                // Data bind the list control to the current list of available devices
+                DeviceList.ItemsSource = monitor.Devices;
+
+                // Defines how long a single search pass will last
+                monitor.DiscoveryDuration = new TimeSpan(0, 0, 5);
+                // Defines how long to wait between searches
+                monitor.IdleDuration = new TimeSpan(0, 0, 5);
+                monitor.DiscoveryStarted += new EventHandler(monitor_DiscoveryStarted);
+                monitor.DiscoveryCompleted += new EventHandler(monitor_DiscoveryCompleted);
+                // Show the Surface's Bluetooth radio name on screen
+                RadioNameText.Text = monitor.RadioFriendlyName;
+            }
+
+            // Starts listening loop for detecting nearby devices
+            monitor.StartDiscovery();
+        }
         #endregion
 
         #region Rotation
@@ -332,6 +373,150 @@ namespace CapgeminiSurface
             isSendingAfterDrop = false;
         }
 
-        public object ScatterCloseButton { get; set; }
+        #region Bluetooth methods
+        private void OnDropTargetDragEnterBT(object sender, SurfaceDragDropEventArgs e)
+        {
+            if (e.OriginalSource is FrameworkElement)
+            {
+                FrameworkElement fe = e.OriginalSource as FrameworkElement;
+
+                if (fe.DataContext is BluetoothDevice)
+                {
+                    // Drop target must be a device not the list control
+                    e.Cursor.Visual.Tag = "DragEnter";
+                }
+            }
+        }
+
+        void monitor_DiscoveryCompleted(object sender, EventArgs e)
+        {
+            // Hides the discovery animation
+            this.Dispatcher.Invoke(new UpdateVisibilityDelegate(UpdateVisibility), Visibility.Hidden);
+        }
+
+        void monitor_DiscoveryStarted(object sender, EventArgs e)
+        {
+            // Shows the discovery animation
+            this.Dispatcher.Invoke(new UpdateVisibilityDelegate(UpdateVisibility), Visibility.Visible);
+        }
+
+        delegate void UpdateVisibilityDelegate(Visibility v);
+
+        void UpdateVisibility(Visibility v)
+        {
+            // Additionally display a text description of what the surface is currently doing
+            if (v == Visibility.Visible)
+            {
+                DiscoveryStatusText.Text = "listening for Bluetooth devices...";
+            }
+            else
+            {
+                DiscoveryStatusText.Text = "waiting...";
+            }
+        }
+
+        private void OnDropTargetDragLeaveBT(object sender, SurfaceDragDropEventArgs e)
+        {
+            e.Cursor.Visual.Tag = "Dragging";
+        }
+
+        // Runs in a threadpool thread and performs the actual obex exchange
+        private void BeamObject(object context)
+        {
+            ObexWebRequest owr = context as ObexWebRequest;
+
+            try
+            {
+                InTheHand.Net.ObexWebResponse response = (InTheHand.Net.ObexWebResponse)owr.GetResponse();
+
+                // Remove once-off pairing
+                BluetoothSecurity.RemoveDevice(BluetoothAddress.Parse(owr.RequestUri.Host));
+            }
+            catch (System.Net.WebException we)
+            {
+                System.Diagnostics.Debug.WriteLine(we.ToString());
+            }
+            finally
+            {
+                // Restart discovery for new devices
+                monitor.StartDiscovery();
+            }
+        }
+
+        private void OnDropBT(object sender, SurfaceDragDropEventArgs e)
+        {
+            FrameworkElement element = e.OriginalSource as FrameworkElement;
+            if (element != null)
+            {
+                if (element.DataContext is BluetoothDevice)
+                {
+                    // Target is a Bluetooth device
+                    BluetoothDevice device = element.DataContext as BluetoothDevice;
+
+                    if (e.Cursor.Data is ContentItem)
+                    {
+                        ContentItem ci = e.Cursor.Data as ContentItem;
+                        ObexItem oi = null;
+                        if (ci.IsPictureItem)
+                        {
+                            oi = new ObexImage() { ImageUri = new Uri("pack://application:,,,/" + ci.FileName) };                            
+                        } 
+                        else if (ci.IsVisitItem)
+                        {
+                            oi = new ObexContactItem() 
+                            {
+                                FirstName = ci.Name, 
+                                LastName = ci.FileName, 
+                                EmailAddress = ci.Email,
+                                MobileTelephoneNumber = ci.Tlf
+                            };
+                        }
+                        if (oi != null)
+                        { 
+                            // Pause discovery as it interferes with/slows down beam process
+                            monitor.StopDiscovery();
+
+                            // Create the new request and write the contact details
+                            ObexWebRequest owr = new ObexWebRequest(new Uri("obex://" + device.DeviceAddress.ToString() + "/" + oi.FileName));
+                            System.IO.Stream s = owr.GetRequestStream();
+                            oi.WriteToStream(s);
+
+                            owr.ContentType = oi.ContentType;
+                            owr.ContentLength = s.Length;
+                            s.Close();
+
+                            // Beam the item on new thread
+                            System.Threading.ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback(BeamObject), owr);
+                        }
+                        // Return item to the scatter view
+                        TargetItems.Add(e.Cursor.Data as ContentItem);
+                        var item = scatterViewTarget.Items[scatterViewTarget.Items.Count - 1];
+                        favouriteStack.RemoveInstancePropertyObject(item);
+                    }
+
+                }
+
+                // Otherwise not supported
+            }
+        }
+        #endregion
+
+        #region Closing window
+        private void surfaceWindow_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (monitor != null)
+            {
+                monitor.StopDiscovery();
+            }
+        }
+
+        private void surfaceWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (monitor != null)
+            {
+                monitor.StopDiscovery();
+            }
+        }
+        #endregion
     }
 }

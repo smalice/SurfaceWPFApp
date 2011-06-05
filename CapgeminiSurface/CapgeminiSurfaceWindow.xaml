@@ -11,7 +11,7 @@
     Title="CapgeminiSurface"
     Width="1024"    
     Height="768" 
-    WindowStyle="None">
+    WindowStyle="None" Loaded="surfaceWindow_Loaded" Unloaded="surfaceWindow_Unloaded" Closing="surfaceWindow_Closing">
     <s:SurfaceWindow.Resources>
         <Storyboard x:Key="RevealFavouriteStack">
             <DoubleAnimationUsingKeyFrames 
@@ -107,9 +107,9 @@
                     Value="{x:Static TileMode.None}"/>
             </ObjectAnimationUsingKeyFrames>
         </Storyboard>
-        <DataTemplate 
+        <DataTemplate
             x:Key="ScatterViewItemDataTemplate" >
-            <cs:ProjectItem 
+            <cs:ProjectItem
                 DataContext="{Binding}"/>
         </DataTemplate>
         <Storyboard x:Key="HideLogoStack">
@@ -148,6 +148,38 @@
         		<DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Visible}"/>
         	</ObjectAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="FadeClear">
+            <ColorAnimation Storyboard.TargetName="blueBrush" Storyboard.TargetProperty="Color" To="#00000066" Duration="0:0:01"/>
+        </Storyboard>
+        <Storyboard x:Key="FadeBlue" >
+            <ColorAnimation Storyboard.TargetName="blueBrush" Storyboard.TargetProperty="Color" To="#66000066" Duration="0:0:01"/>
+        </Storyboard>
+        
+        <DataTemplate x:Key="BluetoothDeviceItemTemplate" >
+            <StackPanel x:Name="DeviceStack" AllowDrop="True"  Margin="0,0,0,0" Height="175" Width="175" >
+                <StackPanel.Background>
+                    <SolidColorBrush x:Name="blueBrush" Color="#00000066"/>
+                </StackPanel.Background>
+                <Image Width="128" Height="128" Source="{Binding Image, Mode=OneWay}" />
+                <TextBlock Foreground="White"  HorizontalAlignment="Center" Text="{Binding DeviceName, Mode=OneWay}" FontSize="22" />
+            </StackPanel>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Path=Connected}" Value="True">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard Storyboard="{StaticResource FadeBlue}"  Name="FadeBlueDevice"/>
+                    </DataTrigger.EnterActions>
+                    <DataTrigger.ExitActions>
+                        <StopStoryboard BeginStoryboardName="FadeBlueDevice"/>
+                        <BeginStoryboard Storyboard="{StaticResource FadeClear}" Name="FadeClearDevice"/>
+                    </DataTrigger.ExitActions>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Connected}" Value="False">
+                    <DataTrigger.EnterActions>
+
+                    </DataTrigger.EnterActions>
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
     </s:SurfaceWindow.Resources>
     <s:SurfaceWindow.Background>
         <ImageBrush 
@@ -242,5 +274,15 @@
         		</TransformGroup>
         	</s:SurfaceToggleButton.RenderTransform>
         </s:SurfaceToggleButton>
+        <s:SurfaceListBox AllowDrop="True" 
+                          s:SurfaceDragDrop.DragEnter="OnDropTargetDragEnterBT" s:SurfaceDragDrop.DragLeave="OnDropTargetDragLeaveBT" 
+                          s:SurfaceDragDrop.Drop="OnDropBT" ItemTemplate="{StaticResource BluetoothDeviceItemTemplate}" Margin="0" Panel.ZIndex="-2"
+                          Name="DeviceList" MinHeight="200" BorderThickness="0"  MinWidth="200" HorizontalAlignment="Right" Width="120">
+            <s:SurfaceListBox.Background>
+                <SolidColorBrush Color="#FF73C8CE" Opacity="0.3"/>
+            </s:SurfaceListBox.Background>
+        </s:SurfaceListBox>
+        <TextBlock Name="RadioNameText" Margin="0" Panel.ZIndex="12" Width="100" Height="100" HorizontalAlignment="Right"/>
+        <TextBlock Name="DiscoveryStatusText" Margin="100" Panel.ZIndex="12" Width="100" Height="100" HorizontalAlignment="Right"/>
     </Grid>
 </s:SurfaceWindow>
