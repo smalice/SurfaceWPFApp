@@ -11,7 +11,7 @@ namespace CapgeminiSurface.Model
 
         private string fileName;
 
-        public enum Type { VideoItem, PictureItem, LinkItem }
+        public enum Type { VideoItem, PictureItem, LinkItem, AgendaItem }
 
         public string FileName 
         {
@@ -32,5 +32,7 @@ namespace CapgeminiSurface.Model
         public bool IsPictureItem { get { return ContentType == Type.PictureItem; } }
 
         public bool IsLinkItem { get { return ContentType == Type.LinkItem; } }
+
+        public bool IsAgendaItem { get { return ContentType == Type.AgendaItem; } }
     }
 }

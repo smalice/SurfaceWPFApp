@@ -154,5 +154,18 @@
 				MinWidth="250" 
 				MinHeight="100" />
         </Grid>
+        <Grid x:Name="agendaGrid" Panel.ZIndex="10" 
+              Visibility="{Binding IsAgendaItem, Converter={StaticResource BoolToVisible}}" Loaded="agendaGrid_Loaded"
+              Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="50" />
+            </Grid.ColumnDefinitions>
+        </Grid>
     </Grid>
 </s:SurfaceUserControl>

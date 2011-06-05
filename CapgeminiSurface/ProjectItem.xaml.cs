@@ -6,6 +6,8 @@ using Microsoft.Surface.Presentation.Controls;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
 using System.Windows.Data;
+using CapgeminiSurface.Client;
+using System.Collections.Generic;
 
 namespace CapgeminiSurface
 {
@@ -14,6 +16,8 @@ namespace CapgeminiSurface
         #region Initialization
 
         bool _isPlaying;
+        ConferenceDataClient client = new ConferenceDataClient();
+        bool sessionLoaded;
 
         public ProjectItem()
         {
@@ -148,6 +152,33 @@ namespace CapgeminiSurface
             if (content == null || !content.IsLinkItem)
                 return;
             myBrowser.Navigate(content.Name);
+        }
+
+        private void agendaGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            var content = DataContext as ContentItem;
+            if (content != null)
+                if (!content.IsAgendaItem || sessionLoaded)
+                    return;
+            sessionLoaded = true;
+            switch (content.Name)
+            {
+                case "Day1": client.Day = 1; break;
+                case "Day2": client.Day = 2; break;
+                case "Day3": client.Day = 3; break;
+                default: return;
+            }
+            for (int i = 0; i < 7; i++)
+            {
+                StackPanel sp = new StackPanel();
+                sp.Children.Add(new Label() { Content = string.Format("Track {0}",i) });
+                foreach (var ses in client.GetSessions(i+1))
+                {
+                    sp.Children.Add(new TextBlock() { Text = ses.Title, TextWrapping=TextWrapping.Wrap });
+                }
+                agendaGrid.Children.Add(sp);
+                Grid.SetColumn(sp, i);
+            }
         }
     }
 }

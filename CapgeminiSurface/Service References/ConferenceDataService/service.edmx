@@ -1,0 +1,91 @@
+﻿<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="1.0">
+    <Schema Namespace="NdcAgenda" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <EntityContainer Name="NdcAgendaContainer" p7:LazyLoadingEnabled="true" m:IsDefaultEntityContainer="true" xmlns:p7="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntitySet Name="Sessions" EntityType="NdcAgenda.Session" />
+        <EntitySet Name="Speakers" EntityType="NdcAgenda.Speaker" />
+        <EntitySet Name="Agendas" EntityType="NdcAgenda.Agenda" />
+        <AssociationSet Name="SessionSpeaker" Association="NdcAgenda.SessionSpeaker">
+          <End Role="Session" EntitySet="Sessions" />
+          <End Role="Speaker" EntitySet="Speakers" />
+        </AssociationSet>
+        <AssociationSet Name="AgendaSession" Association="NdcAgenda.AgendaSession">
+          <End Role="Agenda" EntitySet="Agendas" />
+          <End Role="Session" EntitySet="Sessions" />
+        </AssociationSet>
+        <AssociationSet Name="AgendaSpeaker" Association="NdcAgenda.AgendaSpeaker">
+          <End Role="Agenda" EntitySet="Agendas" />
+          <End Role="Speaker" EntitySet="Speakers" />
+        </AssociationSet>
+      </EntityContainer>
+      <EntityType Name="Session">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="Title" Type="Edm.String" Nullable="false" />
+        <Property Name="StartHour" Type="Edm.Int32" Nullable="false" />
+        <Property Name="DurationInMinutes" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Day" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Description" Type="Edm.String" Nullable="false" />
+        <Property Name="AgendaId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Track" Type="Edm.Int32" Nullable="false" />
+        <Property Name="StartMinute" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="Speakers" Relationship="NdcAgenda.SessionSpeaker" FromRole="Session" ToRole="Speaker" />
+        <NavigationProperty Name="Agenda" Relationship="NdcAgenda.AgendaSession" FromRole="Session" ToRole="Agenda" />
+      </EntityType>
+      <EntityType Name="Speaker">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" />
+        <Property Name="Bio" Type="Edm.String" Nullable="false" />
+        <Property Name="AgendaId" Type="Edm.Int32" Nullable="false" />
+        <Property Name="PhotoUrl" Type="Edm.String" Nullable="false" />
+        <NavigationProperty Name="Sessions" Relationship="NdcAgenda.SessionSpeaker" FromRole="Speaker" ToRole="Session" />
+        <NavigationProperty Name="Agenda" Relationship="NdcAgenda.AgendaSpeaker" FromRole="Speaker" ToRole="Agenda" />
+      </EntityType>
+      <EntityType Name="Agenda">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Int32" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        <Property Name="Version" Type="Edm.Int32" Nullable="false" />
+        <Property Name="Title" Type="Edm.String" Nullable="false" />
+        <Property Name="AgendaId" Type="Edm.String" Nullable="false" />
+        <Property Name="LastUpdated" Type="Edm.DateTime" Nullable="false" />
+        <NavigationProperty Name="Sessions" Relationship="NdcAgenda.AgendaSession" FromRole="Agenda" ToRole="Session" />
+        <NavigationProperty Name="Speakers" Relationship="NdcAgenda.AgendaSpeaker" FromRole="Agenda" ToRole="Speaker" />
+      </EntityType>
+      <Association Name="SessionSpeaker">
+        <End Role="Session" Type="NdcAgenda.Session" Multiplicity="*" />
+        <End Role="Speaker" Type="NdcAgenda.Speaker" Multiplicity="*" />
+      </Association>
+      <Association Name="AgendaSession">
+        <End Role="Agenda" Type="NdcAgenda.Agenda" Multiplicity="1" />
+        <End Role="Session" Type="NdcAgenda.Session" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Agenda">
+            <PropertyRef Name="Id" />
+          </Principal>
+          <Dependent Role="Session">
+            <PropertyRef Name="AgendaId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+      <Association Name="AgendaSpeaker">
+        <End Role="Agenda" Type="NdcAgenda.Agenda" Multiplicity="1" />
+        <End Role="Speaker" Type="NdcAgenda.Speaker" Multiplicity="*" />
+        <ReferentialConstraint>
+          <Principal Role="Agenda">
+            <PropertyRef Name="Id" />
+          </Principal>
+          <Dependent Role="Speaker">
+            <PropertyRef Name="AgendaId" />
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

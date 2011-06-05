@@ -117,6 +117,8 @@
     <Compile Include="Bluetooth\ObexContact.cs" />
     <Compile Include="Bluetooth\ObexImage.cs" />
     <Compile Include="Bluetooth\ObexItem.cs" />
+    <Compile Include="Client\ConferenceDataClient.cs" />
+    <Compile Include="Client\ConferenceSession.cs" />
     <Compile Include="CustomerFilter.xaml.cs">
       <DependentUpon>CustomerFilter.xaml</DependentUpon>
     </Compile>
@@ -145,6 +147,10 @@
       <DependentUpon>ProjectItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Service References\ConferenceDataService\Reference.datasvcmap">
+      <Generator>DataServiceClientGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -182,6 +188,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Service References\ConferenceDataService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.datasvcmap</DependentUpon>
+    </Compile>
     <Compile Include="Util\TSoundPlayer.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -189,6 +200,7 @@
     <None Include="Resources\Logos\tempLogoIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Service References\ConferenceDataService\service.edmx" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Background\WindowBackground.jpg" />
@@ -380,7 +392,9 @@
     <Resource Include="Resources\Logos\track_id.png" />
     <Resource Include="Resources\Logos\statoilLogo.png" />
     <Resource Include="Resources\Logos\temporaryLogo.png" />
-    <Resource Include="CapgeminiSurface.xml" />
+    <Resource Include="CapgeminiSurface.xml">
+      <SubType>Designer</SubType>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Page Include="CapgeminiSurfaceWindow.xaml">
@@ -439,6 +453,13 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ServiceReferenceMetadataStorage Include="Service References\ConferenceDataService\">
+      <Type>datasvcmap</Type>
+    </ServiceReferenceMetadataStorage>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

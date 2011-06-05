@@ -437,7 +437,7 @@
 	  <ContentItem>
 		<Name>Day1</Name>
 		<FileName>NDC/Day1.png</FileName>
-		<ContentType>PictureItem</ContentType>
+		<ContentType>AgendaItem</ContentType>
 	  </ContentItem>
 	</ContentItems>
   </Customer>
@@ -455,7 +455,7 @@
 	  <ContentItem>
 		<Name>Day2</Name>
 		<FileName>NDC/Day2.png</FileName>
-		<ContentType>PictureItem</ContentType>
+		<ContentType>AgendaItem</ContentType>
 	  </ContentItem>
 	</ContentItems>
   </Customer>
@@ -473,7 +473,7 @@
 	  <ContentItem>
 		<Name>Day3</Name>
 		<FileName>NDC/Day3.png</FileName>
-		<ContentType>PictureItem</ContentType>
+		<ContentType>AgendaItem</ContentType>
 	  </ContentItem>
 	</ContentItems>
   </Customer>
