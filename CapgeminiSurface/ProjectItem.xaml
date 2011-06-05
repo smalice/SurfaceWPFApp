@@ -151,7 +151,8 @@
 				Margin="2,20,2,2" 
 				EnableAsyncRendering="True" 
 				MinWidth="250" 
-				MinHeight="100" />
+				MinHeight="100"
+				 />
         </Grid>
     </Grid>
 </s:SurfaceUserControl>
