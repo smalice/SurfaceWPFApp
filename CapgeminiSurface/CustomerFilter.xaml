@@ -42,7 +42,7 @@
     	</VisualStateManager.CustomVisualStateManager>    
 		<Rectangle 
             Stroke="White" 
-            Margin="-87,-11,-440,-39" 
+            Margin="-87,-11,-490,-39" 
             RadiusX="25" 
             RadiusY="25" 
             StrokeThickness="4">
@@ -91,6 +91,24 @@
                 </Image>
 			</s:SurfaceToggleButton>
 			<s:SurfaceToggleButton 
+                x:Name="OtherButton"   
+                Checked="OtherButtonChecked" 
+                Unchecked="OtherButtonUnchecked" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center" 
+                Height="72" 
+                Width="123">
+				<Image 
+					Source="Resources\FilterIcons\globe2.png" 
+					Height="60" 
+					Width="60" 
+					ToolTip="Show/Hide Other compenies">
+					<Image.Effect>
+						<DropShadowEffect/>
+					</Image.Effect>
+				</Image>
+            </s:SurfaceToggleButton>
+			<s:SurfaceToggleButton 
                 x:Name="NdcButton"  
                 Checked="NdcButtonChecked" 
                 Unchecked="NdcButtonUnchecked"  
@@ -100,32 +118,14 @@
                 Width="123">
 				<Image 
                     Source="Resources\Logos\NDC.png" 
-                    Height="60" 
-                    Width="60" 
-                    ToolTip="Show/Hide Ndc ??">
+                    Height="39" 
+                    Width="88" 
+                    ToolTip="Show/Hide Ndc ??" Stretch="Fill">
 					<Image.Effect>
-						<DropShadowEffect/>
+						<DropShadowEffect ShadowDepth="8"/>
 					</Image.Effect>
 				</Image>
 			</s:SurfaceToggleButton>
-			<s:SurfaceToggleButton 
-                x:Name="OtherButton"   
-                Checked="OtherButtonChecked" 
-                Unchecked="OtherButtonUnchecked" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Center" 
-                Height="72" 
-                Width="123">
-                <Image 
-                    Source="Resources\FilterIcons\globe2.png" 
-                    Height="60" 
-                    Width="60" 
-                    ToolTip="Show/Hide Other compenies">
-	                <Image.Effect>
-		                <DropShadowEffect/>
-	                </Image.Effect>
-                </Image>
-            </s:SurfaceToggleButton>
 			<s:SurfaceToggleButton 
                 x:Name="ShowHide1"   
                 Checked="ShowButtonChecked" 

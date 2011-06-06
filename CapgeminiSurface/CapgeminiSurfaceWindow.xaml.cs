@@ -518,5 +518,19 @@ namespace CapgeminiSurface
             }
         }
         #endregion
+
+        private void BTbutton_Checked(object sender, RoutedEventArgs e)
+        {
+            DeviceList.Visibility = Visibility.Visible;
+            //RadioNameText.Visibility = Visibility.Visible;
+            //DiscoveryStatusText.Visibility = Visibility.Visible;
+        }
+
+        private void BTbutton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            DeviceList.Visibility = Visibility.Collapsed;
+            RadioNameText.Visibility = Visibility.Collapsed;
+            DiscoveryStatusText.Visibility = Visibility.Collapsed;
+        }
     }
 }

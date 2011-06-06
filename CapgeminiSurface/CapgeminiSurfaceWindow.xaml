@@ -229,7 +229,7 @@
         </cs:FavouriteStack>
         <cs:CustomerFilter 
             HorizontalAlignment="Left" 
-            Margin="12,600,0,0" 
+            Margin="12,620,0,0" 
             x:Name="CustomerFilter" 
             VerticalAlignment="Top" 
             RenderTransformOrigin="0.5,0.5" 
@@ -238,7 +238,7 @@
         <cs:ParticleSystemManager
         	x:Name="particleSystem" 
         	Height="1024" 
-        	Margin="16,-120,-16,-136" 
+        	Margin="0,-120" 
         	Width="1024"
             Panel.ZIndex="-1"/>
         <s:ScatterView 
@@ -254,17 +254,24 @@
         	x:Name="scatterViewTarget" 
         	Panel.ZIndex="-2"/>
         <s:SurfaceToggleButton 
-            Content="Logo" 
             HorizontalAlignment="Left" 
             Margin="0" 
             VerticalAlignment="Bottom" 
-            IsChecked="True" 
             RenderTransformOrigin="0.5,0.5" 
-            FontSize="16" 
+            FontSize="13.333" 
             BorderThickness="8"
             Checked="SurfaceToggleButtonChecked"
             Unchecked="SurfaceToggleButtonUnchecked"
-            Panel.ZIndex="11" >
+            Panel.ZIndex="11" 
+			Width="74" 
+			Height="46" Content="Logo" IsChecked="True"
+			 >
+        	<s:SurfaceToggleButton.Foreground>
+        		<SolidColorBrush Color="Black"/>
+        	</s:SurfaceToggleButton.Foreground>
+        	<s:SurfaceToggleButton.Background>
+        		<ImageBrush ImageSource="Resources/FilterIcons/Cap.png" Stretch="None"/>
+        	</s:SurfaceToggleButton.Background>
         	<s:SurfaceToggleButton.RenderTransform>
         		<TransformGroup>
         			<ScaleTransform/>
@@ -274,15 +281,56 @@
         		</TransformGroup>
         	</s:SurfaceToggleButton.RenderTransform>
         </s:SurfaceToggleButton>
+        <s:SurfaceToggleButton 
+            x:Name="BTbutton" 
+        	Content="Bluetooth" 
+        	Margin="0" 
+        	IsChecked="False" 
+        	RenderTransformOrigin="0.5,0.5" 
+        	FontSize="9.333" 
+        	BorderThickness="8"
+        	Checked="BTbutton_Checked"
+        	Unchecked="BTbutton_Unchecked"
+        	Panel.ZIndex="14" 
+			VerticalAlignment="Bottom" 
+			HorizontalAlignment="Right" Height="40" ClipToBounds="True" Width="70" >
+        	<s:SurfaceToggleButton.Foreground>
+        		<SolidColorBrush Color="Black"/>
+        	</s:SurfaceToggleButton.Foreground>
+        	<s:SurfaceToggleButton.Background>
+        		<ImageBrush ImageSource="Resources/Bluetooth.png"/>
+        	</s:SurfaceToggleButton.Background>
+        	<s:SurfaceToggleButton.RenderTransform>
+        		<TransformGroup>
+        			<ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+        			<SkewTransform/>
+        			<RotateTransform Angle="-90"/>
+        			<TranslateTransform Y="-370" X="8"/>
+        		</TransformGroup>
+        	</s:SurfaceToggleButton.RenderTransform>
+        </s:SurfaceToggleButton>
         <s:SurfaceListBox AllowDrop="True" 
-                          s:SurfaceDragDrop.DragEnter="OnDropTargetDragEnterBT" s:SurfaceDragDrop.DragLeave="OnDropTargetDragLeaveBT" 
-                          s:SurfaceDragDrop.Drop="OnDropBT" ItemTemplate="{StaticResource BluetoothDeviceItemTemplate}" Margin="0" Panel.ZIndex="-2"
-                          Name="DeviceList" MinHeight="200" BorderThickness="0"  MinWidth="200" HorizontalAlignment="Right" Width="120">
+                          s:SurfaceDragDrop.DragEnter="OnDropTargetDragEnterBT" 
+                          s:SurfaceDragDrop.DragLeave="OnDropTargetDragLeaveBT" 
+                          s:SurfaceDragDrop.Drop="OnDropBT" 
+                          ItemTemplate="{StaticResource BluetoothDeviceItemTemplate}" 
+                          Margin="0" 
+                          Panel.ZIndex="-2"
+                          Name="DeviceList" 
+                          Visibility="Collapsed"
+                          MinHeight="200" 
+                          BorderThickness="0"  
+                          MinWidth="200" 
+                          HorizontalAlignment="Right" 
+                          Width="120">
             <s:SurfaceListBox.Background>
-                <SolidColorBrush Color="#FF73C8CE" Opacity="0.3"/>
+                <SolidColorBrush 
+                    Color="#FF73C8CE" 
+                    Opacity="0.3"/>
             </s:SurfaceListBox.Background>
         </s:SurfaceListBox>
-        <TextBlock Name="RadioNameText" Margin="0" Panel.ZIndex="12" Width="100" Height="100" HorizontalAlignment="Right"/>
-        <TextBlock Name="DiscoveryStatusText" Margin="100" Panel.ZIndex="12" Width="100" Height="100" HorizontalAlignment="Right"/>
+        <TextBlock 
+            Name="RadioNameText" Margin="0" Panel.ZIndex="12" Width="100" Height="100" HorizontalAlignment="Right" VerticalAlignment="Bottom" Visibility="Collapsed"/>
+        <TextBlock Name="DiscoveryStatusText" Margin="0" Panel.ZIndex="12" Width="100" Height="100" HorizontalAlignment="Right" VerticalAlignment="Bottom" Visibility="Collapsed"/>
     </Grid>
 </s:SurfaceWindow>
