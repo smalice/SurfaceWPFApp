@@ -48,6 +48,11 @@ namespace CapgeminiSurface
 		private double dropScatHeight;
 		private double dropScatWidth;
 		private double newAngle;
+		private double maxHeight;
+		private double maxWidth;
+		private double minHeight;
+		private double minWidth;
+		
         private BluetoothMonitor monitor;
 
         public CapgeminiSurfaceWindow()
@@ -239,10 +244,18 @@ namespace CapgeminiSurface
             TargetItems.Add(e.Cursor.Data as ContentItem);
             var item = scatterViewTarget.Items[scatterViewTarget.Items.Count - 1];
             dropPoint = e.Cursor.GetPosition(scatterViewTarget);
-            dropOrientation = e.Cursor.GetOrientation(scatterViewTarget);
-			dropScatHeight = e.Cursor.Visual.Height;
-			dropScatWidth = e.Cursor.Visual.Width;
-            isSendingAfterDrop = true;
+			
+			maxHeight = e.Cursor.Visual.MaxHeight;
+            maxWidth = e.Cursor.Visual.MaxWidth;
+			minHeight = e.Cursor.Visual.MinHeight;
+            minWidth = e.Cursor.Visual.MinWidth;
+			
+			dropOrientation = e.Cursor.GetOrientation(scatterViewTarget);
+			
+			dropScatHeight = e.Cursor.Visual.ActualHeight;
+			dropScatWidth = e.Cursor.Visual.ActualWidth;
+            
+			isSendingAfterDrop = true;
             scatterViewTarget.Activate(item);
             favouriteStack.RemoveInstancePropertyObject(item);
 
@@ -360,14 +373,21 @@ namespace CapgeminiSurface
             if (!isSendingAfterDrop) return;
             (e.OriginalSource as ScatterViewItem).Center = dropPoint;
             (e.OriginalSource as ScatterViewItem).Orientation = dropOrientation;
-			if (dropScatHeight < 100.0)
-			{
-				dropScatHeight=(dropScatHeight*1.5);
-			}
-			if (dropScatWidth < 150.0)
-			{
-				dropScatWidth=(dropScatWidth*1.5);
-			}
+			
+			(e.OriginalSource as ScatterViewItem).MaxHeight = maxHeight;
+			(e.OriginalSource as ScatterViewItem).MaxWidth 	= maxWidth;
+			(e.OriginalSource as ScatterViewItem).MinHeight = minHeight;
+			(e.OriginalSource as ScatterViewItem).MinWidth 	= minWidth;
+            
+            //if (dropScatHeight < 100.0)
+            //{
+            //    dropScatHeight=(dropScatHeight*1.5);
+            //}
+            //if (dropScatWidth < 150.0)
+            //{
+            //    dropScatWidth=(dropScatWidth*1.5);
+            //}
+
 			(e.OriginalSource as ScatterViewItem).Height = (dropScatHeight);
 			(e.OriginalSource as ScatterViewItem).Width = (dropScatWidth);
             isSendingAfterDrop = false;

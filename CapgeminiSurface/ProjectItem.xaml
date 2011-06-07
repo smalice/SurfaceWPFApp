@@ -21,7 +21,7 @@
             x:Name="pictureGrid" 
             Visibility="{Binding IsPictureItem, Converter={StaticResource BoolToVisible}}" 
             Panel.ZIndex="10" 
-            Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
+            Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" MaxWidth="0" MaxHeight="0" MinWidth="150" MinHeight="100">
             <StackPanel 
                 Panel.ZIndex="10" >
                 <TextBlock 
@@ -167,17 +167,20 @@
             Panel.ZIndex="10" 
             Visibility="{Binding IsVisitItem, Converter={StaticResource BoolToVisible}}"
             Background="White" 
-            ScrollViewer.VerticalScrollBarVisibility="Disabled">
-            <StackPanel 
-                VerticalAlignment="Bottom">
-                <TextBlock Text="{Binding FullName}" Foreground="Blue" HorizontalAlignment="Center" />
-                <TextBlock Text="{Binding Job}" Foreground="Blue" HorizontalAlignment="Center" />
-                <TextBlock Text="Capgemini Norge AS" Foreground="Blue" HorizontalAlignment="Center" Margin="0,20,0,0" />
-                <TextBlock Text="{Binding Tlf}" Foreground="Blue" HorizontalAlignment="Center" />
-                <TextBlock Text="{Binding Email}" Foreground="Blue" HorizontalAlignment="Center" />
-                <TextBlock Text="www.no.capgemini.com" Foreground="Blue" HorizontalAlignment="Center" />
-                <Image Source="pack://application:,,,/Resources/visitCardLogo.png" HorizontalAlignment="Stretch" />
+            ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+            Margin="0" 
+            Loaded="visitGrid_Loaded" 
+            MinWidth="133.33" 
+            MinHeight="200">
+            <StackPanel Margin="10,0" Panel.ZIndex="1" ScrollViewer.VerticalScrollBarVisibility="Disabled" VerticalAlignment="Center">
+            	<TextBlock Text="{Binding FullName}" Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" HorizontalAlignment="Center" FontWeight="Bold" FontSize="9.333" Panel.ZIndex="1" />
+            	<TextBlock Text="{Binding Job}" Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" HorizontalAlignment="Center" FontSize="9.333" Panel.ZIndex="1" />
+            	<TextBlock Text="Capgemini Norge AS" Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" HorizontalAlignment="Center" Margin="0,20,0,0" FontWeight="Bold" FontSize="9.333" Panel.ZIndex="1" />
+            	<TextBlock Text="{Binding Tlf}" Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" HorizontalAlignment="Center" FontSize="9.333" Panel.ZIndex="1" />
+            	<TextBlock Text="{Binding Email}" Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" HorizontalAlignment="Center" FontSize="9.333" Panel.ZIndex="1" />
+            	<TextBlock Text="www.no.capgemini.com" Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" HorizontalAlignment="Center" FontSize="9.333" Panel.ZIndex="1" />
             </StackPanel>
+            <Image Source="pack://application:,,,/Resources/visitCardLogo.png" HorizontalAlignment="Stretch" Margin="16,0,16,16" VerticalAlignment="Bottom" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
         </Grid>
         <Grid 
         	x:Name="web2Grid" 

@@ -163,7 +163,7 @@ namespace CapgeminiSurface
             sessionLoaded = true;
             if (content != null)
                 switch (content.Name)
-                {
+                {    
                     case "Day1": client.Day = 1; break;
                     case "Day2": client.Day = 2; break;
                     case "Day3": client.Day = 3; break;
@@ -237,6 +237,11 @@ namespace CapgeminiSurface
 				    }
 				}
             }
+        }
+
+        private void visitGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }
