@@ -16,21 +16,13 @@ namespace CapgeminiSurface
         #region Initialization
 
         bool _isPlaying;
-        ConferenceDataClient client = new ConferenceDataClient();
+        public static ConferenceDataClient client;
         bool sessionLoaded;
 
         public ProjectItem()
         {
             InitializeComponent();
-            myBrowser.Loaded += new RoutedEventHandler(myBrowser_Loaded);
-        }
-
-        void myBrowser_Loaded(object sender, RoutedEventArgs e)
-        {
-            var content = DataContext as ContentItem;
-            if (content == null || !content.IsLinkItem)
-                return;
-            myBrowser.Navigate(content.Name);
+            
         }
 
         #endregion
@@ -146,19 +138,11 @@ namespace CapgeminiSurface
             _isPlaying = !_isPlaying;
         }
 
-        private void SurfaceButton_Click(object sender, RoutedEventArgs e)
-        {
-            var content = DataContext as ContentItem;
-            if (content == null || !content.IsLinkItem)
-                return;
-            myBrowser.Navigate(content.Name);
-        }
-
         private void agendaGrid_Loaded(object sender, RoutedEventArgs e)
         {
             var content = DataContext as ContentItem;
             if (content != null)
-                if (!content.IsAgendaItem || sessionLoaded)
+                if (!content.IsAgendaItem || sessionLoaded || client == null)
                     return;
             sessionLoaded = true;
             if (content != null)

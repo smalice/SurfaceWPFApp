@@ -35,8 +35,6 @@ namespace CapgeminiSurface.Model
             set
             {
                 link = value;
-                if (link != null && ContentItems != null)
-                    ContentItems.Add(new ContentItem() { Name = link, ContentType = ContentItem.Type.LinkItem });
             }
             get { return link; }
         }

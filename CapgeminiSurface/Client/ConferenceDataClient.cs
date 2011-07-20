@@ -12,7 +12,12 @@ namespace CapgeminiSurface.Client
         Agenda agenda;
 
         public int Day = 1;
-        
+
+        public ConferenceDataClient()
+        {
+            Init();
+        }
+
         private void Init()
         {
             if (agenda != null) return;

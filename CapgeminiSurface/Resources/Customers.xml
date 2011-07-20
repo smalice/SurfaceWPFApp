@@ -385,22 +385,6 @@
         <FileName>Logos/Capgemini_logo_hr.png</FileName>
         <ContentType>PictureItem</ContentType>
       </ContentItem>
-      <ContentItem>
-        <Name>Alisa</Name>
-        <FileName>Smerdova</FileName>
-        <Job>Senior Consultant</Job>
-        <Tlf>+47 90 95 94 84</Tlf>
-        <Email>alisa.smerdova@capgemini.com</Email>
-        <ContentType>VisitItem</ContentType>
-      </ContentItem>
-      <ContentItem>
-        <Name>Felipe</Name>
-        <FileName>Longe</FileName>
-        <Job>Consultant</Job>
-        <Tlf>+47 </Tlf>
-        <Email>felipe.longe@capgemini.com</Email>
-        <ContentType>VisitItem</ContentType>
-      </ContentItem>
     </ContentItems>
   </Customer>
   <Customer>
@@ -508,6 +492,166 @@
         <Name>Homepage</Name>
         <FileName>Pages/Epicentre.png</FileName>
         <ContentType>PictureItem</ContentType>
+      </ContentItem>
+    </ContentItems>
+  </Customer>
+  <Customer>
+    <Name>Contacts</Name>
+    <Link>http://www.capgemini.com/</Link>
+    <Logo>Logos/Capgemini_logo_hr.png</Logo>
+    <Category>Capgemini</Category>
+    <ContentItems>
+      <ContentItem>
+        <Name>Alisa</Name>
+        <FileName>Smerdova</FileName>
+        <Job>Senior Consultant</Job>
+        <Tlf>+47 90 95 94 84</Tlf>
+        <Email>alisa.smerdova@capgemini.com</Email>
+        <ContentType>VisitItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Felipe</Name>
+        <FileName>Longe</FileName>
+        <Job>Consultant</Job>
+        <Tlf>+47 46 42 37 79</Tlf>
+        <Email>felipe.longe@capgemini.com</Email>
+        <ContentType>VisitItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Edgar</Name>
+        <FileName>Stokka</FileName>
+        <Job>Head of AD M, Stavanger</Job>
+        <Tlf>+47 99 62 51 00</Tlf>
+        <Email>edgar.stokka@capgemini.com</Email>
+        <ContentType>VisitItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Stian</Name>
+        <FileName>Myrland</FileName>
+        <Job>Head of AD M, Trondheim</Job>
+        <Tlf>+47 90 56 33 22</Tlf>
+        <Email>stian.myrland@capgemini.com</Email>
+        <ContentType>VisitItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Bjørn Lenchler</Name>
+        <FileName>Hauge</FileName>
+        <Job>Head of AD M, Oslo</Job>
+        <Tlf>+47 91 39 46 85</Tlf>
+        <Email>bjorn.lenchler-hauge@capgemini.com</Email>
+        <ContentType>VisitItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Anders</Name>
+        <FileName>Ravik</FileName>
+        <Job>Principal</Job>
+        <Tlf>+47 90 63 61 49</Tlf>
+        <Email>anders.ravik@capgemini.com</Email>
+        <ContentType>VisitItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Ruben Olav</Name>
+        <FileName>Larsen</FileName>
+        <Job>Senior Consultant</Job>
+        <Tlf>+47 93 24 29 50</Tlf>
+        <Email>ruben-olav.larsen@capgemini.com</Email>
+        <ContentType>VisitItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Harald</Name>
+        <FileName>Nakstad</FileName>
+        <Job>Managing Consultant</Job>
+        <Tlf>+47 90 63 38 64</Tlf>
+        <Email>harald.nakstad@capgemini.com</Email>
+        <ContentType>VisitItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Trond Velle</Name>
+        <FileName>Andersen</FileName>
+        <Job>Senior Consultant</Job>
+        <Tlf>+47 97 54 88 08</Tlf>
+        <Email>trond-velle.andersen@capgemini.com</Email>
+        <ContentType>VisitItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Christer V.</Name>
+        <FileName>Aas</FileName>
+        <Job>Senior Consultant</Job>
+        <Tlf>+47 98 69 53 02</Tlf>
+        <Email>christer.aas@capgemini.com</Email>
+        <ContentType>VisitItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Shakil</Name>
+        <FileName>Ahmad</FileName>
+        <Job>Consultant</Job>
+        <Tlf>+47 99 25 94 98</Tlf>
+        <Email>shakil.ahmad@capgemini.com</Email>
+        <ContentType>VisitItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Tormod</Name>
+        <FileName>Fjeldskår</FileName>
+        <Job>Senior Consultant</Job>
+        <Tlf>+47 95 20 39 17</Tlf>
+        <Email>tormod.fjeldskar@capgemini.com</Email>
+        <ContentType>VisitItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Arild</Name>
+        <FileName>Havnen</FileName>
+        <Job>Senior Consultant</Job>
+        <Tlf>+47 92 02 65 28</Tlf>
+        <Email>arild.havnen@capgemini.com</Email>
+        <ContentType>VisitItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Håvar</Name>
+        <FileName>Wehus</FileName>
+        <Job>Senior Consultant</Job>
+        <Tlf>+47 46 41 29 69</Tlf>
+        <Email>havar.wehus@capgemini.com</Email>
+        <ContentType>VisitItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Ann Kristin</Name>
+        <FileName>Skollerud</FileName>
+        <Job>Recruitment Manager</Job>
+        <Tlf>+47 90 74 40 60</Tlf>
+        <Email>ann-kristin.skollerud@capgemini.com</Email>
+        <ContentType>VisitItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Thomas</Name>
+        <FileName>Johannessen</FileName>
+        <Job>Senior Consultant</Job>
+        <Tlf>+47 92 65 51 34</Tlf>
+        <Email>thomas.johannessen@capgemini.com</Email>
+        <ContentType>VisitItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Claus Erik</Name>
+        <FileName>Kirkerud</FileName>
+        <Job>Consultant</Job>
+        <Tlf>+47 93 48 64 41</Tlf>
+        <Email>claus-erik.kirkerud@capgemini.com</Email>
+        <ContentType>VisitItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Erik</Name>
+        <FileName>Nesse</FileName>
+        <Job>Consultant</Job>
+        <Tlf>+47 98 86 75 50</Tlf>
+        <Email>erik.nesse@capgemini.com</Email>
+        <ContentType>VisitItem</ContentType>
+      </ContentItem>
+      <ContentItem>
+        <Name>Daniel</Name>
+        <FileName>Vartdal</FileName>
+        <Job>Consultant</Job>
+        <Tlf>+47 98 44 05 26</Tlf>
+        <Email>daniel.vartdal@capgemini.com </Email>
+        <ContentType>VisitItem</ContentType>
       </ContentItem>
     </ContentItems>
   </Customer>

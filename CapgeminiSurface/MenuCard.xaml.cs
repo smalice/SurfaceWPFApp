@@ -13,17 +13,20 @@ namespace CapgeminiSurface
     public partial class MenuCard
     {
         #region Initialization
-        
+
         readonly Point _centerPoint = new Point(512, 384);
 
         public EventHandler<ContactEventArgs> SetZorder;
 
         public enum States
-        {   StateRotation = 0, 
-            StateUnlocked = 1, 
+        {
+            StateRotation = 0,
+            StateUnlocked = 1,
         };
 
         public States CurrentState = States.StateRotation;
+
+        public static bool OneCardOut = false;
 
         public static bool CardOut;
 
@@ -35,38 +38,55 @@ namespace CapgeminiSurface
             CurrentState = States.StateRotation;
             CardOut = false;
         }
-        
+
         #endregion
 
         #region Rotation
 
         private Affine2DManipulationProcessor _manipulationProcessor;
 
+        /// <summary>
+        /// Initializer for ManipulationProcessor of MenuCard
+        /// </summary>
+        /// <returns></returns>
         private void InitializeManipulationProcessor()
         {
             _manipulationProcessor = new Affine2DManipulationProcessor(Affine2DManipulations.Rotate, rotationGrid, _centerPoint);
             _manipulationProcessor.Affine2DManipulationDelta += OnManipulationDelta;
         }
 
+        /// <summary>
+        /// Rotation of MenuCard using ManipulationProcessor
+        /// </summary>
+        /// <returns></returns>
+        public void OnManipulationDelta(object sender, Affine2DOperationDeltaEventArgs e)
+        {
+            cardRotateTransform.Angle += e.RotationDelta;
+        }
+
         #endregion
 
         #region SurfaceInteraction
-        
-        public void OnManipulationDelta(object sender, Affine2DOperationDeltaEventArgs e)
-        {
-            cardRotateTransform.Angle += e.RotationDelta;  
-        }
 
+        /// <summary>
+        /// Override of ContactDown on ManuCard.
+        /// If Card is in rotation state the SetZorder method is called.
+        /// </summary>
+        /// <returns></returns>
         protected override void OnContactDown(ContactEventArgs e)
         {
             if (!CurrentState.Equals(States.StateRotation))
             {
                 e.Handled = true;
             }
-
+            
             SetZorder(this, e);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public void AfterContactdown(ContactEventArgs e)
         {
             if (CurrentState.Equals(States.StateRotation))
@@ -83,54 +103,64 @@ namespace CapgeminiSurface
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public void AfterTapReset()
+        {
+            OneCardOut = false;
+        }
+
+        /// <summary>
+        /// Override of ContactTapGesture for MenuCard
+        /// </summary>
+        /// <returns></returns>
         protected override void OnContactTapGesture(ContactEventArgs e)
         {
             PlaySound(Properties.Resources.Tap);
 
             if (!CurrentState.Equals(States.StateRotation) && CardOut)
             {
-                e.Handled = true;
+                if (CurrentState.Equals(States.StateUnlocked) && CardOut)
+                {
+                    RemoveCurrentAnimation();
+
+                    CardOut = false;
+
+                    CurrentState = States.StateRotation;
+
+                    ModelManager.Instance.SelectedCustomer = null;
+
+                    OneCardOut = false;
+
+                    OnTapAnimationIn();
+                }
+                else
+                    e.Handled = true;
             }
-            
-            if (!CardOut)
+
+            if (!CardOut && !OneCardOut)
+            {
                 ModelManager.Instance.SelectedCustomer = DataContext as Customer;
+                OneCardOut = true;
+            }
+            else
+            {
+                e.Handled = true;
+                return;
+
+            }
+
         }
 
         public void AfterOnTapGesture(ContactEventArgs e)
         {
             OnTapAnimation();
-            
+
             CardOut = true;
 
             CurrentState = States.StateUnlocked;
-        }
-
-        private void ScatCardActivated(object sender, RoutedEventArgs e)
-        {
-            if (CurrentState.Equals(States.StateUnlocked) && CardOut)
-            {
-                RemoveCurrentAnimation();
-
-                CardOut = false;
-
-                CurrentState = States.StateRotation;
-
-                ModelManager.Instance.SelectedCustomer = null;
-            }
-            else
-                e.Handled = true;
-        }
-
-
-        private void ScatCardScatterManipulationStarted(object sender, ScatterManipulationStartedEventArgs e)
-        {
-            
-            e.Handled = true;
-        }
-
-        private void ScatCardScatterManipulationDelta(object sender, ScatterManipulationDeltaEventArgs e)
-        {
-            e.Handled = true;
         }
 
         #endregion
@@ -146,26 +176,34 @@ namespace CapgeminiSurface
         {
             PlayAnimation("TapTheCard", false, true);
             PlayAnimation("dragOut", true, true);
-            PlayAnimation("CardIsOut",true,true);
+            PlayAnimation("CardIsOut", true, true);
+        }
+
+        private void OnTapAnimationIn()
+        {
+
+            PlayAnimation("dragOut", false, false);
+            PlayAnimation("CardIsOut", false, false);
+            PlayAnimation("dragIn", true, true);
         }
 
         public void FadeInCardAnimation()
         {
-            PlayAnimation("FadeOutCard",false,true);
-            PlayAnimation("FadeInCard",true,true);
+            PlayAnimation("FadeOutCard", false, true);
+            PlayAnimation("FadeInCard", true, true);
         }
 
         public void FadeOutCardAnimation()
         {
-            PlayAnimation("FadeInCard",false,true);
-            PlayAnimation("FadeOutCard",true,true);
+            PlayAnimation("FadeInCard", false, true);
+            PlayAnimation("FadeOutCard", true, true);
         }
 
         private void AfterContactDownAnimation()
         {
-            PlayAnimation("TapTheCard",true,true);
+            PlayAnimation("TapTheCard", true, true);
         }
-        
+
         private void PlayAnimation(String name, Boolean play, Boolean remove)
         {
             var animation = (Storyboard)FindResource(name);
@@ -174,11 +212,11 @@ namespace CapgeminiSurface
             if (play)
                 animation.Begin();
         }
-    
+
         #endregion
 
         #region Sound
-        
+
         private static void PlaySound(UnmanagedMemoryStream unmanagedMemoryStream)
         {
             new ThreadedSoundPlayer(unmanagedMemoryStream).PlaySound();

@@ -11,7 +11,7 @@
     Title="CapgeminiSurface"
     Width="1024"    
     Height="768" 
-    WindowStyle="None" Loaded="surfaceWindow_Loaded" Unloaded="surfaceWindow_Unloaded" Closing="surfaceWindow_Closing">
+    WindowStyle="None" Loaded="SurfaceWindowLoaded" Unloaded="SurfaceWindowUnloaded" Closing="SurfaceWindowClosing">
     <s:SurfaceWindow.Resources>
         <Storyboard x:Key="RevealFavouriteStack">
             <DoubleAnimationUsingKeyFrames 
@@ -113,40 +113,40 @@
                 DataContext="{Binding}"/>
         </DataTemplate>
         <Storyboard x:Key="HideLogoStack">
-        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Logo">
-        		<SplineDoubleKeyFrame KeyTime="0" Value="1"/>
-        		<SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-        	</DoubleAnimationUsingKeyFrames>
-        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Logo">
-        		<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
-        		<DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Hidden}"/>
-        	</ObjectAnimationUsingKeyFrames>
-        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="favouriteStack">
-        		<SplineDoubleKeyFrame KeyTime="0" Value="1"/>
-        		<SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
-        	</DoubleAnimationUsingKeyFrames>
-        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="favouriteStack">
-        		<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
-        		<DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Hidden}"/>
-        	</ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Logo">
+                <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Logo">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Hidden}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="favouriteStack">
+                <SplineDoubleKeyFrame KeyTime="0" Value="1"/>
+                <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="favouriteStack">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Hidden}"/>
+            </ObjectAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="ShowLogoStack">
-        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="favouriteStack">
-        		<SplineDoubleKeyFrame KeyTime="0" Value="0"/>
-        		<SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
-        	</DoubleAnimationUsingKeyFrames>
-        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="favouriteStack">
-        		<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
-        		<DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Visible}"/>
-        	</ObjectAnimationUsingKeyFrames>
-        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Logo">
-        		<SplineDoubleKeyFrame KeyTime="0" Value="0"/>
-        		<SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
-        	</DoubleAnimationUsingKeyFrames>
-        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Logo">
-        		<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
-        		<DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Visible}"/>
-        	</ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="favouriteStack">
+                <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="favouriteStack">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Logo">
+                <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+                <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Logo">
+                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.3" Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="FadeClear">
             <ColorAnimation Storyboard.TargetName="blueBrush" Storyboard.TargetProperty="Color" To="#00000066" Duration="0:0:01"/>
@@ -154,7 +154,7 @@
         <Storyboard x:Key="FadeBlue" >
             <ColorAnimation Storyboard.TargetName="blueBrush" Storyboard.TargetProperty="Color" To="#66000066" Duration="0:0:01"/>
         </Storyboard>
-        
+
         <DataTemplate x:Key="BluetoothDeviceItemTemplate" >
             <StackPanel x:Name="DeviceStack" AllowDrop="True"  Margin="0,0,0,0" Height="175" Width="175" >
                 <StackPanel.Background>
@@ -180,6 +180,27 @@
                 </DataTrigger>
             </DataTemplate.Triggers>
         </DataTemplate>
+        <DataTemplate 
+        	x:Key="StackItemTemplate">
+        	<cs:ProjectItem 
+        		DataContext="{Binding}"/>
+        </DataTemplate>
+        <Style 
+        	x:Key="StackItemContainerStyle" 
+        	TargetType="{x:Type s:LibraryStackItem}">
+        	<Setter 
+        		Property="Template">
+        		<Setter.Value>
+        			<ControlTemplate 
+        				TargetType="{x:Type s:LibraryStackItem}">
+        				<Border
+        					Background="White">
+        					<ContentPresenter />
+        				</Border>
+        			</ControlTemplate>
+        		</Setter.Value>
+        	</Setter>
+        </Style>
     </s:SurfaceWindow.Resources>
     <s:SurfaceWindow.Background>
         <ImageBrush 
@@ -249,7 +270,7 @@
         	s:SurfaceDragDrop.DragEnter="ScatterViewDragEnter"
         	s:SurfaceDragDrop.DragLeave="ScatterViewDragLeave"
         	s:SurfaceDragDrop.Drop="ScatterViewDrop"
-            s:ScatterViewItem.Activated="scatterViewTarget_Activated"
+            s:ScatterViewItem.Activated="ScatterViewTargetActivated"
         	Background="Transparent" 
         	x:Name="scatterViewTarget" 
         	Panel.ZIndex="-2"/>
@@ -266,20 +287,20 @@
 			Width="74" 
 			Height="46" Content="Logo" IsChecked="True"
 			 >
-        	<s:SurfaceToggleButton.Foreground>
-        		<SolidColorBrush Color="Black"/>
-        	</s:SurfaceToggleButton.Foreground>
-        	<s:SurfaceToggleButton.Background>
-        		<ImageBrush ImageSource="Resources/FilterIcons/Cap.png" Stretch="None"/>
-        	</s:SurfaceToggleButton.Background>
-        	<s:SurfaceToggleButton.RenderTransform>
-        		<TransformGroup>
-        			<ScaleTransform/>
-        			<SkewTransform/>
-        			<RotateTransform Angle="90"/>
-        			<TranslateTransform Y="-370" X="-10"/>
-        		</TransformGroup>
-        	</s:SurfaceToggleButton.RenderTransform>
+            <s:SurfaceToggleButton.Foreground>
+                <SolidColorBrush Color="Black"/>
+            </s:SurfaceToggleButton.Foreground>
+            <s:SurfaceToggleButton.Background>
+                <ImageBrush ImageSource="Resources/FilterIcons/Cap.png" Stretch="None"/>
+            </s:SurfaceToggleButton.Background>
+            <s:SurfaceToggleButton.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90"/>
+                    <TranslateTransform Y="-370" X="-10"/>
+                </TransformGroup>
+            </s:SurfaceToggleButton.RenderTransform>
         </s:SurfaceToggleButton>
         <s:SurfaceToggleButton 
             x:Name="BTbutton" 
@@ -289,29 +310,29 @@
         	RenderTransformOrigin="0.5,0.5" 
         	FontSize="9.333" 
         	BorderThickness="8"
-        	Checked="BTbutton_Checked"
-        	Unchecked="BTbutton_Unchecked"
+        	Checked="BTbuttonChecked"
+        	Unchecked="BTbuttonUnchecked"
         	Panel.ZIndex="14" 
 			VerticalAlignment="Bottom" 
 			HorizontalAlignment="Right" Height="40" ClipToBounds="True" Width="70" >
-        	<s:SurfaceToggleButton.Foreground>
-        		<SolidColorBrush Color="Black"/>
-        	</s:SurfaceToggleButton.Foreground>
-        	<s:SurfaceToggleButton.Background>
-        		<ImageBrush ImageSource="Resources/Bluetooth.png"/>
-        	</s:SurfaceToggleButton.Background>
-        	<s:SurfaceToggleButton.RenderTransform>
-        		<TransformGroup>
-        			<ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
-        			<SkewTransform/>
-        			<RotateTransform Angle="-90"/>
-        			<TranslateTransform Y="-370" X="8"/>
-        		</TransformGroup>
-        	</s:SurfaceToggleButton.RenderTransform>
+            <s:SurfaceToggleButton.Foreground>
+                <SolidColorBrush Color="Black"/>
+            </s:SurfaceToggleButton.Foreground>
+            <s:SurfaceToggleButton.Background>
+                <ImageBrush ImageSource="Resources/Bluetooth.png"/>
+            </s:SurfaceToggleButton.Background>
+            <s:SurfaceToggleButton.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-90"/>
+                    <TranslateTransform Y="-370" X="8"/>
+                </TransformGroup>
+            </s:SurfaceToggleButton.RenderTransform>
         </s:SurfaceToggleButton>
         <s:SurfaceListBox AllowDrop="True" 
-                          s:SurfaceDragDrop.DragEnter="OnDropTargetDragEnterBT" 
-                          s:SurfaceDragDrop.DragLeave="OnDropTargetDragLeaveBT" 
+                          s:SurfaceDragDrop.DragEnter="OnDropTargetDragEnterBt" 
+                          s:SurfaceDragDrop.DragLeave="OnDropTargetDragLeaveBt" 
                           s:SurfaceDragDrop.Drop="OnDropBT" 
                           ItemTemplate="{StaticResource BluetoothDeviceItemTemplate}" 
                           Margin="0" 

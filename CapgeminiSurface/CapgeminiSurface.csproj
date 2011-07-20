@@ -53,10 +53,6 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Cjc.ChromiumBrowser, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\Cjc.ChromiumBrowser.dll</HintPath>
-    </Reference>
     <Reference Include="InTheHand.Net.Personal">
       <HintPath>.\InTheHand.Net.Personal.dll</HintPath>
     </Reference>
@@ -208,18 +204,6 @@
   <ItemGroup>
     <Resource Include="Resources\Background\WindowBackground.jpg" />
     <Resource Include="32feet.License.txt" />
-    <Content Include="Awesomium.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Awesomium_d.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Cjc.AwesomiumWrapper.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Cjc.ChromiumBrowser.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="icudt38.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

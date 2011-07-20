@@ -2,7 +2,6 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:s="http://schemas.microsoft.com/surface/2008" 
-    xmlns:cj="clr-namespace:Cjc.ChromiumBrowser;assembly=Cjc.ChromiumBrowser" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     mc:Ignorable="d" 
@@ -21,7 +20,9 @@
             x:Name="pictureGrid" 
             Visibility="{Binding IsPictureItem, Converter={StaticResource BoolToVisible}}" 
             Panel.ZIndex="10" 
-            Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" MaxWidth="0" MaxHeight="0" MinWidth="150" MinHeight="100">
+            Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" 
+            MinWidth="150" 
+            MinHeight="100">
             <StackPanel 
                 Panel.ZIndex="10" >
                 <TextBlock 
@@ -113,54 +114,6 @@
 				Stretch="Fill" 
 				Width="100" 
 				Height="100" />
-        </Grid>
-        <Grid x:Name="webGrid" Panel.ZIndex="10" 
-              Visibility="{Binding IsLinkItem, Converter={StaticResource BoolToVisible}}"
-              Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" ScrollViewer.VerticalScrollBarVisibility="Disabled">
-            <StackPanel>
-            <TextBlock 
-                	FontSize="13.333" 
-                	Foreground="Black" 
-                	Text="{Binding Name}"  
-                	TextWrapping="Wrap"              
-                	Panel.ZIndex="10" 
-                	Margin="2" 
-                	Background="{DynamicResource {x:Static SystemColors.GradientActiveCaptionBrushKey}}" MaxHeight="16.0933333333333" />
-                <Image 
-                	x:Name="closeButtonWeb" 
-                	Source="Resources/closeButton.png" 
-                	Margin="0,-20,2,0" 
-                	Panel.ZIndex="11" 
-                	s:Contacts.ContactDown="closeButton_ContactDown" 
-                	VerticalAlignment="Center" 
-                	HorizontalAlignment="Right" 
-                	Stretch="Fill" 
-                	Width="18" 
-                	Height="18" />
-                <Image 
-                	x:Name="refreshButton" 
-                	Source="Resources/refresh.png" 
-                	Margin="0,-20,20,0" 
-                	Panel.ZIndex="11" 
-                	s:Contacts.ContactDown="SurfaceButton_Click" 
-                	VerticalAlignment="Center" 
-                	HorizontalAlignment="Right" 
-                	Stretch="Fill" 
-                	Width="16" 
-                	Height="16" Opacity="0.75" />
-            </StackPanel>
-            <cj:WebBrowser 
-            	Panel.ZIndex="10" 
-            	x:Name="myBrowser" 
-				ScrollViewer.VerticalScrollBarVisibility="Disabled" 
-                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-				HorizontalContentAlignment="Stretch" 
-				VerticalContentAlignment="Stretch" 
-				Margin="2,20,2,2" 
-				EnableAsyncRendering="True" 
-				MinWidth="250" 
-				MinHeight="100"
-				 />
         </Grid>
         <Grid 
             x:Name="visitGrid" 

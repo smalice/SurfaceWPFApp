@@ -8,773 +8,782 @@
     x:Name="surfaceUserControl" 
     x:Class="CapgeminiSurface.MenuCard"
     Height="768" 
-    Width="1024">
-	<s:SurfaceUserControl.Resources>
+    Width="1024"
+    >
+    <s:SurfaceUserControl.Resources>
         <BooleanToVisibilityConverter 
             x:Key="BoolToVisibleMC" />
         <Storyboard 
             x:Key="dragOut">
-			<DoubleAnimationUsingKeyFrames 
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.Opacity)" 
                 Storyboard.TargetName="card">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.5" 
-                    Value="0"/>
-			</DoubleAnimationUsingKeyFrames>
-			<ObjectAnimationUsingKeyFrames 
+                    Value="0.05"/>
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.Visibility)" 
                 Storyboard.TargetName="card">
-				<DiscreteObjectKeyFrame 
+                <DiscreteObjectKeyFrame 
                     KeyTime="0:0:0.5" 
-                    Value="{x:Static Visibility.Hidden}"/>
-			</ObjectAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+                    Value="{x:Static Visibility.Visible}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" 
                 Storyboard.TargetName="card">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.5" 
                     Value="-300"/>
-			</DoubleAnimationUsingKeyFrames>
+            </DoubleAnimationUsingKeyFrames>
             <PointAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(s:ScatterViewItem.Center)" 
                 Storyboard.TargetName="scatCard">
-				<SplinePointKeyFrame 
+                <SplinePointKeyFrame 
                     KeyTime="0:0:0.5" 
                     Value="512,80"/>
-			</PointAnimationUsingKeyFrames>
-		</Storyboard>
-		<Storyboard 
+            </PointAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="card">
+                <SplineColorKeyFrame KeyTime="0:0:0.5" Value="White"/>
+            </ColorAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="card">
+                <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0.945"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard 
             x:Key="dragIn">
-			<DoubleAnimationUsingKeyFrames 
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.Opacity)" 
                 Storyboard.TargetName="card">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0" 
-                    Value="0"/>
-				<SplineDoubleKeyFrame 
+                    Value="0.05"/>
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.5" 
                     Value="0.432"/>
-			</DoubleAnimationUsingKeyFrames>
-			<ObjectAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.Visibility)" 
                 Storyboard.TargetName="card">
-				<DiscreteObjectKeyFrame 
+                <DiscreteObjectKeyFrame 
                     KeyTime="0" 
                     Value="{x:Static Visibility.Visible}"/>
-				<DiscreteObjectKeyFrame 
+                <DiscreteObjectKeyFrame 
                     KeyTime="0:0:0.5" 
                     Value="{x:Static Visibility.Visible}"/>
-			</ObjectAnimationUsingKeyFrames>
+            </ObjectAnimationUsingKeyFrames>
             <PointAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(s:ScatterViewItem.Center)" 
                 Storyboard.TargetName="scatCard">
-				<SplinePointKeyFrame 
+                <SplinePointKeyFrame 
                     KeyTime="0" 
                     Value="512,80"/>
-				<SplinePointKeyFrame 
+                <SplinePointKeyFrame 
                     KeyTime="0:0:0.5" 
                     Value="512,250"/>
-			</PointAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </PointAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" 
                 Storyboard.TargetName="card">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0" 
                     Value="-300"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.5" 
                     Value="-130"/>
-			</DoubleAnimationUsingKeyFrames>
-		</Storyboard>
-		<Storyboard 
+            </DoubleAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="card">
+                <SplineColorKeyFrame KeyTime="0" Value="White"/>
+                <SplineColorKeyFrame KeyTime="0:0:0.5" Value="Black"/>
+            </ColorAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="card">
+                <SplineDoubleKeyFrame KeyTime="0" Value="0.945"/>
+                <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard 
             x:Key="TapTheCard">
-			<DoubleAnimationUsingKeyFrames 
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" 
                 Storyboard.TargetName="tapTheCard01">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:1" 
                     Value="-4"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2" 
                     Value="-4"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" 
                 Storyboard.TargetName="tapTheCard01">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:1" 
                     Value="-39"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2" 
                     Value="7"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" 
                 Storyboard.TargetName="tapTheCard02">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:1" 
                     Value="-232"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2" 
                     Value="-4"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" 
                 Storyboard.TargetName="tapTheCard02">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:1" 
                     Value="0"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2" 
                     Value="7"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" 
                 Storyboard.TargetName="tapTheCard03">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:1" 
                     Value="252"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2" 
                     Value="-4"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" 
                 Storyboard.TargetName="tapTheCard03">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:1" 
                     Value="12"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2" 
                     Value="7"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(SkewTransform.AngleX)" 
                 Storyboard.TargetName="tapTheCard03">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:1" 
                     Value="-40"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2" 
                     Value="0"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(SkewTransform.AngleY)" 
                 Storyboard.TargetName="tapTheCard03">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:1" 
                     Value="0"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2" 
                     Value="0"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[1].(SkewTransform.AngleX)" 
                 Storyboard.TargetName="tapTheCard02">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:1" 
                     Value="50"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2" 
                     Value="0"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" 
                 Storyboard.TargetName="tapTheCard01">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:1" 
                     Value="3"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2" 
                     Value="1"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" 
                 Storyboard.TargetName="tapTheCard01">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:1" 
                     Value="3"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2" 
                     Value="1"/>
-			</DoubleAnimationUsingKeyFrames>
-			<ObjectAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.Visibility)" 
                 Storyboard.TargetName="tapTheCard01">
-				<DiscreteObjectKeyFrame 
+                <DiscreteObjectKeyFrame 
                     KeyTime="0:0:1" 
                     Value="{x:Static Visibility.Visible}"/>
-				<DiscreteObjectKeyFrame 
+                <DiscreteObjectKeyFrame 
                     KeyTime="0:0:2" 
                     Value="{x:Static Visibility.Visible}"/>
-			</ObjectAnimationUsingKeyFrames>
-			<ObjectAnimationUsingKeyFrames 
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.Visibility)" 
                 Storyboard.TargetName="tapTheCard02">
-				<DiscreteObjectKeyFrame 
+                <DiscreteObjectKeyFrame 
                     KeyTime="0:0:1" 
                     Value="{x:Static Visibility.Visible}"/>
-				<DiscreteObjectKeyFrame 
+                <DiscreteObjectKeyFrame 
                     KeyTime="0:0:2" 
                     Value="{x:Static Visibility.Visible}"/>
-			</ObjectAnimationUsingKeyFrames>
-			<ObjectAnimationUsingKeyFrames 
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.Visibility)" 
                 Storyboard.TargetName="tapTheCard03">
-				<DiscreteObjectKeyFrame 
+                <DiscreteObjectKeyFrame 
                     KeyTime="0:0:1" 
                     Value="{x:Static Visibility.Visible}"/>
-				<DiscreteObjectKeyFrame 
+                <DiscreteObjectKeyFrame 
                     KeyTime="0:0:2" 
                     Value="{x:Static Visibility.Visible}"/>
-			</ObjectAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.Opacity)" 
                 Storyboard.TargetName="tapTheCard01">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:1" 
                     Value="0"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2" 
                     Value="1"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.Opacity)" 
                 Storyboard.TargetName="tapTheCard02">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:1" 
                     Value="0"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2" 
                     Value="1"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.Opacity)" 
                 Storyboard.TargetName="tapTheCard03">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:1" 
                     Value="0"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2" 
                     Value="1"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" 
                 Storyboard.TargetName="tapTheCard01">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2" 
                     Value="0"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" 
                 Storyboard.TargetName="tapTheCard02">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2" 
                     Value="0"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" 
                 Storyboard.TargetName="tapTheCard03">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2" 
                     Value="0"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" 
                 Storyboard.TargetName="TextGrid">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2" 
                     Value="0"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2.5" 
                     Value="15"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:3.5" 
                     Value="-15"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:4" 
                     Value="0"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" 
                 Storyboard.TargetName="TextGrid">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2" 
                     Value="0"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2.5" 
                     Value="15"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:3.5" 
                     Value="-15"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:4" 
                     Value="0"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:4.5" 
                     Value="0"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" 
                 Storyboard.TargetName="TextGrid">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2" 
                     Value="1"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2.5" 
                     Value="0.75"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:3" 
                     Value="1"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:3.5" 
                     Value="0.75"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:4" 
                     Value="1"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:4.5" 
                     Value="0.3"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" 
                 Storyboard.TargetName="TextGrid">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2" 
                     Value="1"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2.5" 
                     Value="0.75"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:3" 
                     Value="1"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:3.5" 
                     Value="0.75"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:4" 
                     Value="1"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:4.5" 
                     Value="0.3"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" 
                 Storyboard.TargetName="TextGrid">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:4" 
                     Value="0"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:4.5" 
                     Value="-156"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.Opacity)" 
                 Storyboard.TargetName="TextGrid">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:1" 
                     Value="1"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2" 
                     Value="1"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:4" 
                     Value="1"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:4.5" 
                     Value="0"/>
-			</DoubleAnimationUsingKeyFrames>
-			<ObjectAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.Visibility)" 
                 Storyboard.TargetName="TextGrid">
-				<DiscreteObjectKeyFrame 
+                <DiscreteObjectKeyFrame 
                     KeyTime="0:0:1" 
                     Value="{x:Static Visibility.Visible}"/>
-				<DiscreteObjectKeyFrame 
+                <DiscreteObjectKeyFrame 
                     KeyTime="0:0:2" 
                     Value="{x:Static Visibility.Visible}"/>
-				<DiscreteObjectKeyFrame 
+                <DiscreteObjectKeyFrame 
                     KeyTime="0:0:4" 
                     Value="{x:Static Visibility.Visible}"/>
-				<DiscreteObjectKeyFrame 
+                <DiscreteObjectKeyFrame 
                     KeyTime="0:0:4.5" 
                     Value="{x:Static Visibility.Hidden}"/>
-			</ObjectAnimationUsingKeyFrames>
-		</Storyboard>
-		<Storyboard 
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard 
             x:Key="CardIsOut" 
             AutoReverse="True">
-			<DoubleAnimationUsingKeyFrames 
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" 
                 Storyboard.TargetName="TextGridOut">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0" 
                     Value="0"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.3" 
                     Value="0"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" 
                 Storyboard.TargetName="TextGridOut">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0" 
                     Value="304"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.3" 
                     Value="304"/>
-			</DoubleAnimationUsingKeyFrames>
-			<ObjectAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.Visibility)" 
                 Storyboard.TargetName="cardOut01">
-				<DiscreteObjectKeyFrame 
+                <DiscreteObjectKeyFrame 
                     KeyTime="0" 
                     Value="{x:Static Visibility.Visible}"/>
-				<DiscreteObjectKeyFrame 
+                <DiscreteObjectKeyFrame 
                     KeyTime="0:0:0.18" 
                     Value="{x:Static Visibility.Visible}"/>
-				<DiscreteObjectKeyFrame 
+                <DiscreteObjectKeyFrame 
                     KeyTime="0:0:2.4" 
                     Value="{x:Static Visibility.Visible}"/>
-			</ObjectAnimationUsingKeyFrames>
-			<ObjectAnimationUsingKeyFrames 
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.Visibility)" 
                 Storyboard.TargetName="cardOut02">
-				<DiscreteObjectKeyFrame 
+                <DiscreteObjectKeyFrame 
                     KeyTime="0" 
                     Value="{x:Static Visibility.Visible}"/>
-				<DiscreteObjectKeyFrame 
+                <DiscreteObjectKeyFrame 
                     KeyTime="0:0:0.24" 
                     Value="{x:Static Visibility.Visible}"/>
-				<DiscreteObjectKeyFrame 
+                <DiscreteObjectKeyFrame 
                     KeyTime="0:0:2.4" 
                     Value="{x:Static Visibility.Visible}"/>
-			</ObjectAnimationUsingKeyFrames>
-			<ObjectAnimationUsingKeyFrames 
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.Visibility)" 
                 Storyboard.TargetName="cardOut03">
-				<DiscreteObjectKeyFrame 
+                <DiscreteObjectKeyFrame 
                     KeyTime="0" 
                     Value="{x:Static Visibility.Visible}"/>
-				<DiscreteObjectKeyFrame 
+                <DiscreteObjectKeyFrame 
                     KeyTime="0:0:0.24" 
                     Value="{x:Static Visibility.Visible}"/>
-				<DiscreteObjectKeyFrame 
+                <DiscreteObjectKeyFrame 
                     KeyTime="0:0:2.4" 
                     Value="{x:Static Visibility.Visible}"/>
-			</ObjectAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" 
                 Storyboard.TargetName="cardOut01">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0" 
                     Value="32"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.18" 
                     Value="33"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2.4" 
                     Value="33"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" 
                 Storyboard.TargetName="cardOut01">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0" 
                     Value="-24"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.18" 
                     Value="272"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2.4" 
                     Value="272"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.Opacity)" 
                 Storyboard.TargetName="cardOut01">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0" 
                     Value="0"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.18" 
                     Value="1"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2.4" 
                     Value="1"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" 
                 Storyboard.TargetName="cardOut02">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0" 
                     Value="0"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.18" 
                     Value="328"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.24" 
                     Value="344"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2.4" 
                     Value="344"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" 
                 Storyboard.TargetName="cardOut02">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0" 
                     Value="0"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.18" 
                     Value="8"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.24" 
                     Value="-8"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2.4" 
                     Value="-8"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.Opacity)" 
                 Storyboard.TargetName="cardOut02">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0" 
                     Value="0"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.18" 
                     Value="1"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.24" 
                     Value="1"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2.4" 
                     Value="1"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[2].(RotateTransform.Angle)" 
                 Storyboard.TargetName="cardOut02">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.18" 
                     Value="90"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.24" 
                     Value="0"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2.4" 
                     Value="0"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" 
                 Storyboard.TargetName="cardOut02">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.18" 
                     Value="1"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.24" 
                     Value="0.556"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2.4" 
                     Value="0.556"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" 
                 Storyboard.TargetName="cardOut02">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.18" 
                     Value="1"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.24" 
                     Value="0.6"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2.4" 
                     Value="0.6"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" 
                 Storyboard.TargetName="cardOut03">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0" 
                     Value="0"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.24" 
                     Value="-240"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2.4" 
                     Value="-240"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" 
                 Storyboard.TargetName="cardOut03">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0" 
                     Value="0"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.24" 
                     Value="-4"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2.4" 
                     Value="-4"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.Opacity)" 
                 Storyboard.TargetName="cardOut03">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0" 
                     Value="0"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.24" 
                     Value="1"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2.4" 
                     Value="1"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" 
                 Storyboard.TargetName="cardOut03">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0" 
                     Value="0"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.24" 
                     Value="1"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2.4" 
                     Value="1"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" 
                 Storyboard.TargetName="cardOut01">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0" 
                     Value="0"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.18" 
                     Value="1"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2.4" 
                     Value="1"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(TextElement.FontSize)" 
                 Storyboard.TargetName="cardOut03">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0" 
                     Value="45.333"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.24" 
                     Value="50.667"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2.4" 
                     Value="50.667"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" 
                 Storyboard.TargetName="TextGridOut">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.3" 
                     Value="1"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2.4" 
                     Value="1.2"/>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" 
                 Storyboard.TargetName="TextGridOut">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:0.3" 
                     Value="1"/>
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0:0:2.4" 
                     Value="1.2"/>
-			</DoubleAnimationUsingKeyFrames>
-		</Storyboard>
-		<Storyboard 
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard 
             x:Key="FadeOutCard">
-			<DoubleAnimationUsingKeyFrames 
+            <DoubleAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Offset)" 
                 Storyboard.TargetName="card">
-				<SplineDoubleKeyFrame 
+                <SplineDoubleKeyFrame 
                     KeyTime="0" 
                     Value="0.087999999999999967"/>
-			</DoubleAnimationUsingKeyFrames>
-			<ColorAnimationUsingKeyFrames 
+            </DoubleAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" 
                 Storyboard.TargetName="card">
-				<SplineColorKeyFrame 
+                <SplineColorKeyFrame 
                     KeyTime="0" 
                     Value="White"/>
-				<SplineColorKeyFrame 
+                <SplineColorKeyFrame 
                     KeyTime="0:0:0.3" 
                     Value="Gray"/>
-			</ColorAnimationUsingKeyFrames>
-			<ColorAnimationUsingKeyFrames 
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" 
                 Storyboard.TargetName="card">
-				<SplineColorKeyFrame 
+                <SplineColorKeyFrame 
                     KeyTime="0" 
                     Value="Black"/>
-				<SplineColorKeyFrame 
+                <SplineColorKeyFrame 
                     KeyTime="0:0:0.3" 
                     Value="Black"/>
-			</ColorAnimationUsingKeyFrames>
-			<ColorAnimationUsingKeyFrames 
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" 
                 Storyboard.TargetName="card">
-				<SplineColorKeyFrame 
+                <SplineColorKeyFrame 
                     KeyTime="0" 
                     Value="SteelBlue"/>
-				<SplineColorKeyFrame 
+                <SplineColorKeyFrame 
                     KeyTime="0:0:0.3" 
                     Value="#FF244662"/>
-			</ColorAnimationUsingKeyFrames>
-		</Storyboard>
-		<Storyboard 
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard 
             x:Key="FadeInCard">
-			<ColorAnimationUsingKeyFrames 
+            <ColorAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" 
                 Storyboard.TargetName="card">
-				<SplineColorKeyFrame 
+                <SplineColorKeyFrame 
                     KeyTime="0" 
                     Value="Gray"/>
-				<SplineColorKeyFrame 
+                <SplineColorKeyFrame 
                     KeyTime="0:0:0.3" 
                     Value="White"/>
-			</ColorAnimationUsingKeyFrames>
-			<ColorAnimationUsingKeyFrames 
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" 
                 Storyboard.TargetName="card">
-				<SplineColorKeyFrame 
+                <SplineColorKeyFrame 
                     KeyTime="0" 
                     Value="#FF244662"/>
-				<SplineColorKeyFrame 
+                <SplineColorKeyFrame 
                     KeyTime="0:0:0.3" 
                     Value="SteelBlue"/>
-			</ColorAnimationUsingKeyFrames>
-			<ColorAnimationUsingKeyFrames 
+            </ColorAnimationUsingKeyFrames>
+            <ColorAnimationUsingKeyFrames 
                 Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" 
                 Storyboard.TargetName="card">
-				<SplineColorKeyFrame 
+                <SplineColorKeyFrame 
                     KeyTime="0" 
                     Value="Black"/>
-				<SplineColorKeyFrame 
+                <SplineColorKeyFrame 
                     KeyTime="0:0:0.3" 
                     Value="Black"/>
-			</ColorAnimationUsingKeyFrames>
-		</Storyboard>
-	</s:SurfaceUserControl.Resources>
-	<s:SurfaceUserControl.Triggers>
-		<EventTrigger 
-            RoutedEvent="s:ScatterViewItem.Activated" 
-            SourceName="scatCard">
-			<BeginStoryboard 
-                Storyboard="{StaticResource dragIn}"/>
-		</EventTrigger>
-		<EventTrigger 
+            </ColorAnimationUsingKeyFrames>
+        </Storyboard>
+    </s:SurfaceUserControl.Resources>
+    <s:SurfaceUserControl.Triggers>
+        <EventTrigger 
             RoutedEvent="FrameworkElement.Loaded">
-			<BeginStoryboard 
+            <BeginStoryboard 
                 Storyboard="{StaticResource FadeInCard}"/>
-		</EventTrigger>
-	</s:SurfaceUserControl.Triggers>
+        </EventTrigger>
+    </s:SurfaceUserControl.Triggers>
     <Grid 
         x:Name="cardBorderGrid" 
         Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibleMC}}">
@@ -788,39 +797,39 @@
                     Y="0.5"/>
             </Grid.RenderTransformOrigin>
             <Grid.RenderTransform>
-            	<TransformGroup>
-            		<ScaleTransform/>
-            		<SkewTransform/>
-            		<RotateTransform/>
-            		<TranslateTransform/>
-            	</TransformGroup>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
             </Grid.RenderTransform>
             <Grid 
                 x:Name="cardGrid" 
                 RenderTransformOrigin="0.5,0.5">
-            	<Grid.RenderTransform>
-            		<TransformGroup>
-            			<ScaleTransform/>
-            			<SkewTransform/>
+                <Grid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
                         <RotateTransform 
                         x:Name="cardRotateTransform" 
                         Angle="0" 
                         CenterX="0" 
                         CenterY="0"/>
                         <TranslateTransform/>
-            		</TransformGroup>
-            	</Grid.RenderTransform>
+                    </TransformGroup>
+                </Grid.RenderTransform>
                 <s:ScatterView 
                     x:Name="scatterView" 
                     RenderTransformOrigin="0.5,0.5">
-            	    <s:ScatterView.RenderTransform>
-            		    <TransformGroup>
-            			    <ScaleTransform/>
-            			    <SkewTransform/>
-            			    <RotateTransform/>
-            			    <TranslateTransform/>
-            		    </TransformGroup>
-            	    </s:ScatterView.RenderTransform>
+                    <s:ScatterView.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </s:ScatterView.RenderTransform>
                     <s:ScatterViewItem 
                         x:Name="scatCard"
                         Height="145.62"
@@ -831,9 +840,7 @@
                         Center="512,250" 
                         BorderThickness="8" 
                         Opacity="0.8"
-                        Activated="ScatCardActivated"
-                        ScatterManipulationStarted="ScatCardScatterManipulationStarted"
-                        ScatterManipulationDelta="ScatCardScatterManipulationDelta">
+                        >
                         <StackPanel>
                             <Label 
                                 Content="{Binding Name}"
@@ -843,7 +850,7 @@
                                 Stretch="Fill"
                                 Margin="0,20,0,0" />
                         </StackPanel>
-                    </s:ScatterViewItem>  
+                    </s:ScatterViewItem>
                 </s:ScatterView>
                 <Rectangle x:Name="card"
                            Height="161.8"
@@ -855,15 +862,15 @@
                            StrokeThickness="4" 
                            Stroke="White">
                     <Rectangle.BindingGroup>
-                		<BindingGroup/>
-                	</Rectangle.BindingGroup>
+                        <BindingGroup/>
+                    </Rectangle.BindingGroup>
                     <Rectangle.RenderTransform>
-                	    <TransformGroup>
-                		    <ScaleTransform/>
-                		    <SkewTransform/>
-                		    <RotateTransform/>
-                		    <TranslateTransform Y="-130"/>
-                	    </TransformGroup>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform Y="-130"/>
+                        </TransformGroup>
                     </Rectangle.RenderTransform>
                     <Rectangle.Fill>
                         <LinearGradientBrush 
@@ -878,21 +885,21 @@
                         </LinearGradientBrush>
                     </Rectangle.Fill>
                 </Rectangle>
-            	<Grid 
+                <Grid 
                     x:Name="TextGrid" 
                     Height="100" 
                     VerticalAlignment="Top" 
                     RenderTransformOrigin="0.5,0.5" 
                     Margin="464,76,460,0">
-            		<Grid.RenderTransform>
-            			<TransformGroup>
-            				<ScaleTransform/>
-            				<SkewTransform/>
-            				<RotateTransform/>
-            				<TranslateTransform/>
-            			</TransformGroup>
-            		</Grid.RenderTransform>
-            		<TextBlock 
+                    <Grid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Grid.RenderTransform>
+                    <TextBlock 
                         x:Name="tapTheCard01" 
                         Margin="8,-43,-8,0" 
                         TextWrapping="Wrap" 
@@ -923,7 +930,7 @@
             					Height="0" 
                                 Width="0"/>
             			</InlineUIContainer></TextBlock>
-            		<TextBlock 
+                    <TextBlock 
                         x:Name="tapTheCard02" 
                         Margin="12,0,8,0" 
                         TextWrapping="Wrap" 
@@ -953,7 +960,7 @@
             					Height="0" 
                                 Width="0"/>
             			</InlineUIContainer></TextBlock>
-            		<TextBlock 
+                    <TextBlock 
                         x:Name="tapTheCard03" 
                         Margin="12,40,8,28" 
                         TextWrapping="Wrap" 
@@ -980,28 +987,28 @@
                         <LineBreak/><Run Language="nb-no" Text="RELEASE"/>
                         <LineBreak/><Run Language="nb-no"/>
                     </TextBlock>
-            	</Grid>
-            	<Grid 
+                </Grid>
+                <Grid 
                     x:Name="TextGridOut" 
                     Height="100" 
                     VerticalAlignment="Top" 
                     RenderTransformOrigin="0.5,0.5" 
                     Margin="464,-112,460,0">
-            		<Grid.ColumnDefinitions>
-            			<ColumnDefinition 
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition 
                             Width="0.16*"/>
-            			<ColumnDefinition 
+                        <ColumnDefinition 
                             Width="0.84*"/>
-            		</Grid.ColumnDefinitions>
-            		<Grid.RenderTransform>
-            			<TransformGroup>
-            				<ScaleTransform/>
-            				<SkewTransform/>
-            				<RotateTransform/>
-            				<TranslateTransform/>
-            			</TransformGroup>
-            		</Grid.RenderTransform>
-            		<TextBlock 
+                    </Grid.ColumnDefinitions>
+                    <Grid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Grid.RenderTransform>
+                    <TextBlock 
                         x:Name="cardOut01" 
                         Margin="-472,-63,0,0" 
                         TextWrapping="Wrap" 
@@ -1032,7 +1039,7 @@
             			</TextBlock.Effect>
                         <Run Language="nb-no" Text="EXPLORE"/>
                     </TextBlock>
-            		<TextBlock 
+                    <TextBlock 
                         x:Name="cardOut02" 
                         Margin="0,-380,4,0" 
                         TextWrapping="Wrap" 
@@ -1066,7 +1073,7 @@
                                 Width="0"/>
             			</InlineUIContainer>
                     </TextBlock>
-            		<TextBlock 
+                    <TextBlock 
                         x:Name="cardOut03" 
                         Margin="0,-28,-452,0" 
                         TextWrapping="Wrap" 
@@ -1096,7 +1103,7 @@
             			</TextBlock.Effect>
                         <Run Language="nb-no" Text="CONTENT"/>
                     </TextBlock>
-            	</Grid>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>

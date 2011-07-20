@@ -11,14 +11,13 @@ using System.Collections.ObjectModel;
 using SurfaceBluetooth;
 using InTheHand.Net;
 using InTheHand.Net.Bluetooth;
-using InTheHand.Net.Sockets;
 
 namespace CapgeminiSurface
 {
     public partial class CapgeminiSurfaceWindow
     {
         #region Initialization
-        
+
         public enum States
         {
             AllCardRotation = 0,
@@ -42,28 +41,28 @@ namespace CapgeminiSurface
             get { return _targetItems ?? (_targetItems = new ObservableCollection<ContentItem>()); }
         }
 
-        private bool isSendingAfterDrop;
-        private Point dropPoint;
-        private double dropOrientation;
-		private double dropScatHeight;
-		private double dropScatWidth;
-		private double newAngle;
-		private double maxHeight;
-		private double maxWidth;
-		private double minHeight;
-		private double minWidth;
-		
-        private BluetoothMonitor monitor;
+        private bool _isSendingAfterDrop;
+        private Point _dropPoint;
+        private double _dropOrientation;
+        private double _dropScatHeight;
+        private double _dropScatWidth;
+        private double _newAngle;
+        private double _maxHeight;
+        private double _maxWidth;
+        private double _minHeight;
+        private double _minWidth;
+
+        private BluetoothMonitor _monitor;
 
         public CapgeminiSurfaceWindow()
         {
             ModelManager.Instance.Load();
             InitializeComponent();
             InitializeManipulationProcessor();
-			AddFilterHandlers();
-			
-			newAngle = _randomStartAngle.Next(0, 360);
-			
+            AddFilterHandlers();
+
+            _newAngle = _randomStartAngle.Next(0, 360);
+
             foreach (Customer customer in ModelManager.Instance.AllCustomers)
             {
                 InitializeCard(customer);
@@ -84,8 +83,8 @@ namespace CapgeminiSurface
             CustomerFilter.OtherFilterChecked += HandleOtherFilterChecked;
             CustomerFilter.OtherFilterUnchecked += HandleOtherFilterUnchecked;
 
-			CustomerFilter.NdcFilterChecked += HandleNdcFilterChecked;
-			CustomerFilter.NdcFilterUnchecked += HandleNdcFilterUnchecked;
+            CustomerFilter.NdcFilterChecked += HandleNdcFilterChecked;
+            CustomerFilter.NdcFilterUnchecked += HandleNdcFilterUnchecked;
         }
 
         private void InitializeCard(Customer costumer)
@@ -94,28 +93,27 @@ namespace CapgeminiSurface
             surfaceMainGrid.Children.Add(card);
             Grid.SetColumn(card, 0);
             Grid.SetRow(card, 0);
-			card.cardRotateTransform.Angle=newAngle;
-			newAngle+=25;
+            card.cardRotateTransform.Angle = _newAngle;
+            _newAngle += 25;
             Panel.SetZIndex(card, 2);
             MenuCardHolder.Add(card);
             card.ContactTapGesture += CardContactTapGesture;
             card.ContactDown += CardContactDown;
-            card.scatCard.ScatterManipulationCompleted += CardScatterManipulationComp;
             card.SetZorder += CardContactDown;
         }
 
-        private void surfaceWindow_Loaded(object sender, RoutedEventArgs e)
+        private void SurfaceWindowLoaded(object sender, RoutedEventArgs e)
         {
-            InitializeBT();
+            InitializeBt();
         }
 
-        private void InitializeBT()
+        private void InitializeBt()
         {
-            if (monitor == null)
+            if (_monitor == null)
             {
                 try
                 {
-                    monitor = new BluetoothMonitor();
+                    _monitor = new BluetoothMonitor();
                 }
                 catch
                 {
@@ -125,25 +123,25 @@ namespace CapgeminiSurface
                 }
 
                 // Data bind the list control to the current list of available devices
-                DeviceList.ItemsSource = monitor.Devices;
+                DeviceList.ItemsSource = _monitor.Devices;
 
                 // Defines how long a single search pass will last
-                monitor.DiscoveryDuration = new TimeSpan(0, 0, 5);
+                _monitor.DiscoveryDuration = new TimeSpan(0, 0, 5);
                 // Defines how long to wait between searches
-                monitor.IdleDuration = new TimeSpan(0, 0, 5);
-                monitor.DiscoveryStarted += new EventHandler(monitor_DiscoveryStarted);
-                monitor.DiscoveryCompleted += new EventHandler(monitor_DiscoveryCompleted);
+                _monitor.IdleDuration = new TimeSpan(0, 0, 5);
+                _monitor.DiscoveryStarted += MonitorDiscoveryStarted;
+                _monitor.DiscoveryCompleted += MonitorDiscoveryCompleted;
                 // Show the Surface's Bluetooth radio name on screen
-                RadioNameText.Text = monitor.RadioFriendlyName;
+                RadioNameText.Text = _monitor.RadioFriendlyName;
             }
 
             // Starts listening loop for detecting nearby devices
-            monitor.StartDiscovery();
+            _monitor.StartDiscovery();
         }
         #endregion
 
         #region Rotation
-        
+
         private void InitializeManipulationProcessor()
         {
             _manipulationProcessor = new Affine2DManipulationProcessor(Affine2DManipulations.Rotate, particleSystem, _centerPoint);
@@ -170,22 +168,6 @@ namespace CapgeminiSurface
         #endregion
 
         #region SurfaceInteraction
-        
-        private void CardScatterManipulationComp(object sender, ScatterManipulationCompletedEventArgs e)
-        {
-            _targetItems.Clear();
-
-            foreach (MenuCard card in MenuCardHolder)
-            {
-                card.FadeInCardAnimation();
-            }
-            CurrentState = States.AllCardRotation;
-
-            var hideFavouriteStack = (Storyboard)FindResource("HideFavouriteStack");
-            hideFavouriteStack.Begin();
-
-            particleSystem.SetSpeedSlider(15.0);
-        }
 
         private void CardContactDown(object sender, ContactEventArgs e)
         {
@@ -193,7 +175,7 @@ namespace CapgeminiSurface
 
             if (obj != null && CurrentState.Equals(States.AllCardRotation))
             {
-                foreach (MenuCard card in MenuCardHolder)	
+                foreach (MenuCard card in MenuCardHolder)
                 {
                     Panel.SetZIndex(card, card.Equals(obj) ? 2 : 1);
                 }
@@ -205,7 +187,33 @@ namespace CapgeminiSurface
         {
             var obj = sender as MenuCard;
 
-            if (obj != null && CurrentState.Equals(States.AllCardRotation))
+            bool check = false;
+            if (obj != null && (!States.AllCardRotation.Equals(CurrentState)))
+            {
+
+                _targetItems.Clear();
+
+                foreach (MenuCard card in MenuCardHolder)
+                {
+                    card.FadeInCardAnimation();
+
+                }
+                CurrentState = States.AllCardRotation;
+
+                var hideFavouriteStack = (Storyboard)FindResource("HideFavouriteStack");
+                hideFavouriteStack.Remove();
+                hideFavouriteStack.Begin();
+
+                particleSystem.SetSpeedSlider(15.0);
+
+                obj.AfterTapReset();
+
+                e.Handled = true;
+                check = true;
+
+            }
+
+            if (obj != null && CurrentState.Equals(States.AllCardRotation) && !check)
             {
                 foreach (MenuCard card in MenuCardHolder)
                 {
@@ -216,7 +224,7 @@ namespace CapgeminiSurface
                 {
                     CurrentState = States.OneCardDocked;
 
-                    var revealFavouriteStack = (Storyboard) FindResource("RevealFavouriteStack");
+                    var revealFavouriteStack = (Storyboard)FindResource("RevealFavouriteStack");
 
                     if (revealFavouriteStack != null)
                     {
@@ -227,6 +235,7 @@ namespace CapgeminiSurface
                 }
                 obj.AfterOnTapGesture(e);
             }
+
         }
 
         private void ScatterViewDragEnter(object sender, SurfaceDragDropEventArgs e)
@@ -243,19 +252,19 @@ namespace CapgeminiSurface
         {
             TargetItems.Add(e.Cursor.Data as ContentItem);
             var item = scatterViewTarget.Items[scatterViewTarget.Items.Count - 1];
-            dropPoint = e.Cursor.GetPosition(scatterViewTarget);
-			
-			maxHeight = e.Cursor.Visual.MaxHeight;
-            maxWidth = e.Cursor.Visual.MaxWidth;
-			minHeight = e.Cursor.Visual.MinHeight;
-            minWidth = e.Cursor.Visual.MinWidth;
-			
-			dropOrientation = e.Cursor.GetOrientation(scatterViewTarget);
-			
-			dropScatHeight = e.Cursor.Visual.ActualHeight;
-			dropScatWidth = e.Cursor.Visual.ActualWidth;
-            
-			isSendingAfterDrop = true;
+            _dropPoint = e.Cursor.GetPosition(scatterViewTarget);
+
+            _maxHeight = e.Cursor.Visual.MaxHeight;
+            _maxWidth = e.Cursor.Visual.MaxWidth;
+            _minHeight = e.Cursor.Visual.MinHeight;
+            _minWidth = e.Cursor.Visual.MinWidth;
+
+            _dropOrientation = e.Cursor.GetOrientation(scatterViewTarget);
+
+            _dropScatHeight = e.Cursor.Visual.ActualHeight;
+            _dropScatWidth = e.Cursor.Visual.ActualWidth;
+
+            _isSendingAfterDrop = true;
             scatterViewTarget.Activate(item);
             favouriteStack.RemoveInstancePropertyObject(item);
 
@@ -291,15 +300,42 @@ namespace CapgeminiSurface
             }
         }
 
+
+        private void ScatterViewTargetActivated(object sender, RoutedEventArgs e)
+        {
+            if (!_isSendingAfterDrop) return;
+            ((ScatterViewItem) e.OriginalSource).Center = _dropPoint;
+            var newScatterItem = (e.OriginalSource as ScatterViewItem);
+            newScatterItem.Orientation = _dropOrientation;
+            newScatterItem.MaxHeight = _maxHeight;
+            newScatterItem.MaxWidth = _maxWidth;
+            newScatterItem.MinHeight = _minHeight;
+            newScatterItem.MinWidth = _minWidth;
+            newScatterItem.IsTopmostOnActivation = true;
+            //newScatterItem.ZIndex = 100;
+            if (_dropScatHeight < 100.0)
+            {
+                _dropScatHeight=(_dropScatHeight*1.5);
+            }
+            if (_dropScatWidth < 150.0)
+            {
+                _dropScatWidth=(_dropScatWidth*1.5);
+            }
+
+            (e.OriginalSource as ScatterViewItem).Height = (_dropScatHeight);
+            (e.OriginalSource as ScatterViewItem).Width = (_dropScatWidth);
+            _isSendingAfterDrop = false;
+        }
+
         #endregion
 
         #region FilterHandling
-        
+
         void InstancePropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (ModelManager.Instance.SelectedCustomer == null)
                 _targetItems.Clear();
-            
+
         }
 
         private static void HandleEneryFilterUnchecked(object sender, EventArgs e)
@@ -350,55 +386,30 @@ namespace CapgeminiSurface
             }
         }
 
-		private static void HandleNdcFilterChecked(object sender, EventArgs e)
-		{
-			foreach (var ndcCustomer in ModelManager.Instance.NdcInfo)
-			{
-				ndcCustomer.IsVisible = true;
-			}
-		}
+        private static void HandleNdcFilterChecked(object sender, EventArgs e)
+        {
+            foreach (var ndcCustomer in ModelManager.Instance.NdcInfo)
+            {
+                ndcCustomer.IsVisible = true;
+            }
+        }
 
-		private static void HandleNdcFilterUnchecked(object sender, EventArgs e)
-		{
-			foreach (var ndcCustomer in ModelManager.Instance.NdcInfo)
-			{
-				ndcCustomer.IsVisible = false;
-			}
-		}
+        private static void HandleNdcFilterUnchecked(object sender, EventArgs e)
+        {
+            foreach (var ndcCustomer in ModelManager.Instance.NdcInfo)
+            {
+                ndcCustomer.IsVisible = false;
+            }
+        }
 
         #endregion
 
-        private void scatterViewTarget_Activated(object sender, RoutedEventArgs e)
-        {
-            if (!isSendingAfterDrop) return;
-            (e.OriginalSource as ScatterViewItem).Center = dropPoint;
-            (e.OriginalSource as ScatterViewItem).Orientation = dropOrientation;
-			
-			(e.OriginalSource as ScatterViewItem).MaxHeight = maxHeight;
-			(e.OriginalSource as ScatterViewItem).MaxWidth 	= maxWidth;
-			(e.OriginalSource as ScatterViewItem).MinHeight = minHeight;
-			(e.OriginalSource as ScatterViewItem).MinWidth 	= minWidth;
-            
-            //if (dropScatHeight < 100.0)
-            //{
-            //    dropScatHeight=(dropScatHeight*1.5);
-            //}
-            //if (dropScatWidth < 150.0)
-            //{
-            //    dropScatWidth=(dropScatWidth*1.5);
-            //}
-
-			(e.OriginalSource as ScatterViewItem).Height = (dropScatHeight);
-			(e.OriginalSource as ScatterViewItem).Width = (dropScatWidth);
-            isSendingAfterDrop = false;
-        }
-
         #region Bluetooth methods
-        private void OnDropTargetDragEnterBT(object sender, SurfaceDragDropEventArgs e)
+        private void OnDropTargetDragEnterBt(object sender, SurfaceDragDropEventArgs e)
         {
             if (e.OriginalSource is FrameworkElement)
             {
-                FrameworkElement fe = e.OriginalSource as FrameworkElement;
+                var fe = e.OriginalSource as FrameworkElement;
 
                 if (fe.DataContext is BluetoothDevice)
                 {
@@ -408,16 +419,16 @@ namespace CapgeminiSurface
             }
         }
 
-        void monitor_DiscoveryCompleted(object sender, EventArgs e)
+        void MonitorDiscoveryCompleted(object sender, EventArgs e)
         {
             // Hides the discovery animation
-            this.Dispatcher.Invoke(new UpdateVisibilityDelegate(UpdateVisibility), Visibility.Hidden);
+            Dispatcher.Invoke(new UpdateVisibilityDelegate(UpdateVisibility), Visibility.Hidden);
         }
 
-        void monitor_DiscoveryStarted(object sender, EventArgs e)
+        void MonitorDiscoveryStarted(object sender, EventArgs e)
         {
             // Shows the discovery animation
-            this.Dispatcher.Invoke(new UpdateVisibilityDelegate(UpdateVisibility), Visibility.Visible);
+            Dispatcher.Invoke(new UpdateVisibilityDelegate(UpdateVisibility), Visibility.Visible);
         }
 
         delegate void UpdateVisibilityDelegate(Visibility v);
@@ -425,17 +436,10 @@ namespace CapgeminiSurface
         void UpdateVisibility(Visibility v)
         {
             // Additionally display a text description of what the surface is currently doing
-            if (v == Visibility.Visible)
-            {
-                DiscoveryStatusText.Text = "listening for Bluetooth devices...";
-            }
-            else
-            {
-                DiscoveryStatusText.Text = "waiting...";
-            }
+            DiscoveryStatusText.Text = v == Visibility.Visible ? "listening for Bluetooth devices..." : "waiting...";
         }
 
-        private void OnDropTargetDragLeaveBT(object sender, SurfaceDragDropEventArgs e)
+        private void OnDropTargetDragLeaveBt(object sender, SurfaceDragDropEventArgs e)
         {
             e.Cursor.Visual.Tag = "Dragging";
         }
@@ -443,11 +447,11 @@ namespace CapgeminiSurface
         // Runs in a threadpool thread and performs the actual obex exchange
         private void BeamObject(object context)
         {
-            ObexWebRequest owr = context as ObexWebRequest;
+            var owr = context as ObexWebRequest;
 
             try
             {
-                InTheHand.Net.ObexWebResponse response = (InTheHand.Net.ObexWebResponse)owr.GetResponse();
+                var response = (InTheHand.Net.ObexWebResponse)owr.GetResponse();
 
                 // Remove once-off pairing
                 BluetoothSecurity.RemoveDevice(BluetoothAddress.Parse(owr.RequestUri.Host));
@@ -459,45 +463,45 @@ namespace CapgeminiSurface
             finally
             {
                 // Restart discovery for new devices
-                monitor.StartDiscovery();
+                _monitor.StartDiscovery();
             }
         }
 
         private void OnDropBT(object sender, SurfaceDragDropEventArgs e)
         {
-            FrameworkElement element = e.OriginalSource as FrameworkElement;
+            var element = e.OriginalSource as FrameworkElement;
             if (element != null)
             {
                 if (element.DataContext is BluetoothDevice)
                 {
                     // Target is a Bluetooth device
-                    BluetoothDevice device = element.DataContext as BluetoothDevice;
+                    var device = element.DataContext as BluetoothDevice;
 
                     if (e.Cursor.Data is ContentItem)
                     {
-                        ContentItem ci = e.Cursor.Data as ContentItem;
+                        var ci = e.Cursor.Data as ContentItem;
                         ObexItem oi = null;
                         if (ci.IsPictureItem)
                         {
-                            oi = new ObexImage() { ImageUri = new Uri("pack://application:,,,/" + ci.FileName) };                            
-                        } 
+                            oi = new ObexImage() { ImageUri = new Uri("pack://application:,,,/" + ci.FileName) };
+                        }
                         else if (ci.IsVisitItem)
                         {
-                            oi = new ObexContactItem() 
+                            oi = new ObexContactItem()
                             {
-                                FirstName = ci.Name, 
-                                LastName = ci.FileName, 
+                                FirstName = ci.Name,
+                                LastName = ci.FileName,
                                 EmailAddress = ci.Email,
                                 MobileTelephoneNumber = ci.Tlf
                             };
                         }
                         if (oi != null)
-                        { 
+                        {
                             // Pause discovery as it interferes with/slows down beam process
-                            monitor.StopDiscovery();
+                            _monitor.StopDiscovery();
 
                             // Create the new request and write the contact details
-                            ObexWebRequest owr = new ObexWebRequest(new Uri("obex://" + device.DeviceAddress.ToString() + "/" + oi.FileName));
+                            var owr = new ObexWebRequest(new Uri("obex://" + device.DeviceAddress.ToString() + "/" + oi.FileName));
                             System.IO.Stream s = owr.GetRequestStream();
                             oi.WriteToStream(s);
 
@@ -506,7 +510,7 @@ namespace CapgeminiSurface
                             s.Close();
 
                             // Beam the item on new thread
-                            System.Threading.ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback(BeamObject), owr);
+                            System.Threading.ThreadPool.QueueUserWorkItem(BeamObject, owr);
                         }
                         // Return item to the scatter view
                         TargetItems.Add(e.Cursor.Data as ContentItem);
@@ -522,35 +526,37 @@ namespace CapgeminiSurface
         #endregion
 
         #region Closing window
-        private void surfaceWindow_Unloaded(object sender, RoutedEventArgs e)
+        private void SurfaceWindowUnloaded(object sender, RoutedEventArgs e)
         {
-            if (monitor != null)
+            if (_monitor != null)
             {
-                monitor.StopDiscovery();
+                _monitor.StopDiscovery();
             }
         }
 
-        private void surfaceWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void SurfaceWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (monitor != null)
+            if (_monitor != null)
             {
-                monitor.StopDiscovery();
+                _monitor.StopDiscovery();
             }
         }
         #endregion
 
-        private void BTbutton_Checked(object sender, RoutedEventArgs e)
+        #region BlueToothButton
+        private void BTbuttonChecked(object sender, RoutedEventArgs e)
         {
             DeviceList.Visibility = Visibility.Visible;
             //RadioNameText.Visibility = Visibility.Visible;
             //DiscoveryStatusText.Visibility = Visibility.Visible;
         }
 
-        private void BTbutton_Unchecked(object sender, RoutedEventArgs e)
+        private void BTbuttonUnchecked(object sender, RoutedEventArgs e)
         {
             DeviceList.Visibility = Visibility.Collapsed;
             RadioNameText.Visibility = Visibility.Collapsed;
             DiscoveryStatusText.Visibility = Visibility.Collapsed;
         }
+        #endregion
     }
 }
